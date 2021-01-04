@@ -1,8 +1,12 @@
+from memberaudit.models import Character, CharacterAsset, SkillSet
+
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from allianceauth.authentication.models import CharacterOwnership
+from eveuniverse.models import EveType
 
 
 class SingletonModel(models.Model):
@@ -57,4 +61,49 @@ class MemberAuditComplianceFilter(BaseFilter, SingletonModel):
                 user=user, memberaudit_character=None
             ).count()
             == 0
+        )
+
+
+class MemberAuditSkillSetFilter(BaseFilter):
+
+    skill_sets = models.ManyToManyField(
+        SkillSet,
+        help_text=_(
+            "Users must possess all of the skills in <strong>one</strong> of the selected skillsets."
+        ),
+    )
+
+    @property
+    def name(self):
+        return "Member Audit Skill Set"
+
+    def process_filter(self, user: User):
+        characters = Character.objects.filter(character_ownership__user=user)
+        for character in characters:
+            for check in character.skill_set_checks.filter(
+                skill_set__in=self.skill_sets.all()
+            ):
+                if check.failed_required_skills.count() == 0:
+                    return True
+        return False
+
+
+class MemberAuditAssetFilter(BaseFilter):
+
+    assets = models.ManyToManyField(
+        EveType,
+        help_text=_("User must possess <strong>one</strong> of the selected assets"),
+    )
+
+    @property
+    def name(self):
+        return "Member Audit Asset"
+
+    def process_filter(self, user: User):
+        characters = Character.objects.filter(character_ownership__user=user)
+        return (
+            CharacterAsset.objects.filter(
+                character__in=characters, eve_type__in=self.assets.all()
+            ).count()
+            > 0
         )

@@ -1,6 +1,10 @@
 from django.contrib import admin
 
-from .models import MemberAuditComplianceFilter
+from .models import (
+    MemberAuditAssetFilter,
+    MemberAuditComplianceFilter,
+    MemberAuditSkillSetFilter,
+)
 
 
 class SingletonModelAdmin(admin.ModelAdmin):
@@ -20,3 +24,13 @@ class SingletonModelAdmin(admin.ModelAdmin):
 @admin.register(MemberAuditComplianceFilter)
 class MemberAuditComplianceFilterAdmin(SingletonModelAdmin):
     pass
+
+
+@admin.register(MemberAuditSkillSetFilter)
+class MemberAuditSkillSetFilterAdmin(admin.ModelAdmin):
+    filter_horizontal = ("skill_sets",)
+
+
+@admin.register(MemberAuditAssetFilter)
+class MemberAuditAssetFilterAdmin(admin.ModelAdmin):
+    filter_horizontal = ("assets",)

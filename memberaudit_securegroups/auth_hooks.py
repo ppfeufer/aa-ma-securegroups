@@ -1,8 +1,16 @@
 from allianceauth import hooks
 
-from .models import MemberAuditComplianceFilter
+from .models import (
+    MemberAuditAssetFilter,
+    MemberAuditComplianceFilter,
+    MemberAuditSkillSetFilter,
+)
 
 
 @hooks.register("secure_group_filters")
 def filters():
-    return [MemberAuditComplianceFilter]
+    return [
+        MemberAuditComplianceFilter,
+        MemberAuditSkillSetFilter,
+        MemberAuditAssetFilter,
+    ]
