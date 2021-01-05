@@ -2,10 +2,10 @@
 
 This is an integration between [Member Audit](https://gitlab.com/ErikKalkoken/aa-memberaudit) and [Secure Groups](https://github.com/pvyParts/allianceauth-secure-groups) for [Alliance Auth](https://gitlab.com/allianceauth/allianceauth) (AA).
 
-![release](https://img.shields.io/pypi/v/aa-blueprints?label=release)
+![release](https://img.shields.io/pypi/v/aa-memberaudit-securegroups?label=release)
 ![License](https://img.shields.io/badge/license-GPL-green)
-![python](https://img.shields.io/pypi/pyversions/aa-blueprints)
-![django](https://img.shields.io/pypi/djversions/aa-blueprints?label=django)
+![python](https://img.shields.io/pypi/pyversions/aa-memberaudit-securegroups)
+![django](https://img.shields.io/pypi/djversions/aa-memberaudit-securegroups?label=django)
 ![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)
 ![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
 
