@@ -1,12 +1,17 @@
-from memberaudit.models import Character, CharacterAsset, SkillSet
+import datetime
+
+import humanize
 
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.db import models
+from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 
 from allianceauth.authentication.models import CharacterOwnership
+
 from eveuniverse.models import EveType
+from memberaudit.models import Character, CharacterAsset, SkillSet
 
 
 class SingletonModel(models.Model):
@@ -36,7 +41,9 @@ class SingletonModel(models.Model):
 
 class BaseFilter(models.Model):
 
-    description = models.CharField(max_length=500)  # this is what is shown to the user
+    description = models.CharField(
+        max_length=500, help_text="The filter description that is shown to end users"
+    )  # this is what is shown to the user
 
     class Meta:
         abstract = True
@@ -54,6 +61,81 @@ class BaseFilter(models.Model):
         raise NotImplementedError("Please Create a filter!")
 
 
+class MemberAuditActivityFilter(BaseFilter):
+    inactivity_threshold = models.PositiveIntegerField(
+        help_text=_("Maximum allowable inactivity, in <strong>days</strong>."),
+    )
+
+    class Meta:
+        verbose_name = "activity filter"
+        verbose_name_plural = "activity filters"
+
+    @property
+    def name(self):
+        return f"Member Audit Activity [days={self.inactivity_threshold}]"
+
+    def process_filter(self, user: User):
+        threshold_date = datetime.datetime.now(
+            datetime.timezone.utc
+        ) - datetime.timedelta(days=self.inactivity_threshold)
+        return Character.objects.filter(
+            Q(character_ownership__user=user),
+            Q(online_status__last_login__gt=threshold_date)
+            | Q(online_status__last_logout__gt=threshold_date),
+        ).count()
+
+
+class MemberAuditAgeFilter(BaseFilter):
+
+    age_threshold = models.PositiveIntegerField(
+        help_text=_("Minimum allowable age, in <strong>days</strong>."),
+    )
+
+    class Meta:
+        verbose_name = "age filter"
+        verbose_name_plural = "age filters"
+
+    @property
+    def name(self):
+        return f"Member Audit Age [days={self.age_threshold}]"
+
+    def process_filter(self, user: User):
+        threshold_date = datetime.datetime.now(
+            datetime.timezone.utc
+        ) - datetime.timedelta(days=self.age_threshold)
+        return (
+            Character.objects.filter(
+                character_ownership__user=user, details__birthday__lt=threshold_date
+            ).count()
+            > 0
+        )
+
+
+class MemberAuditAssetFilter(BaseFilter):
+
+    assets = models.ManyToManyField(
+        EveType,
+        help_text=_("User must possess <strong>one</strong> of the selected assets"),
+    )
+
+    class Meta:
+        verbose_name = "asset filter"
+        verbose_name_plural = "asset filters"
+
+    @property
+    def name(self):
+        return "Member Audit Asset"
+
+    def process_filter(self, user: User):
+        characters = Character.objects.filter(character_ownership__user=user)
+        return (
+            CharacterAsset.objects.filter(
+                character__in=characters, eve_type__in=self.assets.all()
+            ).count()
+            > 0
+        )
+
+
 class MemberAuditComplianceFilter(BaseFilter, SingletonModel):
     class Meta:
         verbose_name = "compliance filter"
@@ -61,10 +143,34 @@ class MemberAuditComplianceFilter(BaseFilter, SingletonModel):
 
     def process_filter(self, user: User):
         return (
-            CharacterOwnership.objects.filter(
+            CharacterOwnership.objects.filter(user=user).count() > 0
+            and CharacterOwnership.objects.filter(
                 user=user, memberaudit_character=None
             ).count()
             == 0
+        )
+
+
+class MemberAuditSkillPointFilter(BaseFilter):
+
+    skill_point_threshold = models.PositiveBigIntegerField(
+        help_text=_("Minimum allowable skillpoints"),
+    )
+
+    class Meta:
+        verbose_name = "skill point filter"
+        verbose_name_plural = "skill point filters"
+
+    @property
+    def name(self):
+        return f"Member Audit Skill Points [sp={humanize.intword(self.skill_point_threshold)}]"
+
+    def process_filter(self, user: User):
+        return (
+            Character.objects.filter(
+                skillpoints__total__gt=self.skill_point_threshold
+            ).count()
+            > 0
         )
 
 
@@ -94,28 +200,3 @@ class MemberAuditSkillSetFilter(BaseFilter):
                 if check.failed_required_skills.count() == 0:
                     return True
         return False
-
-
-class MemberAuditAssetFilter(BaseFilter):
-
-    assets = models.ManyToManyField(
-        EveType,
-        help_text=_("User must possess <strong>one</strong> of the selected assets"),
-    )
-
-    class Meta:
-        verbose_name = "asset filter"
-        verbose_name_plural = "asset filters"
-
-    @property
-    def name(self):
-        return "Member Audit Asset"
-
-    def process_filter(self, user: User):
-        characters = Character.objects.filter(character_ownership__user=user)
-        return (
-            CharacterAsset.objects.filter(
-                character__in=characters, eve_type__in=self.assets.all()
-            ).count()
-            > 0
-        )

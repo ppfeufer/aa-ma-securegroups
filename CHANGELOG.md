@@ -13,5 +13,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [0.1.0a2] - 2021-01-05
+### Added
+- Activity Filter
+- Age Filter
+- Skill Point Filter
+
+### Changed
+- Improved Admin Panel
+
 ## [0.1.0a1] - 2021-01-05
-Initial Release
+### Added
+- Initial Release

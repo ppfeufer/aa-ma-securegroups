@@ -11,9 +11,12 @@ This is an integration between [Member Audit](https://gitlab.com/ErikKalkoken/aa
 
 ## Features
 
+- Activity Filter
+- Asset Filter
+- Character Age Filter
 - Compliance Filter
 - Skill Set Filter
-- Asset Filter
+- Skill Point Filter
 
 # Installation
 
@@ -42,3 +45,14 @@ python manage.py migrate
 ```
 
 Restart your supervisor services for Auth
+
+# Filters
+
+| Filter Name        | Matches if...                                                           |
+|--------------------|-------------------------------------------------------------------------|
+| Activity Filter    | User has *at least one* character active within the last X days         |
+| Age Filter         | User has *at least one* character over X days old                       |
+| Asset Filter       | User has *at least one* character with *any of* the assets defined      |
+| Compliance Filter  | User has *all* characters registered on Member Audit                    |
+| Skill Point Filter | User has *at least one* character with at least X skill points          |
+| Skill Set Filter   | User has *at least one* character with *any of* the selected skill sets |
