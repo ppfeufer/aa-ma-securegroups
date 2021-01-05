@@ -55,6 +55,10 @@ class BaseFilter(models.Model):
 
 
 class MemberAuditComplianceFilter(BaseFilter, SingletonModel):
+    class Meta:
+        verbose_name = "compliance filter"
+        verbose_name_plural = "compliance filters"
+
     def process_filter(self, user: User):
         return (
             CharacterOwnership.objects.filter(
@@ -72,6 +76,10 @@ class MemberAuditSkillSetFilter(BaseFilter):
             "Users must possess all of the skills in <strong>one</strong> of the selected skillsets."
         ),
     )
+
+    class Meta:
+        verbose_name = "skill set filter"
+        verbose_name_plural = "skil set filters"
 
     @property
     def name(self):
@@ -94,6 +102,10 @@ class MemberAuditAssetFilter(BaseFilter):
         EveType,
         help_text=_("User must possess <strong>one</strong> of the selected assets"),
     )
+
+    class Meta:
+        verbose_name = "asset filter"
+        verbose_name_plural = "asset filters"
 
     @property
     def name(self):
