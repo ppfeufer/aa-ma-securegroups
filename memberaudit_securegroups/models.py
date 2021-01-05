@@ -79,7 +79,7 @@ class MemberAuditSkillSetFilter(BaseFilter):
 
     class Meta:
         verbose_name = "skill set filter"
-        verbose_name_plural = "skil set filters"
+        verbose_name_plural = "skill set filters"
 
     @property
     def name(self):
