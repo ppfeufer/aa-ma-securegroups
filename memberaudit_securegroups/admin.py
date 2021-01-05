@@ -3,12 +3,12 @@ import humanize
 from django.contrib import admin
 
 from .models import (
-    MemberAuditActivityFilter,
-    MemberAuditAgeFilter,
-    MemberAuditAssetFilter,
-    MemberAuditComplianceFilter,
-    MemberAuditSkillPointFilter,
-    MemberAuditSkillSetFilter,
+    ActivityFilter,
+    AgeFilter,
+    AssetFilter,
+    ComplianceFilter,
+    SkillPointFilter,
+    SkillSetFilter,
 )
 
 
@@ -26,34 +26,35 @@ class SingletonModelAdmin(admin.ModelAdmin):
         return self.model.objects.all().count() == 0
 
 
-@admin.register(MemberAuditActivityFilter)
-class MemberAuditActivityFilterAdmin(admin.ModelAdmin):
+@admin.register(ActivityFilter)
+class ActivityFilterAdmin(admin.ModelAdmin):
     list_display = ("description", "_inactivity_threshold")
 
     def _inactivity_threshold(self, obj):
         return "%(duration)i days" % {"duration": obj.inactivity_threshold}
 
 
-@admin.register(MemberAuditAgeFilter)
-class MemberAuditAgeFilterAdmin(admin.ModelAdmin):
+@admin.register(AgeFilter)
+class AgeFilterAdmin(admin.ModelAdmin):
     list_display = ("description", "_age_threshold")
 
     def _age_threshold(self, obj):
         return "%(duration)i days" % {"duration": obj.age_threshold}
 
 
-@admin.register(MemberAuditAssetFilter)
-class MemberAuditAssetFilterAdmin(admin.ModelAdmin):
+@admin.register(AssetFilter)
+class AssetFilterAdmin(admin.ModelAdmin):
+    list_display = ("description",)
     filter_horizontal = ("assets",)
 
 
-@admin.register(MemberAuditComplianceFilter)
-class MemberAuditComplianceFilterAdmin(SingletonModelAdmin):
+@admin.register(ComplianceFilter)
+class ComplianceFilterAdmin(SingletonModelAdmin):
     list_display = ("description",)
 
 
-@admin.register(MemberAuditSkillPointFilter)
-class MemberAuditSkillPointFilterAdmin(admin.ModelAdmin):
+@admin.register(SkillPointFilter)
+class SkillPointFilterAdmin(admin.ModelAdmin):
     list_display = ("description", "_skill_point_threshold")
 
     def _skill_point_threshold(self, obj):
@@ -62,6 +63,7 @@ class MemberAuditSkillPointFilterAdmin(admin.ModelAdmin):
         }
 
 
-@admin.register(MemberAuditSkillSetFilter)
-class MemberAuditSkillSetFilterAdmin(admin.ModelAdmin):
+@admin.register(SkillSetFilter)
+class SkillSetFilterAdmin(admin.ModelAdmin):
+    list_display = ("description",)
     filter_horizontal = ("skill_sets",)

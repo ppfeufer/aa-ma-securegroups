@@ -42,7 +42,7 @@ class SingletonModel(models.Model):
 class BaseFilter(models.Model):
 
     description = models.CharField(
-        max_length=500, help_text="The filter description that is shown to end users"
+        max_length=500, help_text="The filter description that is shown to end users."
     )  # this is what is shown to the user
 
     class Meta:
@@ -53,7 +53,7 @@ class BaseFilter(models.Model):
 
     @property
     def name(self):
-        return "Member Audit Compliance"
+        return "Compliance"
 
     def process_filter(
         self, user: User
@@ -61,18 +61,14 @@ class BaseFilter(models.Model):
         raise NotImplementedError("Please Create a filter!")
 
 
-class MemberAuditActivityFilter(BaseFilter):
+class ActivityFilter(BaseFilter):
     inactivity_threshold = models.PositiveIntegerField(
         help_text=_("Maximum allowable inactivity, in <strong>days</strong>."),
     )
 
-    class Meta:
-        verbose_name = "activity filter"
-        verbose_name_plural = "activity filters"
-
     @property
     def name(self):
-        return f"Member Audit Activity [days={self.inactivity_threshold}]"
+        return f"Activity [days={self.inactivity_threshold}]"
 
     def process_filter(self, user: User):
         threshold_date = datetime.datetime.now(
@@ -85,15 +81,11 @@ class MemberAuditActivityFilter(BaseFilter):
         ).count()
 
 
-class MemberAuditAgeFilter(BaseFilter):
+class AgeFilter(BaseFilter):
 
     age_threshold = models.PositiveIntegerField(
         help_text=_("Minimum allowable age, in <strong>days</strong>."),
     )
-
-    class Meta:
-        verbose_name = "age filter"
-        verbose_name_plural = "age filters"
 
     @property
     def name(self):
@@ -111,16 +103,12 @@ class MemberAuditAgeFilter(BaseFilter):
         )
 
 
-class MemberAuditAssetFilter(BaseFilter):
+class AssetFilter(BaseFilter):
 
     assets = models.ManyToManyField(
         EveType,
-        help_text=_("User must possess <strong>one</strong> of the selected assets"),
+        help_text=_("User must possess <strong>one</strong> of the selected assets."),
     )
-
-    class Meta:
-        verbose_name = "asset filter"
-        verbose_name_plural = "asset filters"
 
     @property
     def name(self):
@@ -136,11 +124,7 @@ class MemberAuditAssetFilter(BaseFilter):
         )
 
 
-class MemberAuditComplianceFilter(BaseFilter, SingletonModel):
-    class Meta:
-        verbose_name = "compliance filter"
-        verbose_name_plural = "compliance filters"
-
+class ComplianceFilter(BaseFilter, SingletonModel):
     def process_filter(self, user: User):
         return (
             CharacterOwnership.objects.filter(user=user).count() > 0
@@ -151,15 +135,11 @@ class MemberAuditComplianceFilter(BaseFilter, SingletonModel):
         )
 
 
-class MemberAuditSkillPointFilter(BaseFilter):
+class SkillPointFilter(BaseFilter):
 
     skill_point_threshold = models.PositiveBigIntegerField(
-        help_text=_("Minimum allowable skillpoints"),
+        help_text=_("Minimum allowable skillpoints."),
     )
-
-    class Meta:
-        verbose_name = "skill point filter"
-        verbose_name_plural = "skill point filters"
 
     @property
     def name(self):
@@ -174,7 +154,7 @@ class MemberAuditSkillPointFilter(BaseFilter):
         )
 
 
-class MemberAuditSkillSetFilter(BaseFilter):
+class SkillSetFilter(BaseFilter):
 
     skill_sets = models.ManyToManyField(
         SkillSet,
@@ -182,10 +162,6 @@ class MemberAuditSkillSetFilter(BaseFilter):
             "Users must possess all of the skills in <strong>one</strong> of the selected skillsets."
         ),
     )
-
-    class Meta:
-        verbose_name = "skill set filter"
-        verbose_name_plural = "skill set filters"
 
     @property
     def name(self):
