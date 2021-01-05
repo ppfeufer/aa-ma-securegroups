@@ -1,143 +1,39 @@
-# MemberAuditSecureGroups plugin app for Alliance Auth
+# Member Audit Secure Groups Integration for Alliance Auth
 
-This is an memberaudit_securegroups plugin app for [Alliance Auth](https://gitlab.com/allianceauth/allianceauth) (AA) that can be used as starting point to develop custom plugins.
+This is an integration between [Member Audit](https://gitlab.com/ErikKalkoken/aa-memberaudit) and [Secure Groups](https://github.com/pvyParts/allianceauth-secure-groups) for [Alliance Auth](https://gitlab.com/allianceauth/allianceauth) (AA).
 
 ![License](https://img.shields.io/badge/license-MIT-green) ![python](https://img.shields.io/badge/python-3.6-informational) ![django](https://img.shields.io/badge/django-3.1-informational) ![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)
 
 ## Features
 
-- The plugin can be installed, upgraded (and removed) into an existing AA installation using PyInstaller.
+- Compliance Filter
+- Skill Set Filter
+- Asset Filter
 
-- It has it's own menu item in the sidebar.
+# Installation
 
-- It has one view that shows a panel and some text
+## Requirements
 
-## How to use it
+This integration needs [Member Audit](https://gitlab.com/ErikKalkoken/aa-memberaudit) and [Secure Groups](https://github.com/pvyParts/allianceauth-secure-groups) to function. Please make sure they are installed before continuing.
 
-To use this memberaudit_securegroups as basis for your own development just fork this repo and then clone it on your dev machine.
+## Steps
 
-You then should rename the app and then you can install it into your AA dev installation.
+### Step 1 - Install the Package
 
-### Cloning from repo
+Make sure you are in the virtual environment (venv) of your Alliance Auth installation. Then install the newest release from PyPI:
 
-For this app we are assuming that you have all your AA projects, your virtual environement and your AA installation under one top folder (e.g. aa-dev).
+`pip install aa-memberaudit-securegroups`
 
-This should look something like this:
+### Step 2 - Config
 
-```plain
-aa-dev
-|- venv/
-|- myauth/
-|- allianceauth-memberaudit_securegroups-plugin
-|- (other AA projects ...)
+Add `memberaudit_securegroups` to your `INSTALLED_APPS`.
 
-```
+### Step 3 - Finalize App Installation
 
-Then just cd into the top folder (e.g. aa-dev) and clone the repo from your fork. You can give the repo a new name right away (e.g. `allianceauth-your-app-name`).
-You also want to create a new git repo for it. Finally, enable [pre-commit](https://pre-commit.com) to enable automatic code style checking.
-
-```bash
-git clone https://gitlab.com/YourName/allianceauth-memberaudit_securegroups-plugin.git allianceauth-your-app-name
-cd allianceauth-your-app-name
-rm -rf .git
-git init
-pre-commit install
-```
-
-### Renaming the app
-
-Before installing this app into your dev AA you need to rename it to something suitable for your development project. Otherwise you risk not being able to install additional apps that might also be called memberaudit_securegroups.
-
-Here is an overview of the places that you need to edit to adopt the name.
-
-Easiest is to just find & replace `memberaudit_securegroups` with your new app name in all files listed below.
-
-One small warning about picking names: Python is a bit particular about what special characters are allowed for names of modules and packages. To avoid any pitfalls I would therefore recommend to use only normal characters (a-z) in your app's name unless you know exactly what you are doing.
-
-Location | Description
--- | --
-/memberaudit_securegroups/ | folder name
-/memberaudit_securegroups/templates/memberaudit_securegroups/ | folder name
-/setup.py | update modul name for version import, update package name, update title, author, etc.
-/MANIFEST.IN | path of files to include / exclude for PyInstaller
-/memberaudit_securegroups/apps.py | app name
-`/memberaudit_securegroups/__init__.py` | app name
-/memberaudit_securegroups/auth_hooks.py | menu hook config incl. icon and label of your app's menu item appearing in the sidebar
-/memberaudit_securegroups/models.py | app name
-/memberaudit_securegroups/urls.py | app name
-/memberaudit_securegroups/views.py | permission name and template path
-/memberaudit_securegroups/templates/memberaudit_securegroups/base.html | Title of your app to be shown in all views and as title in the browser tab
-/memberaudit_securegroups/templates/memberaudit_securegroups/index.html | template path
-/.coveragerc | app name
-/README.md | clear content
-/LICENSE | Replace with your own license
-/tox.ini | app name
-
-## Clearing migrations
-
-Instead of renaming your app in the migrations its easier to just recreate them later in the process. For this to work you need to delete the old migration files in your migrations folder.
-
-```bash
-rm your-app-name/migrations/0001_initial.py
-rm -rf your-app-name/migrations/_pycache
-```
-
-## Installing into your dev AA
-
-Once you have cloned or copied all files into place and finished renaming the app you are ready to install it to your dev AA instance.
-
-Make sure you are in your venv. Then install it with pip in editable mode:
-
-```bash
-pip install -e allianceauth-your-app-name
-```
-
-First add your app to the Django project by adding the name of your app to INSTALLED_APPS in `settings/local.py`.
-
-Next we will create new migrations for your app:
-
-```bash
-python manage.py makemigrations
-```
-
-Then run a check to see if everything is setup correctly.
-
-```bash
-python manage.py check
-```
-
-In case they are errors make sure to fix them before proceeding.
-
-Next perform migrations to add your model to the database:
+Run migrations:
 
 ```bash
 python manage.py migrate
 ```
 
-Finally restart your AA server and that's it.
-
-## Installing into production AA
-
-To install your plugin into a production AA run this command within the virtual Python environment of your AA installation:
-
-```bash
-pip install git+https://gitlab.com/YourName/allianceauth-your-app-name
-```
-
-Alternatively you can create a package file and manually deliver it to your production AA:
-
-```bash
-python setup.py sdist
-```
-
-And then install it directly from the package file
-
-```bash
-pip install your-package-app.tar.gz
-```
-
-Then add your app to `INSTALLED_APPS` in `settings/local.py`, run migrations and restart your allianceserver.
-
-## Contribute
-
-If you made a new app for AA please consider sharing it with the rest of the community. For any questions on how to share your app please contact the AA devs on their Discord. You find the current community creations [here](https://gitlab.com/allianceauth/community-creations).
+Restart your supervisor services for Auth
