@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [0.1.0a3] - 2021-01-16
+### Fixed
+- Bug involving skillpoint filter
+
 ## [0.1.0a2] - 2021-01-05
 ### Added
 - Activity Filter

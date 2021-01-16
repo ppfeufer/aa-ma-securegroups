@@ -23,6 +23,7 @@ setup(
     long_description_content_type="text/markdown",
     author="Rebecca Murphy",
     author_email="rebecca@rcmurphy.me",
+    url="https://gitlab.com/eclipse-expeditions/aa-memberaudit-securegroups",
     classifiers=[
         "Environment :: Web Environment",
         "Framework :: Django",
@@ -40,9 +41,9 @@ setup(
     ],
     python_requires="~=3.6",
     install_requires=[
+        "allianceauth>=2.8.0",
         "aa-memberaudit>=1.0.0b3",
         "allianceauth-securegroups>=0.0.1a1",
-        "allianceauth>=2.8.0",
         "django-esi>=2.0.4",
     ],
 )

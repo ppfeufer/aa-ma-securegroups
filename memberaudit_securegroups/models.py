@@ -74,11 +74,14 @@ class ActivityFilter(BaseFilter):
         threshold_date = datetime.datetime.now(
             datetime.timezone.utc
         ) - datetime.timedelta(days=self.inactivity_threshold)
-        return Character.objects.filter(
-            Q(character_ownership__user=user),
-            Q(online_status__last_login__gt=threshold_date)
-            | Q(online_status__last_logout__gt=threshold_date),
-        ).count()
+        return (
+            Character.objects.filter(
+                Q(character_ownership__user=user),
+                Q(online_status__last_login__gt=threshold_date)
+                | Q(online_status__last_logout__gt=threshold_date),
+            ).count()
+            > 0
+        )
 
 
 class AgeFilter(BaseFilter):
@@ -148,7 +151,8 @@ class SkillPointFilter(BaseFilter):
     def process_filter(self, user: User):
         return (
             Character.objects.filter(
-                skillpoints__total__gt=self.skill_point_threshold
+                character_ownership__user=user,
+                skillpoints__total__gt=self.skill_point_threshold,
             ).count()
             > 0
         )
