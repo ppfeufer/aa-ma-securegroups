@@ -1,8 +1,15 @@
+"""
+Admin pages
+"""
+
+# Third Party
 import humanize
 
+# Django
 from django.contrib import admin
 
-from .models import (
+# Memberaudit Securegroups
+from memberaudit_securegroups.models import (
     ActivityFilter,
     AgeFilter,
     AssetFilter,
@@ -28,42 +35,64 @@ class SingletonModelAdmin(admin.ModelAdmin):
 
 @admin.register(ActivityFilter)
 class ActivityFilterAdmin(admin.ModelAdmin):
+    """
+    ActivityFilterAdmin
+    """
+
     list_display = ("description", "_inactivity_threshold")
 
     def _inactivity_threshold(self, obj):
-        return "%(duration)i days" % {"duration": obj.inactivity_threshold}
+        return f"{obj.inactivity_threshold:d} days"
 
 
 @admin.register(AgeFilter)
 class AgeFilterAdmin(admin.ModelAdmin):
+    """
+    AgeFilterAdmin
+    """
+
     list_display = ("description", "_age_threshold")
 
     def _age_threshold(self, obj):
-        return "%(duration)i days" % {"duration": obj.age_threshold}
+        return f"{obj.age_threshold:d} days"
 
 
 @admin.register(AssetFilter)
 class AssetFilterAdmin(admin.ModelAdmin):
+    """
+    AssetFilterAdmin
+    """
+
     list_display = ("description",)
     filter_horizontal = ("assets",)
 
 
 @admin.register(ComplianceFilter)
 class ComplianceFilterAdmin(SingletonModelAdmin):
+    """
+    ComplianceFilterAdmin
+    """
+
     list_display = ("description",)
 
 
 @admin.register(SkillPointFilter)
 class SkillPointFilterAdmin(admin.ModelAdmin):
+    """
+    SkillPointFilterAdmin
+    """
+
     list_display = ("description", "_skill_point_threshold")
 
     def _skill_point_threshold(self, obj):
-        return "%(skill_points)s skill points" % {
-            "skill_points": humanize.intword(obj.skill_point_threshold)
-        }
+        return f"{humanize.intword(obj.skill_point_threshold)} skill points"
 
 
 @admin.register(SkillSetFilter)
 class SkillSetFilterAdmin(admin.ModelAdmin):
+    """
+    SkillSetFilterAdmin
+    """
+
     list_display = ("description",)
     filter_horizontal = ("skill_sets",)
