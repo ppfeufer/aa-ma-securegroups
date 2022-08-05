@@ -5,19 +5,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased] - yyyy-mm-dd
+## [In Development]
+
+### Fixed
+
+- Compatibility to the upcoming version of Memberaudit and its changes to the
+  ``Character`` model
 
 ### Added
 
+- Makefile
+- Editorconfig
+
 ### Changed
 
-### Fixed
+- Several configs updated
+- Requirements
+  - `allianceauth>=2.15.1`
+  - `aa-memberaudit>=1.15.0`
+  - `allianceauth-securegroups>=0.2.1`
+  - `python>=3.8`
+
+### Removed
+
+- Unused files
+
 
 ## [0.1.0a3] - 2021-01-16
+
 ### Fixed
 - Bug involving skillpoint filter
 
+
 ## [0.1.0a2] - 2021-01-05
+
 ### Added
 - Activity Filter
 - Age Filter

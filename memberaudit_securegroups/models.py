@@ -1,37 +1,77 @@
+"""
+The models
+"""
+
+# Standard Library
 import datetime
 
+# Third Party
 import humanize
 
+# Django
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 
-from allianceauth.authentication.models import CharacterOwnership
+# Member Audit
+from memberaudit.models import Character, CharacterAsset, General, SkillSet
 
+# Alliance Auth (External Libs)
 from eveuniverse.models import EveType
-from memberaudit.models import Character, CharacterAsset, SkillSet
 
 
 class SingletonModel(models.Model):
+    """
+    SingletonModel
+    """
+
     class Meta:
+        """
+        Model meta definitions
+        """
+
         abstract = True
 
     def delete(self, *args, **kwargs):
+        """
+        delete action
+        :param args:
+        :param kwargs:
+        :return:
+        """
+
         pass
 
     def set_cache(self):
+        """
+        Setting cache
+        :return:
+        """
+
         cache.set(self.__class__.__name__, self)
 
     def save(self, *args, **kwargs):
+        """
+        save action
+        :param args:
+        :param kwargs:
+        :return:
+        """
+
         self.pk = 1
-        super(SingletonModel, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
         self.set_cache()
 
     @classmethod
     def load(cls):
+        """
+        Get cache
+        :return:
+        """
+
         if cache.get(cls.__name__) is None:
             obj, created = cls.objects.get_or_create(pk=1)
             if not created:
@@ -40,43 +80,80 @@ class SingletonModel(models.Model):
 
 
 class BaseFilter(models.Model):
+    """
+    BaseFilter
+    """
 
     description = models.CharField(
         max_length=500, help_text="The filter description that is shown to end users."
     )  # this is what is shown to the user
 
     class Meta:
+        """
+        Model meta definitions
+        """
+
         abstract = True
 
     def __str__(self):
+        """
+        Model stringified name
+        :return:
+        """
+
         return f"{self.name}: {self.description}"
 
     @property
     def name(self):
+        """
+        Filter name
+        :return:
+        """
+
         return "Compliance"
 
-    def process_filter(
-        self, user: User
-    ):  # this is the check run against a users characters
+    def process_filter(self, user: User):
+        """
+        This is the check run against a users characters
+        :param user:
+        :return:
+        """
+
         raise NotImplementedError("Please Create a filter!")
 
 
 class ActivityFilter(BaseFilter):
+    """
+    ActivityFilter
+    """
+
     inactivity_threshold = models.PositiveIntegerField(
         help_text=_("Maximum allowable inactivity, in <strong>days</strong>."),
     )
 
     @property
     def name(self):
+        """
+        Filter name
+        :return:
+        """
+
         return f"Activity [days={self.inactivity_threshold}]"
 
     def process_filter(self, user: User):
+        """
+        Processing filter
+        :param user:
+        :return:
+        """
+
         threshold_date = datetime.datetime.now(
             datetime.timezone.utc
         ) - datetime.timedelta(days=self.inactivity_threshold)
+
         return (
             Character.objects.filter(
-                Q(character_ownership__user=user),
+                Q(eve_character__character_ownership__user=user),
                 Q(online_status__last_login__gt=threshold_date)
                 | Q(online_status__last_logout__gt=threshold_date),
             ).count()
@@ -85,6 +162,9 @@ class ActivityFilter(BaseFilter):
 
 
 class AgeFilter(BaseFilter):
+    """
+    AgeFilter
+    """
 
     age_threshold = models.PositiveIntegerField(
         help_text=_("Minimum allowable age, in <strong>days</strong>."),
@@ -92,21 +172,37 @@ class AgeFilter(BaseFilter):
 
     @property
     def name(self):
+        """
+        Filter name
+        :return:
+        """
+
         return f"Member Audit Age [days={self.age_threshold}]"
 
     def process_filter(self, user: User):
+        """
+        Processing filter
+        :param user:
+        :return:
+        """
+
         threshold_date = datetime.datetime.now(
             datetime.timezone.utc
         ) - datetime.timedelta(days=self.age_threshold)
+
         return (
             Character.objects.filter(
-                character_ownership__user=user, details__birthday__lt=threshold_date
+                eve_character__character_ownership__user=user,
+                details__birthday__lt=threshold_date,
             ).count()
             > 0
         )
 
 
 class AssetFilter(BaseFilter):
+    """
+    AssetFilter
+    """
 
     assets = models.ManyToManyField(
         EveType,
@@ -115,10 +211,24 @@ class AssetFilter(BaseFilter):
 
     @property
     def name(self):
+        """
+        Filter name
+        :return:
+        """
+
         return "Member Audit Asset"
 
     def process_filter(self, user: User):
-        characters = Character.objects.filter(character_ownership__user=user)
+        """
+        Processing filter
+        :param user:
+        :return:
+        """
+
+        characters = Character.objects.filter(
+            eve_character__character_ownership__user=user
+        )
+
         return (
             CharacterAsset.objects.filter(
                 character__in=characters, eve_type__in=self.assets.all()
@@ -128,17 +238,26 @@ class AssetFilter(BaseFilter):
 
 
 class ComplianceFilter(BaseFilter, SingletonModel):
+    """
+    ComplianceFilter
+    """
+
     def process_filter(self, user: User):
-        return (
-            CharacterOwnership.objects.filter(user=user).count() > 0
-            and CharacterOwnership.objects.filter(
-                user=user, memberaudit_character=None
-            ).count()
-            == 0
-        )
+        """
+        Processing filter
+        :param user:
+        :return:
+        """
+
+        is_compliant = General.compliant_users().filter(pk=user.pk).exists()
+
+        return is_compliant
 
 
 class SkillPointFilter(BaseFilter):
+    """
+    SkillPointFilter
+    """
 
     skill_point_threshold = models.PositiveBigIntegerField(
         help_text=_("Minimum allowable skillpoints."),
@@ -146,12 +265,26 @@ class SkillPointFilter(BaseFilter):
 
     @property
     def name(self):
-        return f"Member Audit Skill Points [sp={humanize.intword(self.skill_point_threshold)}]"
+        """
+        Filter name
+        :return:
+        """
+
+        return (
+            "Member Audit Skill Points "
+            f"[sp={humanize.intword(self.skill_point_threshold)}]"
+        )
 
     def process_filter(self, user: User):
+        """
+        Processing filter
+        :param user:
+        :return:
+        """
+
         return (
             Character.objects.filter(
-                character_ownership__user=user,
+                eve_character__character_ownership__user=user,
                 skillpoints__total__gt=self.skill_point_threshold,
             ).count()
             > 0
@@ -159,24 +292,43 @@ class SkillPointFilter(BaseFilter):
 
 
 class SkillSetFilter(BaseFilter):
+    """
+    SkillSetFilter
+    """
 
     skill_sets = models.ManyToManyField(
         SkillSet,
         help_text=_(
-            "Users must possess all of the skills in <strong>one</strong> of the selected skillsets."
+            "Users must possess all of the skills in <strong>one</strong> of the "
+            "selected skillsets."
         ),
     )
 
     @property
     def name(self):
+        """
+        Filter name
+        :return:
+        """
+
         return "Member Audit Skill Set"
 
     def process_filter(self, user: User):
-        characters = Character.objects.filter(character_ownership__user=user)
+        """
+        Processing filter
+        :param user:
+        :return:
+        """
+
+        characters = Character.objects.filter(
+            eve_character__character_ownership__user=user
+        )
+
         for character in characters:
             for check in character.skill_set_checks.filter(
                 skill_set__in=self.skill_sets.all()
             ):
                 if check.failed_required_skills.count() == 0:
                     return True
+
         return False
