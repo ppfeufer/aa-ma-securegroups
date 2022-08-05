@@ -13,11 +13,13 @@ verify compliance with formatting rules. To use:
 3. You're all done! Code will be checked automatically using git hooks.
 
 You can check if your code to commit adheres to the given style by simply running:
+
 ```shell
 pre-commit
 ```
 
 or to check all files:
+
 ```shell
 pre-commit run --all-files
 ```
@@ -66,11 +68,13 @@ changes. We aim to provide a test coverage of well above 80% in this project. Pu
 requests lowering the test coverage will not be considered for merging.
 
 You can run tests locally via:
+
 ```shell
 make coverage
 ```
 
 The full tox-test suite can be run via:
+
 ```shell
 tox
 ```
