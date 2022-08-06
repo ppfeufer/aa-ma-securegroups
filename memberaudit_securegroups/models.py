@@ -87,7 +87,8 @@ class BaseFilter(models.Model):
     """
 
     description = models.CharField(
-        max_length=500, help_text="The filter description that is shown to end users."
+        max_length=500,
+        help_text=_("The filter description that is shown to end users."),
     )  # this is what is shown to the user
 
     class Meta:
