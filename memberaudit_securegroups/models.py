@@ -74,8 +74,10 @@ class SingletonModel(models.Model):
 
         if cache.get(cls.__name__) is None:
             obj, created = cls.objects.get_or_create(pk=1)
+
             if not created:
                 obj.set_cache()
+
         return cache.get(cls.__name__)
 
 
@@ -152,11 +154,12 @@ class ActivityFilter(BaseFilter):
         ) - datetime.timedelta(days=self.inactivity_threshold)
 
         return (
-            Character.objects.filter(
-                Q(eve_character__character_ownership__user=user),
+            Character.objects.owned_by_user(user=user)
+            .filter(
                 Q(online_status__last_login__gt=threshold_date)
                 | Q(online_status__last_logout__gt=threshold_date),
-            ).count()
+            )
+            .count()
             > 0
         )
 
@@ -191,10 +194,11 @@ class AgeFilter(BaseFilter):
         ) - datetime.timedelta(days=self.age_threshold)
 
         return (
-            Character.objects.filter(
-                eve_character__character_ownership__user=user,
+            Character.objects.owned_by_user(user=user)
+            .filter(
                 details__birthday__lt=threshold_date,
-            ).count()
+            )
+            .count()
             > 0
         )
 
@@ -225,9 +229,7 @@ class AssetFilter(BaseFilter):
         :return:
         """
 
-        characters = Character.objects.filter(
-            eve_character__character_ownership__user=user
-        )
+        characters = Character.objects.owned_by_user(user=user)
 
         return (
             CharacterAsset.objects.filter(
@@ -283,10 +285,11 @@ class SkillPointFilter(BaseFilter):
         """
 
         return (
-            Character.objects.filter(
-                eve_character__character_ownership__user=user,
+            Character.objects.owned_by_user(user=user)
+            .filter(
                 skillpoints__total__gt=self.skill_point_threshold,
-            ).count()
+            )
+            .count()
             > 0
         )
 
@@ -320,9 +323,7 @@ class SkillSetFilter(BaseFilter):
         :return:
         """
 
-        characters = Character.objects.filter(
-            eve_character__character_ownership__user=user
-        )
+        characters = Character.objects.owned_by_user(user=user)
 
         for character in characters:
             for check in character.skill_set_checks.filter(
