@@ -7,10 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [In Development]
 
+## [0.1.0] - 2022-08-06
+
 ### Fixed
 
-- Compatibility to the upcoming version of Memberaudit and its changes to the
-  ``Character`` model
+- Compatibility to the Member Audit >=1.15.1 and its changes to the ``Character`` model
 
 ### Added
 
@@ -22,7 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Several configs updated
 - Requirements
   - `allianceauth>=2.15.1`
-  - `aa-memberaudit>=1.15.0`
+  - `aa-memberaudit>=1.15.1`
   - `allianceauth-securegroups>=0.2.1`
   - `python>=3.8`
 
