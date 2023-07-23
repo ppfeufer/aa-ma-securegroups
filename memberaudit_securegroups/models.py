@@ -15,16 +15,20 @@ from django.core.cache import cache
 from django.db import models
 from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ngettext
 
 # Alliance Auth
 from allianceauth.authentication.models import CharacterOwnership
 
 # Member Audit
 from memberaudit.app_settings import MEMBERAUDIT_APP_NAME
-from memberaudit.models import Character, CharacterAsset, General, SkillSet
+from memberaudit.models import Character, CharacterAsset, SkillSet
 
 # Alliance Auth (External Libs)
 from eveuniverse.models import EveType
+
+# Memberaudit Securegroups
+from memberaudit_securegroups.memberaudit import MemberAuditChecks
 
 
 def _get_threshold_date(timedelta_in_days: int) -> datetime:
@@ -124,7 +128,7 @@ class BaseFilter(models.Model):
         :return:
         """
 
-        raise NotImplementedError("Please Create a filter!")
+        raise NotImplementedError(_("Please Create a filter!"))
 
     def audit_filter(self, users):
         """
@@ -135,7 +139,7 @@ class BaseFilter(models.Model):
         :rtype:
         """
 
-        raise NotImplementedError("Please Create an audit function!")
+        raise NotImplementedError(_("Please Create an audit function!"))
 
 
 class ActivityFilter(BaseFilter):
@@ -154,7 +158,13 @@ class ActivityFilter(BaseFilter):
         :return:
         """
 
-        return f"Activity [days={self.inactivity_threshold}]"
+        inactivity_threshold = ngettext(
+            f"{self.inactivity_threshold:d} day",
+            f"{self.inactivity_threshold:d} days",
+            self.inactivity_threshold,
+        )
+
+        return _(f"Activity [Last {inactivity_threshold}]")
 
     def process_filter(self, user: User):
         """
@@ -205,9 +215,12 @@ class ActivityFilter(BaseFilter):
                     chars[char.user.pk].append(char.eve_character.character_name)
 
                 for char_user, char_list in chars.items():
-                    active_characters = ", ".join(char_list)
+                    message = ngettext(
+                        "Active Character: ", "Active Characters: ", len(char_list)
+                    )
+
                     output[char_user] = {
-                        "message": f"Active Characters: {active_characters}",
+                        "message": message + ", ".join(sorted(char_list)),
                         "check": True,
                     }
 
@@ -230,7 +243,13 @@ class AgeFilter(BaseFilter):
         :return:
         """
 
-        return f"Character Age [days={self.age_threshold}]"
+        age_threshold = ngettext(
+            f"{self.age_threshold:d} day",
+            f"{self.age_threshold:d} days",
+            self.age_threshold,
+        )
+
+        return _(f"Character Age [{age_threshold}]")
 
     def process_filter(self, user: User):
         """
@@ -273,7 +292,10 @@ class AgeFilter(BaseFilter):
                     chars[char.user.pk].append(char.eve_character.character_name)
 
                 for char_user, char_list in chars.items():
-                    output[char_user] = {"message": ", ".join(char_list), "check": True}
+                    output[char_user] = {
+                        "message": ", ".join(sorted(char_list)),
+                        "check": True,
+                    }
 
         return output
 
@@ -295,7 +317,7 @@ class AssetFilter(BaseFilter):
         :return:
         """
 
-        return "Member Audit Asset"
+        return _("Member Audit Asset")
 
     def process_filter(self, user: User):
         """
@@ -347,7 +369,7 @@ class AssetFilter(BaseFilter):
         output = defaultdict(lambda: {"message": "", "check": False})
 
         for character, char_list in chars.items():
-            output[character] = {"message": ", ".join(char_list), "check": True}
+            output[character] = {"message": ", ".join(sorted(char_list)), "check": True}
 
         return output
 
@@ -364,7 +386,7 @@ class ComplianceFilter(BaseFilter, SingletonModel):
         :return:
         """
 
-        return "Compliance"
+        return _("Compliance")
 
     def process_filter(self, user: User):
         """
@@ -373,9 +395,9 @@ class ComplianceFilter(BaseFilter, SingletonModel):
         :return:
         """
 
-        is_compliant = General.compliant_users().filter(pk=user.pk).exists()
+        compliance_check = MemberAuditChecks.compliance(user=user)
 
-        return is_compliant
+        return compliance_check["is_compliant"]
 
     def audit_filter(self, users):
         """
@@ -386,13 +408,40 @@ class ComplianceFilter(BaseFilter, SingletonModel):
         :rtype:
         """
 
-        output = defaultdict(lambda: {"message": "", "check": False})
+        output = defaultdict(
+            lambda: {
+                "message": _(
+                    f"Not all of your characters are added to {MEMBERAUDIT_APP_NAME}"
+                ),
+                "check": False,
+            }
+        )
 
         for user in users:
-            if General.compliant_users().filter(pk=user.pk).exists():
+            compliance_check = MemberAuditChecks.compliance(user=user)
+
+            if compliance_check["is_compliant"]:
                 output[user.pk] = {
-                    "message": f"All characters have been added to {MEMBERAUDIT_APP_NAME}",
+                    "message": _(
+                        f"All characters have been added to {MEMBERAUDIT_APP_NAME}"
+                    ),
                     "check": True,
+                }
+            else:
+                unregistered_chars = compliance_check["unregistered_chars"]
+
+                missing_characters_message = ngettext(
+                    "Missing character: ",
+                    "Missing characters: ",
+                    unregistered_chars.count(),
+                )
+
+                output[user.pk] = {
+                    "message": missing_characters_message
+                    + ", ".join(
+                        str(char.character_name) for char in unregistered_chars
+                    ),
+                    "check": False,
                 }
 
         return output
@@ -414,10 +463,15 @@ class SkillPointFilter(BaseFilter):
         :return:
         """
 
-        return (
-            "Member Audit Skill Points "
-            f"[sp={humanize.intword(self.skill_point_threshold)}]"
+        sp_threshold = humanize.intword(self.skill_point_threshold)
+
+        skill_point_threshold = ngettext(
+            f"{sp_threshold} skill point",
+            f"{sp_threshold} skill points",
+            self.skill_point_threshold,
         )
+
+        return _(f"Member Audit Skill Points [{skill_point_threshold}]")
 
     def process_filter(self, user: User):
         """
@@ -456,7 +510,10 @@ class SkillPointFilter(BaseFilter):
                     chars[char.user.pk].append(char.eve_character.character_name)
 
                 for char_user, char_list in chars.items():
-                    output[char_user] = {"message": ", ".join(char_list), "check": True}
+                    output[char_user] = {
+                        "message": ", ".join(sorted(char_list)),
+                        "check": True,
+                    }
 
         return output
 
@@ -481,7 +538,7 @@ class SkillSetFilter(BaseFilter):
         :return:
         """
 
-        return "Member Audit Skill Set"
+        return _("Member Audit Skill Set")
 
     def process_filter(self, user: User):
         """
@@ -527,7 +584,7 @@ class SkillSetFilter(BaseFilter):
 
                         for char_user, char_list in chars.items():
                             output[char_user] = {
-                                "message": ", ".join(char_list),
+                                "message": ", ".join(sorted(char_list)),
                                 "check": True,
                             }
 
