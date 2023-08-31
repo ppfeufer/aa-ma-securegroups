@@ -5,18 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [In Development]
+## \[In Development\]
 
 ### Added
 
 - Secure Group's audit filter to the filters for better visual feedback
 
-
-## [0.1.0] - 2022-08-06
+## \[0.1.0\] - 2022-08-06
 
 ### Fixed
 
-- Compatibility to the Member Audit >=1.15.1 and its changes to the ``Character`` model
+- Compatibility to the Member Audit >=1.15.1 and its changes to the `Character` model
 
 ### Added
 
@@ -36,23 +35,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Unused files
 
-
-## [0.1.0a3] - 2021-01-16
+## \[0.1.0a3\] - 2021-01-16
 
 ### Fixed
+
 - Bug involving skillpoint filter
 
-
-## [0.1.0a2] - 2021-01-05
+## \[0.1.0a2\] - 2021-01-05
 
 ### Added
+
 - Activity Filter
 - Age Filter
 - Skill Point Filter
 
 ### Changed
+
 - Improved Admin Panel
 
-## [0.1.0a1] - 2021-01-05
+## \[0.1.0a1\] - 2021-01-05
+
 ### Added
+
 - Initial Release
