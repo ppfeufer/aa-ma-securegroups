@@ -7,6 +7,7 @@ This is an integration between [Member Audit](https://gitlab.com/ErikKalkoken/aa
 [![Python](https://img.shields.io/pypi/pyversions/aa-memberaudit-secure-groups)](https://pypi.org/project/aa-memberaudit-secure-groups/)
 [![Django](https://img.shields.io/pypi/djversions/aa-memberaudit-secure-groups?label=django)](https://pypi.org/project/aa-memberaudit-secure-groups/)
 ![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/ppfeufer/aa-memberaudit-secure-groups/master.svg)](https://results.pre-commit.ci/latest/github/ppfeufer/aa-memberaudit-secure-groups/master)
 [![Code Style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](http://black.readthedocs.io/en/latest/)
 [![Discord](https://img.shields.io/discord/790364535294132234?label=discord)](https://discord.gg/zmh52wnfvM)
 [![Checks](https://github.com/ppfeufer/aa-memberaudit-secure-groups/actions/workflows/automated-checks.yml/badge.svg)](https://github.com/ppfeufer/aa-memberaudit-secure-groups/actions/workflows/automated-checks.yml)
