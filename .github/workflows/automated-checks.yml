@@ -28,7 +28,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version-file: 'pyproject.toml' # Read python version from a file pyproject.toml
 
       - name: Run Pre Commit Checks
         uses: pre-commit/action@v3.0.0
@@ -98,14 +98,13 @@ jobs:
           python -m pip install --upgrade tox tox-gh-actions
 
       - name: Run Tox
-        # Run tox using the version of Python in `PATH`
-        run: tox -v
         env:
-          DJANGO: ${{ matrix.django-version }}
-          ALLIANCEAUTH: stable
+          TOX_ENV: allianceauth-stable
           DB_HOST: 127.0.0.1
           DB_USER: root
           DB_PASSWORD: temp_password_aa_tox_tests
+        # Run tox using the version of Python in `PATH`
+        run: tox -v -e ${{ env.TOX_ENV }}
 
       - name: Upload Coverage Artifacts
         if: ${{
@@ -246,7 +245,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.8' # Minimum supported Python version by AllianceAuth
+          python-version-file: 'pyproject.toml' # Read python version from a file pyproject.toml
 
       - name: Install Tools
         run: |
