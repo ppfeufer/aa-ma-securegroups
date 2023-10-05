@@ -7,15 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## \[In Development\]
 
-### Fixed
+## \[0.5.0\] - 2023-10-05
 
-- Capitalization for translatable strings
-
-## \[0.5.0\] - 2023-09-02
+This release is made to be on par with the original app, which is no longer
+maintained. To switch to this maintained version, see [Migrating from Member Audit Securegroups](https://github.com/ppfeufer/aa-memberaudit-secure-groups#step-05-migrating-from-member-audit-securegroups).
 
 ### Added
 
 - Korean translation
+
+### Fixed
+
+- Capitalization for translatable strings
 
 ## \[0.4.0\] - 2023-08-15
 
