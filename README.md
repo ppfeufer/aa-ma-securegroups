@@ -22,9 +22,11 @@ ______________________________________________________________________
 <!-- mdformat-toc start --slug=gitlab --maxlevel=6 --minlevel=1 -->
 
 - [Member Audit Secure Groups Integration for Alliance Auth](#member-audit-secure-groups-integration-for-alliance-auth)
+  - [What's the difference to Member Audit Securegroups](#whats-the-difference-to-member-audit-securegroups)
   - [Features](#features)
   - [Installation](#installation)
     - [Requirements](#requirements)
+    - [Step 0.5 - Migrating from Member Audit Securegroups](#step-05-migrating-from-member-audit-securegroups)
     - [Step 1 - Install the Package](#step-1-install-the-package)
     - [Step 2 - Config](#step-2-config)
     - [Step 3 - Finalize App Installation](#step-3-finalize-app-installation)
@@ -36,6 +38,20 @@ ______________________________________________________________________
 <!-- mdformat-toc end -->
 
 ______________________________________________________________________
+
+## What's the difference to Member Audit Securegroups<a name="whats-the-difference-to-member-audit-securegroups"></a>
+
+Pretty much nothing.
+
+I took over Member Audit Securegroups in August 2022 from the original developer who
+is no longer actively maintaining the app. After more than a year and the fact that
+the original developer didn't want to transfer the PyPi repo to me, I decided it is
+time to make an actual fork of the app which is now again actively maintained by me.
+
+This app is fully compatible with the original, all that has changed is the `pip`
+name from `aa-memberaudit-securegroups` to `aa-memberaudit-secure.groups`, and if
+you had the original app installed, it is really easy to switch to this one, see
+[Step 0.5 - Migrating from Member Audit Securegroups](#step-05-migrating-from-member-audit-securegroups).
 
 ## Features<a name="features"></a>
 
@@ -53,6 +69,19 @@ ______________________________________________________________________
 This integration needs [Member Audit](https://gitlab.com/ErikKalkoken/aa-memberaudit)
 and [Secure Groups](https://github.com/pvyParts/allianceauth-secure-groups) to
 function. Please make sure they are installed before continuing.
+
+### Step 0.5 - Migrating from Member Audit Securegroups<a name="step-05-migrating-from-member-audit-securegroups"></a>
+
+In case you have the original app installed, you need to uninstall it before
+you can continue. To do so, simply run:
+
+```shell
+pip uninstall aa-memberaudit-securegroups
+```
+
+That's all, no need to worry about the DB related stuff, this app is fully
+compatible with it and will use the DB tables from the original app. Now feel free
+to continue with the installation.
 
 ### Step 1 - Install the Package<a name="step-1-install-the-package"></a>
 
