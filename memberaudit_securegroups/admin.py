@@ -27,10 +27,32 @@ class SingletonModelAdmin(admin.ModelAdmin):
 
     actions = None  # Removes the default delete action.
 
-    def has_delete_permission(self, request, obj=None):
+    def has_delete_permission(
+        self, request, obj=None  # pylint: disable=unused-argument
+    ):
+        """
+        Has "delete" permission
+
+        :param request:
+        :type request:
+        :param obj:
+        :type obj:
+        :return:
+        :rtype:
+        """
+
         return False
 
-    def has_add_permission(self, request):
+    def has_add_permission(self, request):  # pylint: disable=unused-argument
+        """
+        Has "add" permission
+
+        :param request:
+        :type request:
+        :return:
+        :rtype:
+        """
+
         return self.model.objects.all().count() == 0
 
 

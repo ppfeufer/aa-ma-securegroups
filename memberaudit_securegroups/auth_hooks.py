@@ -18,6 +18,13 @@ from memberaudit_securegroups.models import (
 
 @hooks.register("secure_group_filters")
 def filters():
+    """
+    Secure group filter
+
+    :return:
+    :rtype:
+    """
+
     return [
         ActivityFilter,
         AgeFilter,
