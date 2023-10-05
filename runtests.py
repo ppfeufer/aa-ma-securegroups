@@ -1,4 +1,8 @@
-#!/usr/bin/env python
+"""
+Test runner
+"""
+
+# pylint: skip-file
 # Standard Library
 import sys
 

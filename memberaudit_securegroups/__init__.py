@@ -2,4 +2,9 @@
 Init module
 """
 
-__version__ = "0.1.0"
+# Standard Library
+from importlib import metadata
+
+__version__ = metadata.version("aa-memberaudit-secure-groups")
+
+del metadata
