@@ -7,6 +7,43 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## \[In Development\]
 
+### Fixed
+
+- Capitalization for translatable strings
+
+## \[0.5.0\] - 2023-09-02
+
+### Added
+
+- Korean translation
+
+## \[0.4.0\] - 2023-08-15
+
+### Added
+
+- Names of missing characters when the compliance filter fails
+- Spanish translation
+
+### Changed
+
+- Moved the build process to PEP 621 / pyproject.toml
+- Character names sorted alphabetically in all filters
+
+## \[0.3.0\] - 2023-05-31
+
+### Fixed
+
+- Migration dependency for Member Audit >= 2.0.0
+
+### Changed
+
+- Dependencies:
+  - `aa-memberaudit>=2.0.0`
+  - `allianceauth>=3.0.0`
+  - `allianceauth-securegroups>=0.5.1`
+
+## \[0.2.0\] - 2023-02-27
+
 ### Added
 
 - Secure Group's audit filter to the filters for better visual feedback
