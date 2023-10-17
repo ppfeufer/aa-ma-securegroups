@@ -49,7 +49,7 @@ the original developer didn't want to transfer the PyPi repo to me, I decided it
 time to make an actual fork of the app which is now again actively maintained by me.
 
 This app is fully compatible with the original, all that has changed is the `pip`
-name from `aa-memberaudit-securegroups` to `aa-memberaudit-secure.groups`, and if
+name from `aa-memberaudit-securegroups` to `aa-memberaudit-secure-groups`, and if
 you had the original app installed, it is really easy to switch to this one, see
 [Step 0.5 - Migrating from Member Audit Securegroups](#step-05-migrating-from-member-audit-securegroups).
 
