@@ -14,7 +14,9 @@ PACKAGE = "memberaudit_securegroups"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-STATICFILES_DIRS = [os.path.join(PROJECT_DIR, f"{PACKAGE}/static")]
+# STATICFILES_DIRS = [os.path.join(PROJECT_DIR, f"{PACKAGE}/static")]
+# We don't have static files for this app
+STATICFILES_DIRS = []
 
 SITE_URL = "https://example.com"
 CSRF_TRUSTED_ORIGINS = [SITE_URL]
@@ -57,7 +59,12 @@ if os.environ.get("USE_MYSQL", True) is True:
     }
 
 # Add any additional apps to this list.
-INSTALLED_APPS += [PACKAGE, "eveuniverse", "memberaudit", "securegroups"]
+INSTALLED_APPS += [
+    PACKAGE,
+    "eveuniverse",
+    "memberaudit",
+    "securegroups",
+]
 
 # By default, apps are prevented from having public views for security reasons.
 # If you want to allow specific apps to have public views,
