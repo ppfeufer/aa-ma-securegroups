@@ -6,7 +6,6 @@ requires = [
 
 [project]
 name = "aa-memberaudit-secure-groups"
-version = "0.5.0"
 description = "Member Audit Secure Groups integration for Alliance Auth"
 readme = "README.md"
 keywords = [
@@ -20,6 +19,7 @@ maintainers = [
 ]
 authors = [
     { name = "Peter Pfeufer", email = "develop@ppfeufer.de" },
+    { name = "Erik Kalkoken", email = "kalkoken87@gmail.com" },
     { name = "Rebecca Murphy", email = "rebecca@rcmurphy.me" },
 ]
 requires-python = ">=3.8"
@@ -39,8 +39,11 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
     "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
 ]
+dynamic = [
+    "version",
+]
 dependencies = [
-    "aa-memberaudit>=2",
+    "aa-memberaudit>=3.3.1",
     "allianceauth>=3",
     "allianceauth-securegroups>=0.5.1",
 ]
@@ -60,3 +63,6 @@ Tracker = "https://github.com/ppfeufer/aa-memberaudit-secure-groups/issues"
 include = [
     "/memberaudit_securegroups",
 ]
+
+[tool.hatch.version]
+path = "memberaudit_securegroups/__init__.py"
