@@ -108,14 +108,15 @@ Restart your supervisor services for Auth
 
 ## Filters<a name="filters"></a>
 
-| Filter Name        | Matches if...                                                           |
-| ------------------ | ----------------------------------------------------------------------- |
-| Activity Filter    | User has *at least one* character active within the last X days         |
-| Age Filter         | User has *at least one* character over X days old                       |
-| Asset Filter       | User has *at least one* character with *any of* the assets defined      |
-| Compliance Filter  | User has *all* characters registered on Member Audit                    |
-| Skill Point Filter | User has *at least one* character with at least X skill points          |
-| Skill Set Filter   | User has *at least one* character with *any of* the selected skill sets |
+| Filter Name             | Matches if...                                                                  |
+| ----------------------- | ------------------------------------------------------------------------------ |
+| Activity Filter         | User has *at least one* character active within the last X days                |
+| Age Filter              | User has *at least one* character over X days old                              |
+| Asset Filter            | User has *at least one* character with *any of* the assets defined             |
+| Compliance Filter       | User has *all* characters registered on Member Audit                           |
+| Corporation Role Filter | User has a character (main or alt) in a certain corpration with a certain role |
+| Skill Point Filter      | User has *at least one* character with at least X skill points                 |
+| Skill Set Filter        | User has *at least one* character with *any of* the selected skill sets        |
 
 ## Changelog<a name="changelog"></a>
 
