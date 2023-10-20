@@ -7,10 +7,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-19 23:38+0200\n"
-"PO-Revision-Date: 2023-10-06 09:43+0000\n"
+"PO-Revision-Date: 2023-10-20 22:43+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
-"Language-Team: German <https://weblate.ppfeufer.de/projects/alliance-auth-"
-"apps/aa-member-audit-secure-groups/de/>\n"
+"Language-Team: German <https://weblate.ppfeufer.de/projects/"
+"alliance-auth-apps/aa-member-audit-secure-groups/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +27,7 @@ msgstr[1] "{inactivity_threshold:d} Tage"
 
 #: memberaudit_securegroups/admin.py:145
 msgid "corporation role"
-msgstr ""
+msgstr "Corporations-Rolle"
 
 #: memberaudit_securegroups/apps.py:20
 #, python-brace-format
@@ -110,21 +110,20 @@ msgstr[1] "Fehlende Charaktere: "
 
 #: memberaudit_securegroups/models.py:472
 msgid "The character with the role must be in one of these corporations."
-msgstr ""
+msgstr "Der Charakter mit der Rolle muss in einem dieser Corporationen sein."
 
 #: memberaudit_securegroups/models.py:479
 msgid "User must have a character with this role."
-msgstr ""
+msgstr "Der Benutzer muss einen Charakter mit dieser Rolle haben."
 
 #: memberaudit_securegroups/models.py:484
 msgid "When True, the filter will also include the users alt-characters."
 msgstr ""
+"Bei „True“ schließt der Filter auch die Alt-Charaktere des Benutzers ein."
 
 #: memberaudit_securegroups/models.py:494
-#, fuzzy
-#| msgid "Member Audit Skill Set"
 msgid "Member Audit Corporation Role"
-msgstr "Member Audit Skill Set"
+msgstr "Member Audit Corporations-Rolle"
 
 #: memberaudit_securegroups/models.py:563
 msgid "Minimum allowable skill points."
@@ -144,31 +143,28 @@ msgstr "Member Audit Skillpunkte [{skill_point_threshold}]"
 
 #: memberaudit_securegroups/models.py:638
 msgid "Any"
-msgstr ""
+msgstr "Beliebig"
 
 #: memberaudit_securegroups/models.py:639
 msgid "Mains only"
-msgstr ""
+msgstr "Nur Hauptcharaktere"
 
 #: memberaudit_securegroups/models.py:640
 msgid "Alts only"
-msgstr ""
+msgstr "Nur Alt-Charaktere"
 
 #: memberaudit_securegroups/models.py:645
-#, fuzzy
-#| msgid ""
-#| "Users must possess all of the skills in <strong>one</strong> of the "
-#| "selected skill sets."
 msgid ""
 "Users must have a character who possess all of the skills in <strong>one</"
 "strong> of the selected skill sets."
 msgstr ""
-"Benutzer müssen über alle Fähigkeiten in <strong>einem</strong> der "
-"ausgewählten Skillsets verfügen."
+"Benutzer müssen über einen Charakter verfügen, der alle Skills in "
+"<strong>einem</strong> der ausgewählten Skillsets besitzt."
 
 #: memberaudit_securegroups/models.py:654
 msgid "Specify the type of character that needs to have the skill set."
 msgstr ""
+"Gib den Charaktertyp an, der über die erforderlichen Skills verfügen muss."
 
 #: memberaudit_securegroups/models.py:692
 msgid "Member Audit Skill Set"
