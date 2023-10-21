@@ -45,13 +45,17 @@ Pretty much nothing.
 
 I took over Member Audit Securegroups in August 2022 from the original developer who
 is no longer actively maintaining the app. After more than a year and the fact that
-the original developer didn't want to transfer the PyPi repo to me, I decided it is
-time to make an actual fork of the app which is now again actively maintained by me.
+I have a distinct dislike for Gitlab and original developer didn't want to transfer
+the PyPi repository to me, I decided it is time to make an actual fork of the app
+which is now again actively maintained by me.
 
 This app is fully compatible with the original, all that has changed is the `pip`
 name from `aa-memberaudit-securegroups` to `aa-ma-securegroups`, and if
 you had the original app installed, it is really easy to switch to this one, see
 [Step 0.5 - Migrating from Member Audit Securegroups](#step-05-migrating-from-member-audit-securegroups).
+
+Thanks to [@rcmurphy](https://github.com/rcmurphy) for all her work on the [original
+app](https://gitlab.com/eclipse-expeditions/aa-memberaudit-securegroups)!
 
 ## Features<a name="features"></a>
 
