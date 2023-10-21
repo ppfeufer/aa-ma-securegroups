@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-21 23:15+0200\n"
+"POT-Creation-Date: 2023-10-22 00:31+0200\n"
 "PO-Revision-Date: 2023-09-24 13:14+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://weblate.ppfeufer.de/projects/alliance-auth-"
@@ -103,70 +103,70 @@ msgstr ""
 msgid "Member Audit Asset"
 msgstr "Auditoría de Bienes de los Miembros"
 
-#: memberaudit_securegroups/models.py:393
+#: memberaudit_securegroups/models.py:390
 msgid "Compliance"
 msgstr "Cumplimiento"
 
-#: memberaudit_securegroups/models.py:444
+#: memberaudit_securegroups/models.py:441
 #, python-brace-format
 msgid "All characters have been added to {MEMBERAUDIT_APP_NAME}"
 msgstr "Todos los personajes están añadidos en {MEMBERAUDIT_APP_NAME}"
 
-#: memberaudit_securegroups/models.py:450
+#: memberaudit_securegroups/models.py:447
 msgid "Missing character: "
 msgid_plural "Missing characters: "
 msgstr[0] "Personaje que falta: "
 msgstr[1] "Personajes que faltan: "
 
-#: memberaudit_securegroups/models.py:472
+#: memberaudit_securegroups/models.py:469
 msgid "The character with the role must be in one of these corporations."
 msgstr ""
 
-#: memberaudit_securegroups/models.py:479
+#: memberaudit_securegroups/models.py:476
 msgid "User must have a character with this role."
 msgstr ""
 
-#: memberaudit_securegroups/models.py:484
+#: memberaudit_securegroups/models.py:481
 msgid "When True, the filter will also include the users alt-characters."
 msgstr ""
 
-#: memberaudit_securegroups/models.py:494
+#: memberaudit_securegroups/models.py:491
 #, fuzzy
 #| msgid "Member Audit Skill Set"
 msgid "Member Audit Corporation Role"
 msgstr "Auditoría de Miembro Conjunto de Habilidades"
 
-#: memberaudit_securegroups/models.py:563
+#: memberaudit_securegroups/models.py:560
 #, fuzzy
 #| msgid "Minimum allowable skillpoints."
 msgid "Minimum allowable skill points."
 msgstr "Puntos de habilidad mínimos permitidos."
 
-#: memberaudit_securegroups/models.py:576
+#: memberaudit_securegroups/models.py:573
 #, python-brace-format
 msgid "{sp_threshold} skill point"
 msgid_plural "{sp_threshold} skill points"
 msgstr[0] "punto de habilidad {sp_threshold}"
 msgstr[1] "puntos de habilidad {sp_threshold}"
 
-#: memberaudit_securegroups/models.py:581
+#: memberaudit_securegroups/models.py:578
 #, python-brace-format
 msgid "Member Audit Skill Points [{skill_point_threshold}]"
 msgstr "Auditoría de Miembro Puntos de Habilidad [{skill_point_threshold}]"
 
-#: memberaudit_securegroups/models.py:638
+#: memberaudit_securegroups/models.py:635
 msgid "Any"
 msgstr ""
 
-#: memberaudit_securegroups/models.py:639
+#: memberaudit_securegroups/models.py:636
 msgid "Mains only"
 msgstr ""
 
-#: memberaudit_securegroups/models.py:640
+#: memberaudit_securegroups/models.py:637
 msgid "Alts only"
 msgstr ""
 
-#: memberaudit_securegroups/models.py:645
+#: memberaudit_securegroups/models.py:642
 #, fuzzy
 #| msgid ""
 #| "Users must possess all of the skills in <strong>one</strong> of the "
@@ -178,10 +178,10 @@ msgstr ""
 "Los usuarios deben tener todas las habilidades en <strong>uno</strong> de "
 "los conjuntos de habilidades seleccionados."
 
-#: memberaudit_securegroups/models.py:654
+#: memberaudit_securegroups/models.py:651
 msgid "Specify the type of character that needs to have the skill set."
 msgstr ""
 
-#: memberaudit_securegroups/models.py:692
+#: memberaudit_securegroups/models.py:689
 msgid "Member Audit Skill Set"
 msgstr "Auditoría de Miembro Conjunto de Habilidades"
