@@ -356,24 +356,21 @@ class AssetFilter(BaseFilter):
 
         output_characters = defaultdict(list)
 
-        for user_id in matching_characters:
-            character_name = user_id["character_name"]
-            asset_name = user_id["asset_name"]
+        for character in matching_characters:
+            character_name = character["character_name"]
+            asset_name = character["asset_name"]
 
             if self.assets.all().count() > 1:
-                output_characters[user_id["user_id"]].append(
+                output_characters[character["user_id"]].append(
                     f"{character_name} ({asset_name})"
                 )
             else:
-                output_characters[user_id["user_id"]].append(f"{character_name}")
+                output_characters[character["user_id"]].append(f"{character_name}")
 
-        output = {}
+        output = defaultdict(lambda: {"message": "", "check": False})
 
-        for user_id, characters in output_characters.items():
-            output[user_id] = {
-                "message": ", ".join(sorted(characters)),
-                "check": True,
-            }
+        for character, char_list in output_characters.items():
+            output[character] = {"message": ", ".join(sorted(char_list)), "check": True}
 
         return output
 
@@ -536,7 +533,7 @@ class CorporationRoleFilter(BaseFilter):
             character_name = user_id["character_name"]
             user_with_characters[user_id["user_id"]].append(f"{character_name}")
 
-        output = {}
+        output = defaultdict(lambda: {"message": "", "check": False})
 
         for user_id, character_names in user_with_characters.items():
             output[user_id] = {
@@ -741,7 +738,7 @@ class SkillSetFilter(BaseFilter):
             character_name = user_id["character_name"]
             user_with_characters[user_id["user_id"]].append(f"{character_name}")
 
-        output = {}
+        output = defaultdict(lambda: {"message": "", "check": False})
 
         for user_id, character_names in user_with_characters.items():
             output[user_id] = {
