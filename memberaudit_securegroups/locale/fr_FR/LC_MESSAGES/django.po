@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-19 23:38+0200\n"
+"POT-Creation-Date: 2023-10-21 23:15+0200\n"
 "PO-Revision-Date: 2023-09-24 13:14+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://weblate.ppfeufer.de/projects/alliance-auth-"
@@ -32,7 +32,7 @@ msgstr ""
 
 #: memberaudit_securegroups/apps.py:20
 #, python-brace-format
-msgid "Member Audit Secure Groups Integration v{__version__}"
+msgid "Secure Groups (Member Audit Integration) v{__version__}"
 msgstr ""
 
 #: memberaudit_securegroups/models.py:111
