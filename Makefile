@@ -1,4 +1,4 @@
-appname = aa-memberaudit-secure-groups
+appname = aa-ma-securegroups
 package = memberaudit_securegroups
 
 help:

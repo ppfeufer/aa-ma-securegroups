@@ -1,17 +1,17 @@
 # Member Audit Secure Groups Integration for Alliance Auth<a name="member-audit-secure-groups-integration-for-alliance-auth"></a>
 
-[![Version](https://img.shields.io/pypi/v/aa-memberaudit-secure-groups?label=release)](https://pypi.org/project/aa-memberaudit-secure-groups/)
-[![License](https://img.shields.io/github/license/ppfeufer/aa-memberaudit-secure-groups)](https://github.com/ppfeufer/aa-memberaudit-secure-groups/blob/master/LICENSE)
-[![Python](https://img.shields.io/pypi/pyversions/aa-memberaudit-secure-groups)](https://pypi.org/project/aa-memberaudit-secure-groups/)
-[![Django](https://img.shields.io/pypi/djversions/aa-memberaudit-secure-groups?label=django)](https://pypi.org/project/aa-memberaudit-secure-groups/)
+[![Version](https://img.shields.io/pypi/v/aa-ma-securegroups?label=release)](https://pypi.org/project/aa-ma-securegroups/)
+[![License](https://img.shields.io/github/license/ppfeufer/aa-ma-securegroups)](https://github.com/ppfeufer/aa-ma-securegroups/blob/master/LICENSE)
+[![Python](https://img.shields.io/pypi/pyversions/aa-ma-securegroups)](https://pypi.org/project/aa-ma-securegroups/)
+[![Django](https://img.shields.io/pypi/djversions/aa-ma-securegroups?label=django)](https://pypi.org/project/aa-ma-securegroups/)
 ![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/ppfeufer/aa-memberaudit-secure-groups/master.svg)](https://results.pre-commit.ci/latest/github/ppfeufer/aa-memberaudit-secure-groups/master)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/ppfeufer/aa-ma-securegroups/master.svg)](https://results.pre-commit.ci/latest/github/ppfeufer/aa-ma-securegroups/master)
 [![Code Style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](http://black.readthedocs.io/en/latest/)
 [![Discord](https://img.shields.io/discord/790364535294132234?label=discord)](https://discord.gg/zmh52wnfvM)
-[![Checks](https://github.com/ppfeufer/aa-memberaudit-secure-groups/actions/workflows/automated-checks.yml/badge.svg)](https://github.com/ppfeufer/aa-memberaudit-secure-groups/actions/workflows/automated-checks.yml)
-[![codecov](https://codecov.io/gh/ppfeufer/aa-memberaudit-secure-groups/branch/master/graph/badge.svg)](https://codecov.io/gh/ppfeufer/aa-memberaudit-secure-groups)
+[![Checks](https://github.com/ppfeufer/aa-ma-securegroups/actions/workflows/automated-checks.yml/badge.svg)](https://github.com/ppfeufer/aa-ma-securegroups/actions/workflows/automated-checks.yml)
+[![codecov](https://codecov.io/gh/ppfeufer/aa-ma-securegroups/branch/master/graph/badge.svg)](https://codecov.io/gh/ppfeufer/aa-ma-securegroups)
 [![Translation status](https://weblate.ppfeufer.de/widget/alliance-auth-apps/aa-member-audit-secure-groups/svg-badge.svg)](https://weblate.ppfeufer.de/engage/alliance-auth-apps/)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://github.com/ppfeufer/aa-memberaudit-secure-groups/blob/master/CODE_OF_CONDUCT.md)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://github.com/ppfeufer/aa-ma-securegroups/blob/master/CODE_OF_CONDUCT.md)
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/N4N8CL1BY)
 
@@ -49,7 +49,7 @@ the original developer didn't want to transfer the PyPi repo to me, I decided it
 time to make an actual fork of the app which is now again actively maintained by me.
 
 This app is fully compatible with the original, all that has changed is the `pip`
-name from `aa-memberaudit-securegroups` to `aa-memberaudit-secure-groups`, and if
+name from `aa-memberaudit-securegroups` to `aa-ma-securegroups`, and if
 you had the original app installed, it is really easy to switch to this one, see
 [Step 0.5 - Migrating from Member Audit Securegroups](#step-05-migrating-from-member-audit-securegroups).
 
@@ -89,7 +89,7 @@ Make sure you are in the virtual environment (venv) of your Alliance Auth
 installation. Then install the newest release from PyPI:
 
 ```shell
-pip install aa-memberaudit-secure-groups
+pip install aa-ma-securegroups
 ```
 
 ### Step 2 - Config<a name="step-2-config"></a>
@@ -138,6 +138,6 @@ Please make sure to read the [Contribution Guidelines].\
 
 <!-- Inline links -->
 
-[changelog.md]: https://github.com/ppfeufer/aa-memberaudit-secure-groups/blob/master/CHANGELOG.md
-[contribution guidelines]: https://github.com/ppfeufer/aa-memberaudit-secure-groups/blob/master/CONTRIBUTING.md "Contribution Guidelines"
+[changelog.md]: https://github.com/ppfeufer/aa-ma-securegroups/blob/master/CHANGELOG.md
+[contribution guidelines]: https://github.com/ppfeufer/aa-ma-securegroups/blob/master/CONTRIBUTING.md "Contribution Guidelines"
 [weblate engage]: https://weblate.ppfeufer.de/engage/alliance-auth-apps/ "Weblate Translations"

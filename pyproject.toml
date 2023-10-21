@@ -5,7 +5,7 @@ requires = [
 ]
 
 [project]
-name = "aa-memberaudit-secure-groups"
+name = "aa-ma-securegroups"
 description = "Member Audit Secure Groups integration for Alliance Auth"
 readme = "README.md"
 keywords = [
@@ -53,11 +53,11 @@ tests-allianceauth-stable = [
     "django-webtest",
 ]
 [project.urls]
-Changelog = "https://github.com/ppfeufer/aa-memberaudit-secure-groups/blob/master/CHANGELOG.md"
-Documentation = "https://github.com/ppfeufer/aa-memberaudit-secure-groups/blob/master/README.md"
-Homepage = "https://github.com/ppfeufer/aa-memberaudit-secure-groups"
-Source = "https://github.com/ppfeufer/aa-memberaudit-secure-groups.git"
-Tracker = "https://github.com/ppfeufer/aa-memberaudit-secure-groups/issues"
+Changelog = "https://github.com/ppfeufer/aa-ma-securegroups/blob/master/CHANGELOG.md"
+Documentation = "https://github.com/ppfeufer/aa-ma-securegroups/blob/master/README.md"
+Homepage = "https://github.com/ppfeufer/aa-ma-securegroups"
+Source = "https://github.com/ppfeufer/aa-ma-securegroups.git"
+Tracker = "https://github.com/ppfeufer/aa-ma-securegroups/issues"
 
 [tool.hatch.build]
 include = [
