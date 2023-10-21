@@ -45,7 +45,7 @@ Pretty much nothing.
 
 I took over Member Audit Securegroups in August 2022 from the original developer who
 is no longer actively maintaining the app. After more than a year and the fact that
-I have a distinct dislike for Gitlab and original developer didn't want to transfer
+I have a distinct dislike for Gitlab and the original developer didn't want to transfer
 the PyPi repository to me, I decided it is time to make an actual fork of the app
 which is now again actively maintained by me.
 
