@@ -478,7 +478,7 @@ class CorporationRoleFilter(BaseFilter):
     include_alts = models.BooleanField(
         default=False,
         help_text=_(
-            "When True, the filter will also include the users alt-characters."
+            "When checked, the filter will also include the users alt-characters."
         ),
     )
 

@@ -116,7 +116,7 @@ class Migration(migrations.Migration):
                     "include_alts",
                     models.BooleanField(
                         default=False,
-                        help_text="When True, the filter will also include the users alt-characters.",
+                        help_text="When checked, the filter will also include the users alt-characters.",
                     ),
                 ),
                 (
