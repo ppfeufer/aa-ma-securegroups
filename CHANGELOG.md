@@ -37,6 +37,7 @@ Section Order:
 
 ### Changed
 
+- German translation updated
 - Russian translation updated
 
 ## \[0.6.1\] - 2023-10-22
