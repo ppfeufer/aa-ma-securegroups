@@ -32,7 +32,6 @@ jobs:
         with:
           python-version-file: 'pyproject.toml' # Read the Python version from the pyproject.toml file
 
-      # Install pre-commit
       - name: Run Pre Commit Checks
         uses: pre-commit/action@v3.0.1
 
@@ -105,7 +104,7 @@ jobs:
       # Run Tox with the specified environment
       - name: Run Tox
         env:
-          TOX_ENV: allianceauth-stable
+          TOX_ENV: allianceauth-latest
           DB_HOST: 127.0.0.1
           DB_USER: root
           DB_PASSWORD: temp_password_aa_tox_tests
@@ -128,7 +127,7 @@ jobs:
             }}
         uses: codecov/codecov-action@v4
         with:
-          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage.xml # optional
 #          flags: unittests # optional
 #          name: codecov-umbrella # optional

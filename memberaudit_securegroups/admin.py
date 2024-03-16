@@ -25,8 +25,10 @@ from memberaudit_securegroups.models import (
     AssetFilter,
     ComplianceFilter,
     CorporationRoleFilter,
+    CorporationTitleFilter,
     SkillPointFilter,
     SkillSetFilter,
+    TimeInCorporationFilter,
 )
 
 
@@ -157,7 +159,7 @@ class CorporationRoleListFilter(admin.SimpleListFilter):
 
     def queryset(self, request, queryset):  # pylint: disable=unused-argument
         """
-        Return queryset for selected role.
+        Return queryset for a selected role.
         """
 
         if value := self.value():
@@ -193,6 +195,55 @@ class CorporationRoleFilterAdmin(admin.ModelAdmin):
 
     @admin.display()
     def _corporations(self, obj) -> str:
+        """
+        Get corporations
+
+        :param obj:
+        :type obj:
+        :return:
+        :rtype:
+        """
+
+        objs = obj.corporations.all()
+
+        return ", ".join(sorted([obj.corporation_name for obj in objs]))
+
+
+@admin.register(CorporationTitleFilter)
+class CorporationTitleFilterAdmin(admin.ModelAdmin):
+    """
+    CorporationTitleFilterAdmin
+    """
+
+    list_display = ("description", "title", "_corporations")
+    filter_horizontal = ("corporations",)
+    fields = ("description", "title", "corporations", "include_alts")
+
+    def get_queryset(self, request: HttpRequest) -> QuerySet[Any]:
+        """
+        Get the queryset
+
+        :param request:
+        :type request:
+        :return:
+        :rtype:
+        """
+
+        qs = super().get_queryset(request)
+
+        return qs.prefetch_related("corporations")
+
+    @admin.display()
+    def _corporations(self, obj) -> str:
+        """
+        Get corporations
+
+        :param obj:
+        :type obj:
+        :return:
+        :rtype:
+        """
+
         objs = obj.corporations.all()
 
         return ", ".join(sorted([obj.corporation_name for obj in objs]))
@@ -207,6 +258,15 @@ class SkillPointFilterAdmin(admin.ModelAdmin):
     list_display = ("description", "_skill_point_threshold")
 
     def _skill_point_threshold(self, obj):
+        """
+        Get skill point threshold
+
+        :param obj:
+        :type obj:
+        :return:
+        :rtype:
+        """
+
         skillpoints = humanize.intword(obj.skill_point_threshold)
 
         return f"{skillpoints} skill points"
@@ -237,6 +297,24 @@ class SkillSetFilterAdmin(admin.ModelAdmin):
 
     @admin.display()
     def _skill_sets(self, obj) -> str:
+        """
+        Get skill sets
+
+        :param obj:
+        :type obj:
+        :return:
+        :rtype:
+        """
+
         objs = obj.skill_sets.all()
 
         return ", ".join(sorted([obj.name for obj in objs]))
+
+
+@admin.register(TimeInCorporationFilter)
+class TimeInCorporationFilterAdmin(admin.ModelAdmin):
+    """
+    TimeInCorporationFilterAdmin
+    """
+
+    list_display = ("description", "minimum_days")

@@ -12,8 +12,10 @@ from memberaudit_securegroups.models import (
     AssetFilter,
     ComplianceFilter,
     CorporationRoleFilter,
+    CorporationTitleFilter,
     SkillPointFilter,
     SkillSetFilter,
+    TimeInCorporationFilter,
 )
 
 
@@ -32,6 +34,8 @@ def filters():
         AssetFilter,
         ComplianceFilter,
         CorporationRoleFilter,
+        CorporationTitleFilter,
         SkillPointFilter,
         SkillSetFilter,
+        TimeInCorporationFilter,
     ]
