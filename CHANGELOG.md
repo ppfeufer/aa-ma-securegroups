@@ -40,11 +40,6 @@ Section Order:
 - Corp title filter (Thanks to @ErikKalkoken)
 - Time in corp filter (Thanks to @ErikKalkoken)
 
-### Changed
-
-- German translation updated
-- Russian translation updated
-
 ## \[0.6.1\] - 2023-10-22
 
 ### Fixed
