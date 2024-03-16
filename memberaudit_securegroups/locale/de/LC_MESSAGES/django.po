@@ -6,11 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-16 12:41+0100\n"
+"POT-Creation-Date: 2024-03-16 13:00+0100\n"
 "PO-Revision-Date: 2024-03-16 11:46+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
-"Language-Team: German <https://weblate.ppfeufer.de/projects/"
-"alliance-auth-apps/aa-member-audit-secure-groups/de/>\n"
+"Language-Team: German <https://weblate.ppfeufer.de/projects/alliance-auth-"
+"apps/aa-member-audit-secure-groups/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -117,8 +117,9 @@ msgid "User must have a character with this role."
 msgstr "Der Benutzer muss einen Charakter mit dieser Rolle haben."
 
 #: memberaudit_securegroups/models.py:495
-#: memberaudit_securegroups/models.py:586
-msgid "When True, the filter will also include the users alt-characters."
+#, fuzzy
+#| msgid "When True, the filter will also include the users alt-characters."
+msgid "When checked, the filter will also include the users alt-characters."
 msgstr ""
 "Bei „True“ schließt der Filter auch die Alt-Charaktere des Benutzers ein."
 
@@ -133,6 +134,11 @@ msgstr "Der Charakter mit dem Titel muss in einer dieser Corporationen sein."
 #: memberaudit_securegroups/models.py:581
 msgid "User must have a character with this title."
 msgstr "Der Benutzer muss einen Charakter mit diesem Titel haben."
+
+#: memberaudit_securegroups/models.py:586
+msgid "When True, the filter will also include the users alt-characters."
+msgstr ""
+"Bei „True“ schließt der Filter auch die Alt-Charaktere des Benutzers ein."
 
 #: memberaudit_securegroups/models.py:596
 msgid "Member Audit Corporation Title"

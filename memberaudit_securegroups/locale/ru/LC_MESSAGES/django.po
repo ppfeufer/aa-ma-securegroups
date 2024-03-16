@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-16 12:41+0100\n"
+"POT-Creation-Date: 2024-03-16 13:00+0100\n"
 "PO-Revision-Date: 2023-11-17 18:04+0000\n"
 "Last-Translator: Ruslan Virchich <ruslan.virchich@gmail.com>\n"
 "Language-Team: Russian <https://weblate.ppfeufer.de/projects/alliance-auth-"
@@ -131,8 +131,9 @@ msgid "User must have a character with this role."
 msgstr "У пользователя должен быть персонаж с данным полномочием."
 
 #: memberaudit_securegroups/models.py:495
-#: memberaudit_securegroups/models.py:586
-msgid "When True, the filter will also include the users alt-characters."
+#, fuzzy
+#| msgid "When True, the filter will also include the users alt-characters."
+msgid "When checked, the filter will also include the users alt-characters."
 msgstr ""
 "Когда Истина - фильтр будет также учитывать альтернативных персонажей "
 "пользователя."
@@ -154,6 +155,12 @@ msgstr "Персонаж с полномочием должен быть в од
 #| msgid "User must have a character with this role."
 msgid "User must have a character with this title."
 msgstr "У пользователя должен быть персонаж с данным полномочием."
+
+#: memberaudit_securegroups/models.py:586
+msgid "When True, the filter will also include the users alt-characters."
+msgstr ""
+"Когда Истина - фильтр будет также учитывать альтернативных персонажей "
+"пользователя."
 
 #: memberaudit_securegroups/models.py:596
 #, fuzzy

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-16 12:41+0100\n"
+"POT-Creation-Date: 2024-03-16 13:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,8 +116,7 @@ msgid "User must have a character with this role."
 msgstr ""
 
 #: memberaudit_securegroups/models.py:495
-#: memberaudit_securegroups/models.py:586
-msgid "When True, the filter will also include the users alt-characters."
+msgid "When checked, the filter will also include the users alt-characters."
 msgstr ""
 
 #: memberaudit_securegroups/models.py:505
@@ -130,6 +129,10 @@ msgstr ""
 
 #: memberaudit_securegroups/models.py:581
 msgid "User must have a character with this title."
+msgstr ""
+
+#: memberaudit_securegroups/models.py:586
+msgid "When True, the filter will also include the users alt-characters."
 msgstr ""
 
 #: memberaudit_securegroups/models.py:596
