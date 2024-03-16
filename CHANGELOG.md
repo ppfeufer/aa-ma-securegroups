@@ -35,6 +35,8 @@ Section Order:
 ### Security
 -->
 
+## \[1.0.0\] - 2024-03-16
+
 > \[!NOTE\]
 >
 > **This version needs at least Alliance Auth v4.0.0!**
@@ -47,6 +49,11 @@ Section Order:
 
 - Corp title filter (Thanks to @ErikKalkoken)
 - Time in corp filter (Thanks to @ErikKalkoken)
+- Compatibility to Alliance Auth v4
+
+### Removed
+
+- Compatibility to Alliance Auth v3
 
 ## \[0.6.1\] - 2023-10-22
 
