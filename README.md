@@ -63,8 +63,11 @@ app](https://gitlab.com/eclipse-expeditions/aa-memberaudit-securegroups)!
 - Asset Filter
 - Character Age Filter
 - Compliance Filter
+- Corporation Role Filter
+- Corporation Title Filter
 - Skill Set Filter
 - Skill Point Filter
+- Time in Corporation Filter
 
 ## Installation<a name="installation"></a>
 
