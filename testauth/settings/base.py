@@ -77,7 +77,6 @@ PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 MIDDLEWARE = [
-    "allianceauth.menu.middleware.MenuSyncMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "allianceauth.authentication.middleware.UserSettingsMiddleware",
@@ -179,7 +178,7 @@ MESSAGE_TAGS = {messages.ERROR: "danger error"}
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",  # change the 1 here to change the database used
+        "LOCATION": "redis://127.0.0.1:6379/1",  # change the 1 here for the DB used
     }
 }
 
@@ -212,6 +211,8 @@ LOGOUT_REDIRECT_URL = "authentication:dashboard"  # destination after logging ou
 # scopes required on new tokens when logging in. Cannot be blank.
 LOGIN_TOKEN_SCOPES = ["publicData"]
 
+EMAIL_TIMEOUT = 15
+
 # number of days email verification links are valid for
 ACCOUNT_ACTIVATION_DAYS = 1
 
@@ -242,7 +243,7 @@ LOGGING = {
             "filename": os.path.join(BASE_DIR, "log/extensions.log"),
             "formatter": "verbose",
             "maxBytes": 1024 * 1024 * 5,  # edit this line to change max log file size
-            "backupCount": 5,  # edit this line to change number of log backups
+            "backupCount": 5,  # edit this line to change the number of log backups
         },
         "console": {
             "level": "DEBUG",  # edit this line to change logging level to console

@@ -35,6 +35,11 @@ Section Order:
 ### Security
 -->
 
+### Added
+
+- Corp title filter (Thanks to @ErikKalkoken)
+- Time in corp filter (Thanks to @ErikKalkoken)
+
 ### Changed
 
 - German translation updated
