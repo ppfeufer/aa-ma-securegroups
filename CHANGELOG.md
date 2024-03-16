@@ -35,12 +35,24 @@ Section Order:
 ### Security
 -->
 
+> \[!NOTE\]
+>
+> **This version needs at least Alliance Auth v4.0.0!**
+>
+> Please make sure to update your Alliance Auth instance **before**
+> you install this version, otherwise, an update to Alliance Auth will
+> be pulled in unsupervised.
+
 ### Added
 
 - Corp title filter (Thanks to @ErikKalkoken)
 - Time in corp filter (Thanks to @ErikKalkoken)
 
 ## \[0.6.1\] - 2023-10-22
+
+> \[!NOTE\]
+>
+> **This is the last version compatible with Alliance Auth v3.**
 
 ### Fixed
 

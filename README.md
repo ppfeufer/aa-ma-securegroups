@@ -26,10 +26,10 @@ ______________________________________________________________________
   - [Features](#features)
   - [Installation](#installation)
     - [Requirements](#requirements)
-    - [Step 0.5 - Migrating from Member Audit Securegroups](#step-05-migrating-from-member-audit-securegroups)
-    - [Step 1 - Install the Package](#step-1-install-the-package)
-    - [Step 2 - Config](#step-2-config)
-    - [Step 3 - Finalize App Installation](#step-3-finalize-app-installation)
+    - [Step 0.5: Migrating from Member Audit Securegroups](#step-05-migrating-from-member-audit-securegroups)
+    - [Step 1: Install the Package](#step-1-install-the-package)
+    - [Step 2: Config](#step-2-config)
+    - [Step 3: Finalize App Installation](#step-3-finalize-app-installation)
   - [Filters](#filters)
   - [Changelog](#changelog)
   - [Translation Status](#translation-status)
@@ -52,7 +52,7 @@ which is now again actively maintained by me.
 This app is fully compatible with the original, all that has changed is the `pip`
 name from `aa-memberaudit-securegroups` to `aa-ma-securegroups`, and if
 you had the original app installed, it is really easy to switch to this one, see
-[Step 0.5 - Migrating from Member Audit Securegroups](#step-05-migrating-from-member-audit-securegroups).
+[Step 0.5: Migrating from Member Audit Securegroups](#step-05-migrating-from-member-audit-securegroups).
 
 Thanks to [@rcmurphy](https://github.com/rcmurphy) for all her work on the [original
 app](https://gitlab.com/eclipse-expeditions/aa-memberaudit-securegroups)!
@@ -68,13 +68,23 @@ app](https://gitlab.com/eclipse-expeditions/aa-memberaudit-securegroups)!
 
 ## Installation<a name="installation"></a>
 
+> \[!NOTE\]
+>
+> **AA Intel Tool >= 1.0.0 needs at least Alliance Auth v4.0.0!**
+>
+> Please make sure to update your Alliance Auth instance _before_ you install this
+> module or update to the latest version, otherwise an update to Alliance Auth will
+> be pulled in unsupervised.
+>
+> The last version compatible with Alliance Auth v3 is `0.6.1`.
+
 ### Requirements<a name="requirements"></a>
 
 This integration needs [Member Audit](https://gitlab.com/ErikKalkoken/aa-memberaudit)
 and [Secure Groups](https://github.com/pvyParts/allianceauth-secure-groups) to
 function. Please make sure they are installed before continuing.
 
-### Step 0.5 - Migrating from Member Audit Securegroups<a name="step-05-migrating-from-member-audit-securegroups"></a>
+### Step 0.5: Migrating from Member Audit Securegroups<a name="step-05-migrating-from-member-audit-securegroups"></a>
 
 In case you have the original app installed, you need to uninstall it before
 you can continue. To do so, simply run:
@@ -87,7 +97,7 @@ That's all, no need to worry about the DB related stuff, this app is fully
 compatible with it and will use the DB tables from the original app. Now feel free
 to continue with the installation.
 
-### Step 1 - Install the Package<a name="step-1-install-the-package"></a>
+### Step 1: Install the Package<a name="step-1-install-the-package"></a>
 
 Make sure you are in the virtual environment (venv) of your Alliance Auth
 installation. Then install the newest release from PyPI:
@@ -96,11 +106,11 @@ installation. Then install the newest release from PyPI:
 pip install aa-ma-securegroups
 ```
 
-### Step 2 - Config<a name="step-2-config"></a>
+### Step 2: Config<a name="step-2-config"></a>
 
 Add `memberaudit_securegroups` to your `INSTALLED_APPS`.
 
-### Step 3 - Finalize App Installation<a name="step-3-finalize-app-installation"></a>
+### Step 3: Finalize App Installation<a name="step-3-finalize-app-installation"></a>
 
 Run migrations:
 
