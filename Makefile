@@ -1,4 +1,4 @@
-# Makefile for AA Sov Timer
+# Makefile for AA Member Audit Secure Groups
 
 appname = aa-ma-securegroups
 appname_verbose = AA Member Audit Secure Groups
