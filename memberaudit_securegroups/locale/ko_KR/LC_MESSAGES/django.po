@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-16 13:00+0100\n"
-"PO-Revision-Date: 2024-03-20 16:15+0000\n"
+"PO-Revision-Date: 2024-03-22 02:11+0000\n"
 "Last-Translator: Mind of the Raven <okanieva@gmail.com>\n"
 "Language-Team: Korean <https://weblate.ppfeufer.de/projects/"
 "alliance-auth-apps/aa-member-audit-secure-groups/ko/>\n"
@@ -67,9 +67,6 @@ msgid "Activity [Last {inactivity_threshold}]"
 msgstr "활동 [최근 {inactivity_threshold}]"
 
 #: memberaudit_securegroups/models.py:225
-#, fuzzy
-#| msgid "Active Character: "
-#| msgid_plural "Active Characters: "
 msgid "Active character: "
 msgid_plural "Active characters: "
 msgstr[0] "활동중인 캐릭터: "
@@ -85,8 +82,7 @@ msgid_plural "{self.age_threshold:d} days"
 msgstr[0] "{self.age_threshold:d} 일"
 
 #: memberaudit_securegroups/models.py:258
-#, fuzzy, python-brace-format
-#| msgid "Character Age [{age_threshold}]"
+#, python-brace-format
 msgid "Character age [{age_threshold}]"
 msgstr "캐릭터 나이 [{age_threshold}]"
 
