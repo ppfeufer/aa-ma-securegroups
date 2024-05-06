@@ -23,7 +23,7 @@ ci:
 # pre-commit setup
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v4.6.0
     hooks:
       # Identify invalid files
       - id: check-ast
@@ -212,7 +212,7 @@ repos:
         description: "Check for black disable comments."
 
   - repo: https://github.com/psf/black
-    rev: 24.3.0
+    rev: 24.4.2
     hooks:
       - id: black
         name: Black
@@ -227,7 +227,7 @@ repos:
         name: Blacken docs
         description: "Format Python code in documentation files."
         additional_dependencies:
-          - black==24.3.0  # https://github.com/psf/black/releases/latest
+          - black==24.4.2  # https://github.com/psf/black/releases/latest
         args:
           - --target-version=py38  # Minimum required Python version for AA. Update as needed.
 
@@ -239,7 +239,8 @@ repos:
         description: "Format Markdown files."
         exclude: |
           (?x)(
-            .github/
+            .github/|
+            static/(.*)/libs/
           )
         additional_dependencies:
           - mdformat-gfm==0.3.5  # Mdformat plugin for GitHub Flavored Markdown compatibility » https://github.com/hukkin/mdformat-gfm/tags
@@ -255,7 +256,7 @@ repos:
         description: "Format the tox.ini file."
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: 1.7.0
+    rev: 1.8.0
     hooks:
       - id: pyproject-fmt
         name: pyproject.toml formatter
@@ -263,7 +264,7 @@ repos:
         args:
           - --indent=4
         additional_dependencies:
-          - tox==4.11.4  # https://github.com/tox-dev/tox/releases/latest
+          - tox==4.15.0  # https://github.com/tox-dev/tox/releases/latest
 
   - repo: https://github.com/abravalheri/validate-pyproject
     rev: v0.16
