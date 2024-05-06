@@ -23,7 +23,7 @@ ci:
 # pre-commit setup
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v4.6.0
     hooks:
       # Identify invalid files
       - id: check-ast
@@ -212,7 +212,7 @@ repos:
         description: "Check for black disable comments."
 
   - repo: https://github.com/psf/black
-    rev: 24.3.0
+    rev: 24.4.2
     hooks:
       - id: black
         name: Black
@@ -255,7 +255,7 @@ repos:
         description: "Format the tox.ini file."
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: 1.7.0
+    rev: 1.8.0
     hooks:
       - id: pyproject-fmt
         name: pyproject.toml formatter
