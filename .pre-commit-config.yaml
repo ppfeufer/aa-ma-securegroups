@@ -227,7 +227,7 @@ repos:
         name: Blacken docs
         description: "Format Python code in documentation files."
         additional_dependencies:
-          - black==24.3.0  # https://github.com/psf/black/releases/latest
+          - black==24.4.2  # https://github.com/psf/black/releases/latest
         args:
           - --target-version=py38  # Minimum required Python version for AA. Update as needed.
 
@@ -239,7 +239,8 @@ repos:
         description: "Format Markdown files."
         exclude: |
           (?x)(
-            .github/
+            .github/|
+            static/(.*)/libs/
           )
         additional_dependencies:
           - mdformat-gfm==0.3.5  # Mdformat plugin for GitHub Flavored Markdown compatibility » https://github.com/hukkin/mdformat-gfm/tags
@@ -263,7 +264,7 @@ repos:
         args:
           - --indent=4
         additional_dependencies:
-          - tox==4.11.4  # https://github.com/tox-dev/tox/releases/latest
+          - tox==4.15.0  # https://github.com/tox-dev/tox/releases/latest
 
   - repo: https://github.com/abravalheri/validate-pyproject
     rev: v0.16
