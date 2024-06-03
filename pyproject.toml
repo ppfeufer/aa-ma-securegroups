@@ -13,7 +13,7 @@ keywords = [
     "memberaudit",
     "securegroups",
 ]
-license = {file = "LICENSE"}
+license = { file = "LICENSE" }
 maintainers = [
     { name = "Peter Pfeufer", email = "develop@ppfeufer.de" },
 ]
@@ -45,20 +45,18 @@ dynamic = [
 ]
 dependencies = [
     "aa-memberaudit>=3.3.1",
-    "allianceauth<5.0.0,>=4",
+    "allianceauth<5,>=4",
     "allianceauth-securegroups>=0.5.1",
 ]
-[project.optional-dependencies]
-tests-allianceauth-latest = [
+optional-dependencies.tests-allianceauth-latest = [
     "coverage",
     "django-webtest",
 ]
-[project.urls]
-Changelog = "https://github.com/ppfeufer/aa-ma-securegroups/blob/master/CHANGELOG.md"
-Documentation = "https://github.com/ppfeufer/aa-ma-securegroups/blob/master/README.md"
-Homepage = "https://github.com/ppfeufer/aa-ma-securegroups"
-Source = "https://github.com/ppfeufer/aa-ma-securegroups.git"
-Tracker = "https://github.com/ppfeufer/aa-ma-securegroups/issues"
+urls.Changelog = "https://github.com/ppfeufer/aa-ma-securegroups/blob/master/CHANGELOG.md"
+urls.Documentation = "https://github.com/ppfeufer/aa-ma-securegroups/blob/master/README.md"
+urls.Homepage = "https://github.com/ppfeufer/aa-ma-securegroups"
+urls.Source = "https://github.com/ppfeufer/aa-ma-securegroups.git"
+urls.Tracker = "https://github.com/ppfeufer/aa-ma-securegroups/issues"
 
 [tool.hatch.build]
 include = [
