@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Matthias P <randomusernetcom@gmail.com>, 2024.
 # Hexo <ghostcig@free.fr>, 2024.
+# Houbi_Houba <paul.lacape@live.fr>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-16 13:00+0100\n"
-"PO-Revision-Date: 2024-07-04 13:27+0000\n"
-"Last-Translator: Hexo <ghostcig@free.fr>\n"
+"PO-Revision-Date: 2024-07-10 09:28+0000\n"
+"Last-Translator: Houbi_Houba <paul.lacape@live.fr>\n"
 "Language-Team: French <https://weblate.ppfeufer.de/projects/"
 "alliance-auth-apps/aa-member-audit-secure-groups/fr/>\n"
 "Language: fr_FR\n"
@@ -17,14 +18,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.6.1\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: memberaudit_securegroups/admin.py:83
 #, python-brace-format
 msgid "{inactivity_threshold:d} day"
 msgid_plural "{inactivity_threshold:d} days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{inactivity_threshold:d} jour"
+msgstr[1] "{inactivity_threshold:d} jours"
 
 #: memberaudit_securegroups/admin.py:147
 msgid "corporation role"
