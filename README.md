@@ -45,7 +45,7 @@ Pretty much nothing.
 
 I took over Member Audit Securegroups in August 2022 from the original developer who
 is no longer actively maintaining the app. After more than a year and the fact that
-I have a distinct dislike for Gitlab and the original developer didn't want to transfer
+I have a distinct dislike for Gitlab, and the original developer didn't want to transfer
 the PyPi repository to me, I decided it is time to make an actual fork of the app
 which is now again actively maintained by me.
 
@@ -73,7 +73,7 @@ app](https://gitlab.com/eclipse-expeditions/aa-memberaudit-securegroups)!
 
 > \[!NOTE\]
 >
-> **AA Intel Tool >= 1.0.0 needs at least Alliance Auth v4.0.0!**
+> **Member Audit Secure Groups Integration >= 1.0.0 needs at least Alliance Auth v4.0.0!**
 >
 > Please make sure to update your Alliance Auth instance _before_ you install this
 > module or update to the latest version, otherwise an update to Alliance Auth will
