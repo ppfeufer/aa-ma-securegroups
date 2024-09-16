@@ -35,6 +35,13 @@ Section Order:
 ### Security
 -->
 
+### Changed
+
+- Dependencies updated
+  - `allianceauth`>=4.3.1
+- Japanese translation improved
+- Lingua codes updated to match Alliance Auth v4.3.1
+
 ## \[1.1.0\] - 2024-07-27
 
 ### Added
