@@ -39,6 +39,7 @@ Section Order:
 
 - Dependencies updated
   - `allianceauth`>=4.3.1
+  - `aa-memberaudit`>=3.10.0
 - Japanese translation improved
 - Lingua codes updated to match Alliance Auth v4.3.1
 
