@@ -7,6 +7,7 @@ from typing import Any
 
 # Third Party
 import humanize
+from solo.admin import SingletonModelAdmin
 
 # Django
 from django.contrib import admin
@@ -30,42 +31,6 @@ from memberaudit_securegroups.models import (
     SkillSetFilter,
     TimeInCorporationFilter,
 )
-
-
-class SingletonModelAdmin(admin.ModelAdmin):
-    """
-    Prevents Django admin users deleting the singleton or adding extra rows.
-    """
-
-    actions = None  # Removes the default delete action.
-
-    def has_delete_permission(
-        self, request, obj=None  # pylint: disable=unused-argument
-    ):
-        """
-        Has "delete" permission
-
-        :param request:
-        :type request:
-        :param obj:
-        :type obj:
-        :return:
-        :rtype:
-        """
-
-        return False
-
-    def has_add_permission(self, request):  # pylint: disable=unused-argument
-        """
-        Has "add" permission
-
-        :param request:
-        :type request:
-        :return:
-        :rtype:
-        """
-
-        return self.model.objects.all().count() == 0
 
 
 @admin.register(ActivityFilter)
