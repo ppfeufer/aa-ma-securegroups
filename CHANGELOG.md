@@ -35,6 +35,10 @@ Section Order:
 ### Security
 -->
 
+## Changed
+
+- Switch to `django-solo` to provide the singleton for the compliance model, instead of the custom implementation
+
 ## \[1.2.0\] - 2024-10-10
 
 ### Changed

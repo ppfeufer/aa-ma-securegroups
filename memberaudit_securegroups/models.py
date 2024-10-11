@@ -8,10 +8,10 @@ from collections import defaultdict
 
 # Third Party
 import humanize
+from solo.models import SingletonModel
 
 # Django
 from django.contrib.auth.models import User
-from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.db.models import F, OuterRef, Q, Subquery
@@ -43,65 +43,6 @@ def _get_threshold_date(timedelta_in_days: int) -> datetime.datetime:
     return datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(
         days=timedelta_in_days
     )
-
-
-class SingletonModel(models.Model):
-    """
-    SingletonModel
-    """
-
-    class Meta:
-        """
-        Model meta definitions
-        """
-
-        abstract = True
-
-    def delete(self, *args, **kwargs):
-        """
-        "Delete" action
-        :param args:
-        :param kwargs:
-        :return:
-        """
-
-        pass  # pylint: disable=unnecessary-pass
-
-    def set_cache(self):
-        """
-        Setting cache
-        :return:
-        """
-
-        cache.set(self.__class__.__name__, self)
-
-    def save(self, *args, **kwargs):
-        """
-        "Save" action
-        :param args:
-        :param kwargs:
-        :return:
-        """
-
-        self.pk = 1
-        super().save(*args, **kwargs)
-
-        self.set_cache()
-
-    @classmethod
-    def load(cls):
-        """
-        Get cache
-        :return:
-        """
-
-        if cache.get(cls.__name__) is None:
-            obj, created = cls.objects.get_or_create(pk=1)
-
-            if not created:
-                obj.set_cache()
-
-        return cache.get(cls.__name__)
 
 
 class BaseFilter(models.Model):
