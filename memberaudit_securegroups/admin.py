@@ -41,13 +41,22 @@ class ActivityFilterAdmin(admin.ModelAdmin):
 
     list_display = ("description", "_inactivity_threshold")
 
-    def _inactivity_threshold(self, obj):
+    def _inactivity_threshold(self, obj) -> str:
+        """
+        Get the inactivity threshold
+
+        :param obj: The object
+        :type obj: ActivityFilter
+        :return: The inactivity threshold
+        :rtype: str
+        """
+
         inactivity_threshold = obj.inactivity_threshold
 
         return_value = ngettext(
-            f"{inactivity_threshold:d} day",
-            f"{inactivity_threshold:d} days",
-            inactivity_threshold,
+            singular=f"{inactivity_threshold:d} day",
+            plural=f"{inactivity_threshold:d} days",
+            number=inactivity_threshold,
         )
 
         return return_value
@@ -61,7 +70,16 @@ class AgeFilterAdmin(admin.ModelAdmin):
 
     list_display = ("description", "_age_threshold")
 
-    def _age_threshold(self, obj):
+    def _age_threshold(self, obj) -> str:
+        """
+        Get the age threshold
+
+        :param obj: The object
+        :type obj: AgeFilter
+        :return: The age threshold
+        :rtype: str
+        """
+
         return f"{obj.age_threshold:d} days"
 
 
@@ -78,10 +96,10 @@ class AssetFilterAdmin(admin.ModelAdmin):
         """
         Get the queryset
 
-        :param request:
-        :type request:
-        :return:
-        :rtype:
+        :param request: The request
+        :type request: HttpRequest
+        :return: The queryset
+        :rtype: QuerySet
         """
 
         qs = super().get_queryset(request)
@@ -90,6 +108,15 @@ class AssetFilterAdmin(admin.ModelAdmin):
 
     @admin.display()
     def _assets(self, obj) -> str:
+        """
+        Get assets
+
+        :param obj: The object
+        :type obj: AssetFilter
+        :return: The assets
+        :rtype: str
+        """
+
         objs = obj.assets.all()
 
         return ", ".join(sorted([obj.name for obj in objs]))
@@ -112,9 +139,16 @@ class CorporationRoleListFilter(admin.SimpleListFilter):
     title = _("corporation role")
     parameter_name = "corporation_role"
 
-    def lookups(self, request, model_admin):
+    def lookups(self, request, model_admin) -> list:
         """
         Return lookups with used roles only.
+
+        :param request: The request
+        :type request: HttpRequest
+        :param model_admin: The model admin
+        :type model_admin: admin.ModelAdmin
+        :return: The lookups
+        :rtype: list
         """
 
         roles = set(model_admin.get_queryset(request).values_list("role", flat=True))
@@ -122,9 +156,18 @@ class CorporationRoleListFilter(admin.SimpleListFilter):
 
         return sorted(result, key=lambda o: o[1])
 
-    def queryset(self, request, queryset):  # pylint: disable=unused-argument
+    def queryset(
+        self, request, queryset  # pylint: disable=unused-argument
+    ) -> QuerySet | None:
         """
         Return queryset for a selected role.
+
+        :param request: The request
+        :type request: HttpRequest
+        :param queryset: The queryset
+        :type queryset: QuerySet
+        :return: The queryset
+        :rtype: QuerySet
         """
 
         if value := self.value():
@@ -148,10 +191,10 @@ class CorporationRoleFilterAdmin(admin.ModelAdmin):
         """
         Get the queryset
 
-        :param request:
-        :type request:
-        :return:
-        :rtype:
+        :param request: The request
+        :type request: HttpRequest
+        :return: The queryset
+        :rtype: QuerySet
         """
 
         qs = super().get_queryset(request)
@@ -163,10 +206,10 @@ class CorporationRoleFilterAdmin(admin.ModelAdmin):
         """
         Get corporations
 
-        :param obj:
-        :type obj:
-        :return:
-        :rtype:
+        :param obj: The object
+        :type obj: CorporationRoleFilter
+        :return: The corporations
+        :rtype: str
         """
 
         objs = obj.corporations.all()
@@ -188,10 +231,10 @@ class CorporationTitleFilterAdmin(admin.ModelAdmin):
         """
         Get the queryset
 
-        :param request:
-        :type request:
-        :return:
-        :rtype:
+        :param request: The request
+        :type request: HttpRequest
+        :return: The queryset
+        :rtype: QuerySet
         """
 
         qs = super().get_queryset(request)
@@ -203,10 +246,10 @@ class CorporationTitleFilterAdmin(admin.ModelAdmin):
         """
         Get corporations
 
-        :param obj:
-        :type obj:
-        :return:
-        :rtype:
+        :param obj: The object
+        :type obj: CorporationTitleFilter
+        :return: The corporations
+        :rtype: str
         """
 
         objs = obj.corporations.all()
@@ -222,13 +265,13 @@ class SkillPointFilterAdmin(admin.ModelAdmin):
 
     list_display = ("description", "_skill_point_threshold")
 
-    def _skill_point_threshold(self, obj):
+    def _skill_point_threshold(self, obj) -> str:
         """
-        Get skill point threshold
+        Get the skill point threshold
 
-        :param obj:
-        :type obj:
-        :return:
+        :param obj: The object
+        :type obj: SkillPointFilter
+        :return: The skill point threshold
         :rtype:
         """
 
@@ -250,10 +293,10 @@ class SkillSetFilterAdmin(admin.ModelAdmin):
         """
         Get the queryset
 
-        :param request:
-        :type request:
-        :return:
-        :rtype:
+        :param request: The request
+        :type request: HttpRequest
+        :return: The queryset
+        :rtype: QuerySet
         """
 
         qs = super().get_queryset(request)
@@ -265,10 +308,10 @@ class SkillSetFilterAdmin(admin.ModelAdmin):
         """
         Get skill sets
 
-        :param obj:
-        :type obj:
-        :return:
-        :rtype:
+        :param obj: The object
+        :type obj: SkillSetFilter
+        :return: The skill sets
+        :rtype: str
         """
 
         objs = obj.skill_sets.all()

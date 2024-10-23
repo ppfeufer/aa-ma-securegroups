@@ -20,12 +20,12 @@ from memberaudit_securegroups.models import (
 
 
 @hooks.register("secure_group_filters")
-def filters():
+def filters() -> list:
     """
     Secure group filter
 
-    :return:
-    :rtype:
+    :return: Secure group filters
+    :rtype: list
     """
 
     return [

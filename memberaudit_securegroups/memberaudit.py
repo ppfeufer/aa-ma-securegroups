@@ -21,10 +21,11 @@ class MemberAuditChecks:  # pylint: disable=too-few-public-methods
     def compliance(user: User) -> dict:
         """
         Check user compliance with AA Member Audit and return probably missing characters
-        :param user:
-        :type user:
-        :return:
-        :rtype:
+
+        :param user: The user
+        :type user: User
+        :return: Compliance information
+        :rtype: dict
         """
 
         is_compliant = General.compliant_users().filter(pk=user.pk).exists()
