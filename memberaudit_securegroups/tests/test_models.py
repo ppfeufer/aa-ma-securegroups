@@ -145,51 +145,77 @@ class TestComplianceFilter(TestCase):
     def setUpClass(cls) -> None:
         super().setUpClass()
         load_entities()
+
         cls.user_1, _ = create_user_from_evecharacter_with_access(1001)
+        cls.compliance_filter = ComplianceFilter.objects.create()
+        cls.compliance_filter_reversed = ComplianceFilter.objects.create(
+            reversed_logic=True
+        )
 
     def test_should_return_name(self):
-        # given
-        my_filter = ComplianceFilter.objects.create()
-        # when/then
-        self.assertTrue(my_filter.name)
+        self.assertTrue(self.compliance_filter.name)
 
     def test_should_return_true_when_user_is_compliant_1(self):
         # given a user with 1 registered character
         add_memberaudit_character_to_user(self.user_1, 1001)
-        my_filter = ComplianceFilter.objects.create()
+
         # when/then
-        self.assertTrue(my_filter.process_filter(self.user_1))
+        self.assertTrue(self.compliance_filter.process_filter(self.user_1))
 
     def test_should_return_true_when_user_is_compliant_2(self):
         # given a user with 2 registered character
         add_memberaudit_character_to_user(self.user_1, 1001)
         add_memberaudit_character_to_user(self.user_1, 1002)
-        my_filter = ComplianceFilter.objects.create()
+
         # when/then
-        self.assertTrue(my_filter.process_filter(self.user_1))
+        self.assertTrue(self.compliance_filter.process_filter(self.user_1))
+
+    def test_should_return_false_when_user_is_compliant_1_reversed(self):
+        # given a user with 1 registered character
+        add_memberaudit_character_to_user(self.user_1, 1001)
+
+        # when/then
+        self.assertFalse(self.compliance_filter_reversed.process_filter(self.user_1))
+
+    def test_should_return_false_when_user_is_compliant_2_reversed(self):
+        # given a user with 2 registered character
+        add_memberaudit_character_to_user(self.user_1, 1001)
+        add_memberaudit_character_to_user(self.user_1, 1002)
+
+        # when/then
+        self.assertFalse(self.compliance_filter_reversed.process_filter(self.user_1))
 
     def test_should_return_false_when_user_is_not_compliant_1(self):
-        # given a user with 1 unregistered character
-        my_filter = ComplianceFilter.objects.create()
-        # when/then
-        self.assertFalse(my_filter.process_filter(self.user_1))
+        self.assertFalse(self.compliance_filter.process_filter(self.user_1))
 
     def test_should_return_false_when_user_is_not_compliant_2(self):
         # given a user with 1 registered and 1 unregistered character
         add_memberaudit_character_to_user(self.user_1, 1001)
         add_auth_character_to_user(self.user_1, 1002)
-        my_filter = ComplianceFilter.objects.create()
+
         # when/then
-        self.assertFalse(my_filter.process_filter(self.user_1))
+        self.assertFalse(self.compliance_filter.process_filter(self.user_1))
+
+    def test_should_return_true_when_user_is_not_compliant_1_reversed(self):
+        self.assertTrue(self.compliance_filter_reversed.process_filter(self.user_1))
+
+    def test_should_return_true_when_user_is_not_compliant_2_reversed(self):
+        # given a user with 1 registered and 1 unregistered character
+        add_memberaudit_character_to_user(self.user_1, 1001)
+        add_auth_character_to_user(self.user_1, 1002)
+
+        # when/then
+        self.assertTrue(self.compliance_filter_reversed.process_filter(self.user_1))
 
     def test_should_return_audit_data_for_users(self):
         # given
-        my_filter = ComplianceFilter.objects.create()
         add_memberaudit_character_to_user(self.user_1, 1001)
         user_2, _ = create_user_from_evecharacter_with_access(1101)
+
         # when
         users = make_user_queryset(self.user_1, user_2)
-        result = my_filter.audit_filter(users)
+        result = self.compliance_filter.audit_filter(users)
+
         # then
         self.assertEqual(len(result), 2)
         result_user_1001 = result[self.user_1.pk]
@@ -202,13 +228,33 @@ class TestComplianceFilter(TestCase):
         self.assertFalse(result_user_1101["check"])
         self.assertIn("Lex Luther", result_user_1101["message"])
 
-    def test_should_return_audit_data_for_non_compliant_user_with_1_character(self):
+    def test_should_return_audit_data_for_users_reversed(self):
         # given
-        my_filter = ComplianceFilter.objects.create()
+        add_memberaudit_character_to_user(self.user_1, 1001)
+        user_2, _ = create_user_from_evecharacter_with_access(1101)
 
         # when
+        users = make_user_queryset(self.user_1, user_2)
+        result = self.compliance_filter_reversed.audit_filter(users)
+
+        # then
+        self.assertEqual(len(result), 2)
+
+        result_user_1001 = result[self.user_1.pk]
+        self.assertFalse(result_user_1001["check"])
+        self.assertEqual(
+            result_user_1001["message"],
+            f"All characters have been added to {MEMBERAUDIT_APP_NAME}",
+        )
+
+        result_user_1101 = result[user_2.pk]
+        self.assertTrue(result_user_1101["check"])
+        self.assertIn("Lex Luther", result_user_1101["message"])
+
+    def test_should_return_audit_data_for_non_compliant_user_with_1_character(self):
+        # when
         users = make_user_queryset(self.user_1)
-        result = my_filter.audit_filter(users)
+        result = self.compliance_filter.audit_filter(users)
 
         # then
         expected = {
@@ -219,14 +265,26 @@ class TestComplianceFilter(TestCase):
         }
         self.assertDictEqual(result, expected)
 
+    def test_should_return_audit_data_for_non_compliant_user_with_1_character_reversed(
+        self,
+    ):
+        # when
+        users = make_user_queryset(self.user_1)
+        result = self.compliance_filter_reversed.audit_filter(users)
+
+        # then
+        expected = {
+            self.user_1.pk: {"check": True, "message": "Bruce Wayne"},
+        }
+        self.assertDictEqual(result, expected)
+
     def test_should_return_audit_data_for_non_compliant_user_with_2_characters(self):
         # given
         add_auth_character_to_user(self.user_1, 1002)
-        my_filter = ComplianceFilter.objects.create()
 
         # when
         users = make_user_queryset(self.user_1)
-        result = my_filter.audit_filter(users)
+        result = self.compliance_filter.audit_filter(users)
 
         # then
         expected = {
@@ -234,6 +292,22 @@ class TestComplianceFilter(TestCase):
                 "check": False,
                 "message": "Missing characters: Bruce Wayne, Clark Kent",
             },
+        }
+        self.assertDictEqual(result, expected)
+
+    def test_should_return_audit_data_for_non_compliant_user_with_2_characters_reversed(
+        self,
+    ):
+        # given
+        add_auth_character_to_user(self.user_1, 1002)
+
+        # when
+        users = make_user_queryset(self.user_1)
+        result = self.compliance_filter_reversed.audit_filter(users)
+
+        # then
+        expected = {
+            self.user_1.pk: {"check": True, "message": "Bruce Wayne, Clark Kent"},
         }
         self.assertDictEqual(result, expected)
 

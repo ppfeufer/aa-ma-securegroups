@@ -8,7 +8,6 @@ from collections import defaultdict
 
 # Third Party
 import humanize
-from solo.models import SingletonModel
 
 # Django
 from django.contrib.auth.models import User
@@ -396,10 +395,15 @@ class AssetFilter(BaseFilter):
         return output
 
 
-class ComplianceFilter(BaseFilter, SingletonModel):
+class ComplianceFilter(BaseFilter):
     """
     ComplianceFilter
     """
+
+    reversed_logic = models.BooleanField(
+        default=False,
+        help_text=_("If set all members WITHOUT compliance will pass this check."),
+    )
 
     class Meta:
         """
@@ -433,6 +437,9 @@ class ComplianceFilter(BaseFilter, SingletonModel):
         unregistered_characters = EveCharacter.objects.filter(
             character_ownership__user=user, memberaudit_character__isnull=True
         )
+
+        if self.reversed_logic:
+            return unregistered_characters.exists()
 
         return not unregistered_characters.exists()
 
@@ -468,24 +475,37 @@ class ComplianceFilter(BaseFilter, SingletonModel):
         for user_id in all_memberaudit_users_ids:
             unregistered_chars = user_with_unregistered_characters.get(user_id)
 
-            if not unregistered_chars:
-                output[user_id] = {
-                    "message": _(
-                        f"All characters have been added to {MEMBERAUDIT_APP_NAME}"
-                    ),
-                    "check": True,
-                }
+            if self.reversed_logic:
+                if unregistered_chars:
+                    output[user_id] = {
+                        "message": ", ".join(sorted(unregistered_chars)),
+                        "check": True,
+                    }
+                else:
+                    output[user_id] = {
+                        "message": _(
+                            f"All characters have been added to {MEMBERAUDIT_APP_NAME}"
+                        ),
+                        "check": False,
+                    }
             else:
-                missing_characters_message = ngettext(
-                    singular="Missing character: ",
-                    plural="Missing characters: ",
-                    number=len(unregistered_chars),
-                )
-                output[user_id] = {
-                    "message": missing_characters_message
-                    + ", ".join(sorted(unregistered_chars)),
-                    "check": False,
-                }
+                if unregistered_chars:
+                    output[user_id] = {
+                        "message": ngettext(
+                            singular="Missing character: ",
+                            plural="Missing characters: ",
+                            number=len(unregistered_chars),
+                        )
+                        + ", ".join(sorted(unregistered_chars)),
+                        "check": False,
+                    }
+                else:
+                    output[user_id] = {
+                        "message": _(
+                            f"All characters have been added to {MEMBERAUDIT_APP_NAME}"
+                        ),
+                        "check": True,
+                    }
 
         return output
 

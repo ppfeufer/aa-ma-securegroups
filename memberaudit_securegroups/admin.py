@@ -7,7 +7,6 @@ from typing import Any
 
 # Third Party
 import humanize
-from solo.admin import SingletonModelAdmin
 
 # Django
 from django.contrib import admin
@@ -123,12 +122,12 @@ class AssetFilterAdmin(admin.ModelAdmin):
 
 
 @admin.register(ComplianceFilter)
-class ComplianceFilterAdmin(SingletonModelAdmin):
+class ComplianceFilterAdmin(admin.ModelAdmin):
     """
     ComplianceFilterAdmin
     """
 
-    list_display = ("description",)
+    list_display = ("description", "reversed_logic")
 
 
 class CorporationRoleListFilter(admin.SimpleListFilter):
