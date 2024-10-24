@@ -35,6 +35,10 @@ Section Order:
 ### Security
 -->
 
+### Added
+
+- Proper filter names
+
 ## Changed
 
 - Switch to `django-solo` to provide the singleton for the compliance model, instead of the custom implementation

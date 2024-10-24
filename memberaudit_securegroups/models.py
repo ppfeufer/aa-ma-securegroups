@@ -116,6 +116,14 @@ class ActivityFilter(BaseFilter):
         help_text=_("Maximum allowable inactivity, in <strong>days</strong>.")
     )
 
+    class Meta:
+        """
+        Model meta definitions
+        """
+
+        verbose_name = _("Smart Filter: Activity")
+        verbose_name_plural = verbose_name
+
     @property
     def name(self) -> str:
         """
@@ -209,6 +217,14 @@ class AgeFilter(BaseFilter):
         help_text=_("Minimum allowable age, in <strong>days</strong>.")
     )
 
+    class Meta:
+        """
+        Model meta definitions
+        """
+
+        verbose_name = _("Smart Filter: Character Age")
+        verbose_name_plural = verbose_name
+
     @property
     def name(self) -> str:
         """
@@ -288,6 +304,14 @@ class AssetFilter(BaseFilter):
         to=EveType,
         help_text=_("User must possess <strong>one</strong> of the selected assets."),
     )
+
+    class Meta:
+        """
+        Model meta definitions
+        """
+
+        verbose_name = _("Smart Filter: Asset")
+        verbose_name_plural = verbose_name
 
     @property
     def name(self) -> str:
@@ -376,6 +400,14 @@ class ComplianceFilter(BaseFilter, SingletonModel):
     """
     ComplianceFilter
     """
+
+    class Meta:
+        """
+        Model meta definitions
+        """
+
+        verbose_name = _("Smart Filter: Compliance")
+        verbose_name_plural = verbose_name
 
     @property
     def name(self) -> str:
@@ -482,6 +514,14 @@ class CorporationRoleFilter(BaseFilter):
             "When checked, the filter will also include the users alt-characters."
         ),
     )
+
+    class Meta:
+        """
+        Model meta definitions
+        """
+
+        verbose_name = _("Smart Filter: Corporation Role")
+        verbose_name_plural = verbose_name
 
     @property
     def name(self) -> str:
@@ -594,6 +634,14 @@ class CorporationTitleFilter(BaseFilter):
         ),
     )
 
+    class Meta:
+        """
+        Model meta definitions
+        """
+
+        verbose_name = _("Smart Filter: Corporation Title")
+        verbose_name_plural = verbose_name
+
     @property
     def name(self) -> str:
         """
@@ -687,6 +735,14 @@ class SkillPointFilter(BaseFilter):
     skill_point_threshold = models.PositiveBigIntegerField(
         help_text=_("Minimum allowable skill points.")
     )
+
+    class Meta:
+        """
+        Model meta definitions
+        """
+
+        verbose_name = _("Smart Filter: Skill Points")
+        verbose_name_plural = verbose_name
 
     @property
     def name(self) -> str:
@@ -784,6 +840,14 @@ class SkillSetFilter(BaseFilter):
         blank=True,
         help_text=_("Specify the type of character that needs to have the skill set."),
     )
+
+    class Meta:
+        """
+        Model meta definitions
+        """
+
+        verbose_name = _("Smart Filter: Skill Set")
+        verbose_name_plural = verbose_name
 
     def save(
         self,
@@ -894,7 +958,7 @@ class SkillSetFilter(BaseFilter):
 
 class TimeInCorporationFilter(BaseFilter):
     """
-    Filter for time in corporation.
+    Filter for time in a corporation.
     """
 
     minimum_days = models.PositiveIntegerField(
@@ -904,6 +968,14 @@ class TimeInCorporationFilter(BaseFilter):
             "of his/her current corporation."
         ),
     )
+
+    class Meta:
+        """
+        Model meta definitions
+        """
+
+        verbose_name = _("Smart Filter: Time in Corporation")
+        verbose_name_plural = verbose_name
 
     @property
     def name(self) -> str:
