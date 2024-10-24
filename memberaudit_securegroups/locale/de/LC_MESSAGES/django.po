@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-24 15:01+0200\n"
-"PO-Revision-Date: 2024-05-10 14:08+0000\n"
+"PO-Revision-Date: 2024-10-24 15:06+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
-"Language-Team: German <https://weblate.ppfeufer.de/projects/alliance-auth-"
-"apps/aa-member-audit-secure-groups/de/>\n"
+"Language-Team: German <https://weblate.ppfeufer.de/projects/"
+"alliance-auth-apps/aa-member-audit-secure-groups/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.3\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: memberaudit_securegroups/admin.py:57
 #, python-brace-format
@@ -52,7 +52,7 @@ msgstr "Maximal zulässige Inaktivität in <strong>Tagen</strong>."
 
 #: memberaudit_securegroups/models.py:124
 msgid "Smart Filter: Activity"
-msgstr ""
+msgstr "Smart Filter: Aktivität"
 
 #: memberaudit_securegroups/models.py:137
 #, python-brace-format
@@ -78,7 +78,7 @@ msgstr "Zulässiges Mindestalter in <strong>Tagen</strong>."
 
 #: memberaudit_securegroups/models.py:225
 msgid "Smart Filter: Character Age"
-msgstr ""
+msgstr "Smart Filter: Charakter Alter"
 
 #: memberaudit_securegroups/models.py:238
 #, python-brace-format
@@ -99,7 +99,7 @@ msgstr ""
 
 #: memberaudit_securegroups/models.py:313
 msgid "Smart Filter: Asset"
-msgstr ""
+msgstr "Smart Filter: Besitz"
 
 #: memberaudit_securegroups/models.py:325
 msgid "Member Audit Asset"
@@ -107,7 +107,7 @@ msgstr "Member Audit Asset"
 
 #: memberaudit_securegroups/models.py:409
 msgid "Smart Filter: Compliance"
-msgstr ""
+msgstr "Smart Filter: Konformität"
 
 #: memberaudit_securegroups/models.py:421
 msgid "Compliance"
@@ -139,10 +139,8 @@ msgstr ""
 "ein."
 
 #: memberaudit_securegroups/models.py:523
-#, fuzzy
-#| msgid "Member Audit Corporation Role"
 msgid "Smart Filter: Corporation Role"
-msgstr "Member Audit Corporations-Rolle"
+msgstr "Smart Filter: Corporations-Rolle"
 
 #: memberaudit_securegroups/models.py:535
 msgid "Member Audit Corporation Role"
@@ -162,10 +160,8 @@ msgstr ""
 "Bei „True“ schließt der Filter auch die Alt-Charaktere des Benutzers ein."
 
 #: memberaudit_securegroups/models.py:642
-#, fuzzy
-#| msgid "Member Audit Corporation Title"
 msgid "Smart Filter: Corporation Title"
-msgstr "Member Audit Corporation-Title"
+msgstr "Smart Filter: Corporation-Title"
 
 #: memberaudit_securegroups/models.py:654
 msgid "Member Audit Corporation Title"
@@ -177,7 +173,7 @@ msgstr "Mindestens zulässige Skillpunkte."
 
 #: memberaudit_securegroups/models.py:744
 msgid "Smart Filter: Skill Points"
-msgstr ""
+msgstr "Smart Filter: Skillpunkte"
 
 #: memberaudit_securegroups/models.py:759
 #, python-brace-format
@@ -217,20 +213,16 @@ msgstr ""
 "Gib den Charaktertyp an, der über die erforderlichen Skills verfügen muss."
 
 #: memberaudit_securegroups/models.py:849
-#, fuzzy
-#| msgid "Member Audit Skill Set"
 msgid "Smart Filter: Skill Set"
-msgstr "Member Audit Skill Set"
+msgstr "Smart Filter: Skill Set"
 
 #: memberaudit_securegroups/models.py:889
 msgid "Member Audit Skill Set"
 msgstr "Member Audit Skill Set"
 
 #: memberaudit_securegroups/models.py:977
-#, fuzzy
-#| msgid "Member Audit Time in Corporation Filter"
 msgid "Smart Filter: Time in Corporation"
-msgstr "Member Audit Zeit in Corporation Filter"
+msgstr "Smart Filter: Zeit in Corporation Filter"
 
 #: memberaudit_securegroups/models.py:989
 msgid "Member Audit Time in Corporation Filter"
