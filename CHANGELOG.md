@@ -38,6 +38,7 @@ Section Order:
 ### Added
 
 - Proper filter names
+- Reversed logic to compliance filter (optional)
 
 ## Changed
 
