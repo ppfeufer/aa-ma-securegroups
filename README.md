@@ -71,7 +71,7 @@ app](https://gitlab.com/eclipse-expeditions/aa-memberaudit-securegroups)!
 
 ## Installation<a name="installation"></a>
 
-> \[!NOTE\]
+> [!NOTE]
 >
 > **Member Audit Secure Groups Integration >= 1.0.0 needs at least Alliance Auth v4.0.0!**
 >

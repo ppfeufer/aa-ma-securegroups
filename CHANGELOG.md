@@ -22,7 +22,7 @@ https://docs.github.com/assets/cb-41128/mw-1440/images/help/writing/alerts-rende
 > Critical content demanding immediate user attention due to potential risks.
 -->
 
-## \[In Development\] - Unreleased
+## [In Development] - Unreleased
 
 <!--
 Section Order:
@@ -44,7 +44,7 @@ Section Order:
 
 - Several code improvements
 
-## \[1.2.0\] - 2024-10-10
+## [1.2.0] - 2024-10-10
 
 ### Changed
 
@@ -54,7 +54,7 @@ Section Order:
 - Japanese translation improved
 - Lingua codes updated to match Alliance Auth v4.3.1
 
-## \[1.1.0\] - 2024-07-27
+## [1.1.0] - 2024-07-27
 
 ### Added
 
@@ -69,15 +69,15 @@ Section Order:
 
 - Support for Python 3.8 and Python 3.9
 
-## \[1.0.1\] - 2024-05-16
+## [1.0.1] - 2024-05-16
 
 ### Changed
 
 - Translations updated
 
-## \[1.0.0\] - 2024-03-16
+## [1.0.0] - 2024-03-16
 
-> \[!NOTE\]
+> [!NOTE]
 >
 > **This version needs at least Alliance Auth v4.0.0!**
 >
@@ -95,9 +95,9 @@ Section Order:
 
 - Compatibility to Alliance Auth v3
 
-## \[0.6.1\] - 2023-10-22
+## [0.6.1] - 2023-10-22
 
-> \[!NOTE\]
+> [!NOTE]
 >
 > **This is the last version compatible with Alliance Auth v3.**
 
@@ -105,7 +105,7 @@ Section Order:
 
 - Smart Group failed to process when filter requirements are not met
 
-## \[0.6.0\] - 2023-10-19
+## [0.6.0] - 2023-10-19
 
 ### Added
 
@@ -125,7 +125,7 @@ Section Order:
   - `aa-memberaudit>=3.3.1`
 - Translations updated
 
-## \[0.5.0\] - 2023-10-05
+## [0.5.0] - 2023-10-05
 
 This release is made to be on par with the original app, which is no longer
 maintained. To switch to this maintained version, see [Migrating from Member Audit Securegroups](https://github.com/ppfeufer/aa-ma-securegroups#step-05-migrating-from-member-audit-securegroups).
@@ -138,7 +138,7 @@ maintained. To switch to this maintained version, see [Migrating from Member Aud
 
 - Capitalization for translatable strings
 
-## \[0.4.0\] - 2023-08-15
+## [0.4.0] - 2023-08-15
 
 ### Added
 
@@ -150,7 +150,7 @@ maintained. To switch to this maintained version, see [Migrating from Member Aud
 - Moved the build process to PEP 621 / pyproject.toml
 - Character names sorted alphabetically in all filters
 
-## \[0.3.0\] - 2023-05-31
+## [0.3.0] - 2023-05-31
 
 ### Fixed
 
@@ -163,13 +163,13 @@ maintained. To switch to this maintained version, see [Migrating from Member Aud
   - `allianceauth>=3.0.0`
   - `allianceauth-securegroups>=0.5.1`
 
-## \[0.2.0\] - 2023-02-27
+## [0.2.0] - 2023-02-27
 
 ### Added
 
 - Secure Group's audit filter to the filters for better visual feedback
 
-## \[0.1.0\] - 2022-08-06
+## [0.1.0] - 2022-08-06
 
 ### Fixed
 
@@ -193,13 +193,13 @@ maintained. To switch to this maintained version, see [Migrating from Member Aud
 
 - Unused files
 
-## \[0.1.0a3\] - 2021-01-16
+## [0.1.0a3] - 2021-01-16
 
 ### Fixed
 
 - Bug involving skillpoint filter
 
-## \[0.1.0a2\] - 2021-01-05
+## [0.1.0a2] - 2021-01-05
 
 ### Added
 
@@ -211,7 +211,7 @@ maintained. To switch to this maintained version, see [Migrating from Member Aud
 
 - Improved Admin Panel
 
-## \[0.1.0a1\] - 2021-01-05
+## [0.1.0a1] - 2021-01-05
 
 ### Added
 
