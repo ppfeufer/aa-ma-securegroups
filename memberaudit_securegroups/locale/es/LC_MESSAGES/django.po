@@ -2,21 +2,22 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Zigor Fernandez Moreno <sietehierros@gmail.com>, 2023.
+# Peter Pfeufer <info@ppfeufer.de>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-24 15:01+0200\n"
-"PO-Revision-Date: 2024-05-10 14:08+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Spanish <https://weblate.ppfeufer.de/projects/alliance-auth-"
-"apps/aa-member-audit-secure-groups/es/>\n"
+"PO-Revision-Date: 2024-12-02 17:40+0000\n"
+"Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
+"Language-Team: Spanish <https://weblate.ppfeufer.de/projects/"
+"alliance-auth-apps/aa-member-audit-secure-groups/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.3\n"
+"X-Generator: Weblate 5.8.4\n"
 
 #: memberaudit_securegroups/admin.py:57
 #, python-brace-format
@@ -27,14 +28,12 @@ msgstr[1] "días {inactivity_threshold:d}"
 
 #: memberaudit_securegroups/admin.py:139
 msgid "corporation role"
-msgstr ""
+msgstr "Rol de corporación"
 
 #: memberaudit_securegroups/apps.py:20
-#, fuzzy, python-brace-format
-#| msgid "Member Audit Secure Groups Integration v{__version__}"
+#, python-brace-format
 msgid "Secure Groups (Member Audit Integration) v{__version__}"
-msgstr ""
-"Integración de la Auditoria de Miembros de los Grupos Seguros v{__version__}"
+msgstr "Grupos Seguros v{__version__}"
 
 #: memberaudit_securegroups/models.py:64
 msgid "The filter description that is shown to end users."
