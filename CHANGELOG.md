@@ -43,7 +43,7 @@ Section Order:
 - Reversed logic to compliance filter (optional)
 - Testing for Python 3.13
 
-## Changed
+### Changed
 
 - Several code improvements
 
