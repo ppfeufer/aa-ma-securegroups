@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-06 02:02+0100\n"
-"PO-Revision-Date: 2024-10-24 15:06+0000\n"
+"PO-Revision-Date: 2024-12-06 01:08+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
-"Language-Team: German <https://weblate.ppfeufer.de/projects/alliance-auth-"
-"apps/aa-member-audit-secure-groups/de/>\n"
+"Language-Team: German <https://weblate.ppfeufer.de/projects/"
+"alliance-auth-apps/aa-member-audit-secure-groups/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.8.4\n"
 
 #: memberaudit_securegroups/admin.py:56
 #, python-brace-format
@@ -107,7 +107,7 @@ msgstr "Member Audit Asset"
 
 #: memberaudit_securegroups/models.py:405
 msgid "If set all members WITHOUT compliance will pass this check."
-msgstr ""
+msgstr "Wenn gesetzt, bestehen alle Mitglieder OHNE Konformität diese Prüfung."
 
 #: memberaudit_securegroups/models.py:413
 msgid "Smart Filter: Compliance"
