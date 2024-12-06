@@ -35,10 +35,13 @@ Section Order:
 ### Security
 -->
 
+## [1.3.0] - 2024-12-06
+
 ### Added
 
 - Proper filter names
 - Reversed logic to compliance filter (optional)
+- Testing for Python 3.13
 
 ## Changed
 
