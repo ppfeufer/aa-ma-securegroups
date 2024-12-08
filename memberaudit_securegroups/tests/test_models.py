@@ -274,7 +274,10 @@ class TestComplianceFilter(TestCase):
 
         # then
         expected = {
-            self.user_1.pk: {"check": True, "message": "Bruce Wayne"},
+            self.user_1.pk: {
+                "check": True,
+                "message": "Missing character: Bruce Wayne",
+            },
         }
         self.assertDictEqual(result, expected)
 
@@ -307,7 +310,10 @@ class TestComplianceFilter(TestCase):
 
         # then
         expected = {
-            self.user_1.pk: {"check": True, "message": "Bruce Wayne, Clark Kent"},
+            self.user_1.pk: {
+                "check": True,
+                "message": "Missing characters: Bruce Wayne, Clark Kent",
+            },
         }
         self.assertDictEqual(result, expected)
 

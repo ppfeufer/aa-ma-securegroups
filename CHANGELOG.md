@@ -35,6 +35,10 @@ Section Order:
 ### Security
 -->
 
+### Changed
+
+- Simplify code for `ComplianceFilter.audit_filter` logic
+
 ## [1.3.0] - 2024-12-06
 
 ### Added

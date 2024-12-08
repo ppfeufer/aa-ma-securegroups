@@ -471,41 +471,28 @@ class ComplianceFilter(BaseFilter):
         )
 
         output = {}
+        all_characters_message = _(
+            f"All characters have been added to {MEMBERAUDIT_APP_NAME}"
+        )
 
         for user_id in all_memberaudit_users_ids:
             unregistered_chars = user_with_unregistered_characters.get(user_id)
 
-            if self.reversed_logic:
-                if unregistered_chars:
-                    output[user_id] = {
-                        "message": ", ".join(sorted(unregistered_chars)),
-                        "check": True,
-                    }
-                else:
-                    output[user_id] = {
-                        "message": _(
-                            f"All characters have been added to {MEMBERAUDIT_APP_NAME}"
-                        ),
-                        "check": False,
-                    }
+            if unregistered_chars:
+                missing_characters_message = ngettext(
+                    singular="Missing character: ",
+                    plural="Missing characters: ",
+                    number=len(unregistered_chars),
+                )
+                message = missing_characters_message + ", ".join(
+                    sorted(unregistered_chars)
+                )
+                check = self.reversed_logic
             else:
-                if unregistered_chars:
-                    output[user_id] = {
-                        "message": ngettext(
-                            singular="Missing character: ",
-                            plural="Missing characters: ",
-                            number=len(unregistered_chars),
-                        )
-                        + ", ".join(sorted(unregistered_chars)),
-                        "check": False,
-                    }
-                else:
-                    output[user_id] = {
-                        "message": _(
-                            f"All characters have been added to {MEMBERAUDIT_APP_NAME}"
-                        ),
-                        "check": True,
-                    }
+                message = all_characters_message
+                check = not self.reversed_logic
+
+            output[user_id] = {"message": message, "check": check}
 
         return output
 
