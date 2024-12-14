@@ -7,9 +7,9 @@
 # balbozorre <loic.petiot2002@gmail.com>, 2024.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-06 02:02+0100\n"
+"Project-Id-Version: AA Member Audit Secure Groups 1.3.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-ma-securegroups/issues\n"
+"POT-Creation-Date: 2024-12-14 18:22+0100\n"
 "PO-Revision-Date: 2024-12-10 16:15+0000\n"
 "Last-Translator: balbozorre <loic.petiot2002@gmail.com>\n"
 "Language-Team: French <https://weblate.ppfeufer.de/projects/alliance-auth-"
@@ -123,97 +123,96 @@ msgstr "Filtre Intelligent : Conformité"
 msgid "Compliance"
 msgstr "Conformité"
 
-#: memberaudit_securegroups/models.py:487
-#: memberaudit_securegroups/models.py:505
+#: memberaudit_securegroups/models.py:475
 #, python-brace-format
 msgid "All characters have been added to {MEMBERAUDIT_APP_NAME}"
 msgstr "Tous les personnages ont été ajouté à {MEMBERAUDIT_APP_NAME}"
 
-#: memberaudit_securegroups/models.py:495
+#: memberaudit_securegroups/models.py:483
 msgid "Missing character: "
 msgid_plural "Missing characters: "
 msgstr[0] "Caractère manquant : "
 msgstr[1] "Caractères manquant : "
 
-#: memberaudit_securegroups/models.py:522
+#: memberaudit_securegroups/models.py:509
 msgid "The character with the role must be in one of these corporations."
 msgstr "Le personnage avec ce rôle doit être dans l'une de ces corporations."
 
-#: memberaudit_securegroups/models.py:529
+#: memberaudit_securegroups/models.py:516
 msgid "User must have a character with this role."
 msgstr "L'utilisateur doit avoir un personnage avec ce rôle."
 
-#: memberaudit_securegroups/models.py:534
+#: memberaudit_securegroups/models.py:521
 msgid "When checked, the filter will also include the users alt-characters."
 msgstr ""
 "Quand coché, le filtre va aussi inclure les personnages secondaires (alts) "
 "de l'utilisateur."
 
-#: memberaudit_securegroups/models.py:543
+#: memberaudit_securegroups/models.py:530
 #, fuzzy
 #| msgid "corporation role"
 msgid "Smart Filter: Corporation Role"
 msgstr "rôle dans la corporation"
 
-#: memberaudit_securegroups/models.py:555
+#: memberaudit_securegroups/models.py:542
 msgid "Member Audit Corporation Role"
 msgstr ""
 
-#: memberaudit_securegroups/models.py:642
+#: memberaudit_securegroups/models.py:629
 msgid "The character with the title must be in one of these corporations."
 msgstr "Le personnage avec ce titre doit être dans l'une de ces corporations."
 
-#: memberaudit_securegroups/models.py:648
+#: memberaudit_securegroups/models.py:635
 msgid "User must have a character with this title."
 msgstr "L'utilisateur doit avoir un personnage avec ce titre."
 
-#: memberaudit_securegroups/models.py:653
+#: memberaudit_securegroups/models.py:640
 msgid "When True, the filter will also include the users alt-characters."
 msgstr ""
 "Quand vrai, le filtre inclura aussi les personnages secondaires (alts)."
 
-#: memberaudit_securegroups/models.py:662
+#: memberaudit_securegroups/models.py:649
 msgid "Smart Filter: Corporation Title"
 msgstr ""
 
-#: memberaudit_securegroups/models.py:674
+#: memberaudit_securegroups/models.py:661
 msgid "Member Audit Corporation Title"
 msgstr ""
 
-#: memberaudit_securegroups/models.py:756
+#: memberaudit_securegroups/models.py:743
 msgid "Minimum allowable skill points."
 msgstr "Minimum de points de compétences attribuables."
 
-#: memberaudit_securegroups/models.py:764
+#: memberaudit_securegroups/models.py:751
 msgid "Smart Filter: Skill Points"
 msgstr ""
 
-#: memberaudit_securegroups/models.py:779
+#: memberaudit_securegroups/models.py:766
 #, python-brace-format
 msgid "{sp_threshold} skill point"
 msgid_plural "{sp_threshold} skill points"
 msgstr[0] "{sp_threshold} point de compétence"
 msgstr[1] "{sp_threshold} points de compétence"
 
-#: memberaudit_securegroups/models.py:784
+#: memberaudit_securegroups/models.py:771
 #, python-brace-format
 msgid "Member Audit Skill Points [{skill_point_threshold}]"
 msgstr ""
 
-#: memberaudit_securegroups/models.py:845
+#: memberaudit_securegroups/models.py:832
 #, fuzzy
 msgid "Any"
 msgstr "Tous"
 
-#: memberaudit_securegroups/models.py:846
+#: memberaudit_securegroups/models.py:833
 msgid "Mains only"
 msgstr "Personnages principaux uniquement"
 
-#: memberaudit_securegroups/models.py:847
+#: memberaudit_securegroups/models.py:834
 msgid "Alts only"
 msgstr "Personnages secondaires uniquement"
 
-#: memberaudit_securegroups/models.py:852
+#: memberaudit_securegroups/models.py:839
 msgid ""
 "Users must have a character who possess all of the skills in <strong>one</"
 "strong> of the selected skill sets."
@@ -221,23 +220,23 @@ msgstr ""
 "L'utilisateur doit posséder un personnages ayant <strong>toutes les "
 "compétences dans l'un</strong> des ensembles de compétences sélectionné."
 
-#: memberaudit_securegroups/models.py:861
+#: memberaudit_securegroups/models.py:848
 msgid "Specify the type of character that needs to have the skill set."
 msgstr ""
 "Spécifier le type de personnages nécessitant l'ensemble de compétences."
 
-#: memberaudit_securegroups/models.py:869
+#: memberaudit_securegroups/models.py:856
 msgid "Smart Filter: Skill Set"
 msgstr ""
 
-#: memberaudit_securegroups/models.py:909
+#: memberaudit_securegroups/models.py:896
 msgid "Member Audit Skill Set"
 msgstr ""
 
-#: memberaudit_securegroups/models.py:997
+#: memberaudit_securegroups/models.py:984
 msgid "Smart Filter: Time in Corporation"
 msgstr ""
 
-#: memberaudit_securegroups/models.py:1009
+#: memberaudit_securegroups/models.py:996
 msgid "Member Audit Time in Corporation Filter"
 msgstr ""
