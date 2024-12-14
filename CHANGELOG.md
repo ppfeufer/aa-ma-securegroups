@@ -35,9 +35,16 @@ Section Order:
 ### Security
 -->
 
+## [1.3.1] - 2024-12-14
+
+### Added
+
+- Python 3.13 to the test matrix
+
 ### Changed
 
 - Simplify code for `ComplianceFilter.audit_filter` logic
+- Translations updated
 
 ## [1.3.0] - 2024-12-06
 
