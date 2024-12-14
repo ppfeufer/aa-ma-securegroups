@@ -41,13 +41,11 @@ msgstr "신청하는 사용자에게 보여지는 필터 설명."
 
 #: memberaudit_securegroups/models.py:93
 #, fuzzy
-#| msgid "Please Create a filter!"
 msgid "Please create a filter!"
 msgstr "필터를 생성해 주세요!"
 
 #: memberaudit_securegroups/models.py:106
 #, fuzzy
-#| msgid "Please Create an audit function!"
 msgid "Please create an audit function!"
 msgstr "관리 기능을 생성해 주세요!"
 
@@ -144,13 +142,11 @@ msgstr "활성화할 경우, 유저들의 알트 캐릭터를 포함하게 됩�
 
 #: memberaudit_securegroups/models.py:530
 #, fuzzy
-#| msgid "Member Audit Skill Set"
 msgid "Smart Filter: Corporation Role"
 msgstr "스킬 셋 별 멤버 관리"
 
 #: memberaudit_securegroups/models.py:542
 #, fuzzy
-#| msgid "Member Audit Skill Set"
 msgid "Member Audit Corporation Role"
 msgstr "스킬 셋 별 멤버 관리"
 
@@ -168,19 +164,16 @@ msgstr "활성화할 경우, 유저들의 알트 캐릭터를 포함하게 됩�
 
 #: memberaudit_securegroups/models.py:649
 #, fuzzy
-#| msgid "Member Audit Skill Set"
 msgid "Smart Filter: Corporation Title"
 msgstr "스킬 셋 별 멤버 관리"
 
 #: memberaudit_securegroups/models.py:661
 #, fuzzy
-#| msgid "Member Audit Skill Set"
 msgid "Member Audit Corporation Title"
 msgstr "스킬 셋 별 멤버 관리"
 
 #: memberaudit_securegroups/models.py:743
 #, fuzzy
-#| msgid "Minimum allowable skillpoints."
 msgid "Minimum allowable skill points."
 msgstr "허용 최소 스킬 포인트."
 
@@ -213,9 +206,6 @@ msgstr ""
 
 #: memberaudit_securegroups/models.py:839
 #, fuzzy
-#| msgid ""
-#| "Users must possess all of the skills in <strong>one</strong> of the "
-#| "selected skillsets."
 msgid ""
 "Users must have a character who possess all of the skills in <strong>one</"
 "strong> of the selected skill sets."
@@ -229,7 +219,6 @@ msgstr ""
 
 #: memberaudit_securegroups/models.py:856
 #, fuzzy
-#| msgid "Member Audit Skill Set"
 msgid "Smart Filter: Skill Set"
 msgstr "스킬 셋 별 멤버 관리"
 
@@ -239,12 +228,10 @@ msgstr "스킬 셋 별 멤버 관리"
 
 #: memberaudit_securegroups/models.py:984
 #, fuzzy
-#| msgid "Member Audit Skill Set"
 msgid "Smart Filter: Time in Corporation"
 msgstr "스킬 셋 별 멤버 관리"
 
 #: memberaudit_securegroups/models.py:996
 #, fuzzy
-#| msgid "Member Audit Skill Set"
 msgid "Member Audit Time in Corporation Filter"
 msgstr "스킬 셋 별 멤버 관리"
