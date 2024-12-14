@@ -138,7 +138,6 @@ msgstr ""
 
 #: memberaudit_securegroups/models.py:530
 #, fuzzy
-#| msgid "corporation role"
 msgid "Smart Filter: Corporation Role"
 msgstr "コーポレーションの役割"
 
