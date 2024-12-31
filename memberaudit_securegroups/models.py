@@ -970,7 +970,7 @@ class TimeInCorporationFilter(BaseFilter):
 
     minimum_days = models.PositiveIntegerField(
         default=30,
-        help_text=(
+        help_text=_(
             "Minimum number of days a main character needs to be member "
             "of his/her current corporation."
         ),

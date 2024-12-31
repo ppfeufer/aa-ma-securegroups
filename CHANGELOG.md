@@ -35,6 +35,8 @@ Section Order:
 ### Security
 -->
 
+## [1.4.0] - 2024-12-31
+
 ### Added
 
 - Checkbox to reverse logic for `TimeInCorporationFilter`, which comes in handy
