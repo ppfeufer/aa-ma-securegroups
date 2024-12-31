@@ -7,11 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA Member Audit Secure Groups 1.3.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-ma-securegroups/issues\n"
-"POT-Creation-Date: 2024-12-14 18:22+0100\n"
+"POT-Creation-Date: 2024-12-31 15:20+0100\n"
 "PO-Revision-Date: 2024-05-10 14:08+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Dutch <https://weblate.ppfeufer.de/projects/alliance-auth-"
-"apps/aa-member-audit-secure-groups/nl/>\n"
+"Language-Team: Dutch <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-member-audit-secure-groups/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -201,9 +200,7 @@ msgid "Alts only"
 msgstr ""
 
 #: memberaudit_securegroups/models.py:839
-msgid ""
-"Users must have a character who possess all of the skills in <strong>one</"
-"strong> of the selected skill sets."
+msgid "Users must have a character who possess all of the skills in <strong>one</strong> of the selected skill sets."
 msgstr ""
 
 #: memberaudit_securegroups/models.py:848
@@ -218,10 +215,18 @@ msgstr ""
 msgid "Member Audit Skill Set"
 msgstr ""
 
-#: memberaudit_securegroups/models.py:984
+#: memberaudit_securegroups/models.py:974
+msgid "Minimum number of days a main character needs to be member of his/her current corporation."
+msgstr ""
+
+#: memberaudit_securegroups/models.py:982
+msgid "If set, all members with LESS than the minimum days will pass this check."
+msgstr ""
+
+#: memberaudit_securegroups/models.py:991
 msgid "Smart Filter: Time in Corporation"
 msgstr ""
 
-#: memberaudit_securegroups/models.py:996
+#: memberaudit_securegroups/models.py:1003
 msgid "Member Audit Time in Corporation Filter"
 msgstr ""
