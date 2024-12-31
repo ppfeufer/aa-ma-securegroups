@@ -323,6 +323,7 @@ class TestCorporationRoleFilter(TestCase):
     def setUpClass(cls) -> None:
         super().setUpClass()
         load_entities()
+
         cls.character_1001 = create_memberaudit_character(1001)
         cls.user_1 = cls.character_1001.character_ownership.user
         cls.corporation_2001 = EveCorporationInfo.objects.get(corporation_id=2001)
@@ -981,8 +982,9 @@ class TestTimeInCorporationFilter(TestCase):
     def setUpClass(cls) -> None:
         super().setUpClass()
         load_entities()
-        cls.character = create_memberaudit_character(1001)
-        cls.user_1001 = cls.character.character_ownership.user
+
+        cls.character = create_memberaudit_character(1002)
+        cls.user_1002 = cls.character.character_ownership.user
         cls.corporation_2001 = EveEntity.objects.get(id=2001)
         cls.corporation_2002 = EveEntity.objects.get(id=2002)
 
@@ -1003,7 +1005,7 @@ class TestTimeInCorporationFilter(TestCase):
         my_filter = create_time_in_corporation_filter(minimum_days=30)
 
         # when/then
-        self.assertTrue(my_filter.process_filter(self.user_1001))
+        self.assertTrue(my_filter.process_filter(self.user_1002))
 
     def test_should_return_false_when_main_membership_was_not_long_enough(self):
         # given
@@ -1015,14 +1017,54 @@ class TestTimeInCorporationFilter(TestCase):
         my_filter = create_time_in_corporation_filter(minimum_days=30)
 
         # when/then
-        self.assertFalse(my_filter.process_filter(self.user_1001))
+        self.assertFalse(my_filter.process_filter(self.user_1002))
+
+    def test_should_return_false_when_main_membership_was_longer_than_defined(self):
+        """
+        Test that the filter returns False when the main character has been in the corporation longer than the defined minimum days.
+
+        :return:
+        :rtype:
+        """
+        # given
+        create_character_corporation_history(
+            character=self.character,
+            corporation=self.corporation_2001,
+            start_date=now() - dt.timedelta(days=30),
+        )
+        my_filter = create_time_in_corporation_filter(
+            minimum_days=30, reversed_logic=True
+        )
+
+        # when/then
+        self.assertFalse(my_filter.process_filter(self.user_1002))
+
+    def test_should_return_true_when_main_membership_was_not_long_enough(self):
+        """
+        Test that the filter returns True when the main character has been in the corporation shorter than the defined minimum days.
+
+        :return:
+        :rtype:
+        """
+        # given
+        create_character_corporation_history(
+            character=self.character,
+            corporation=self.corporation_2001,
+            start_date=now() - dt.timedelta(days=29),
+        )
+        my_filter = create_time_in_corporation_filter(
+            minimum_days=30, reversed_logic=True
+        )
+
+        # when/then
+        self.assertTrue(my_filter.process_filter(self.user_1002))
 
     def test_should_return_false_when_no_membership_data_for_main(self):
         # given
         my_filter = create_time_in_corporation_filter(minimum_days=30)
 
         # when/then
-        self.assertFalse(my_filter.process_filter(self.user_1001))
+        self.assertFalse(my_filter.process_filter(self.user_1002))
 
     def test_should_return_false_when_user_has_no_memberaudit_character(self):
         # given
@@ -1054,12 +1096,12 @@ class TestTimeInCorporationFilter(TestCase):
             corporation=self.corporation_2001,
             start_date=now() - dt.timedelta(days=29),
         )
-        users = User.objects.filter(pk__in=[self.user_1001.pk, user_1101.pk])
+        users = User.objects.filter(pk__in=[self.user_1002.pk, user_1101.pk])
         # when
         result = my_filter.audit_filter(users)
         # then
         expected = {
-            self.user_1001.id: {"message": "30 days", "check": True},
+            self.user_1002.id: {"message": "30 days", "check": True},
             user_1101.id: {"message": "29 days", "check": False},
         }
         self.assertDictEqual(dict(result), expected)
