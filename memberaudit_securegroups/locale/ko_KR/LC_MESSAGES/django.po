@@ -8,11 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA Member Audit Secure Groups 1.3.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-ma-securegroups/issues\n"
-"POT-Creation-Date: 2024-12-14 18:22+0100\n"
+"POT-Creation-Date: 2024-12-31 15:20+0100\n"
 "PO-Revision-Date: 2024-05-10 14:08+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
-"Language-Team: Korean <https://weblate.ppfeufer.de/projects/alliance-auth-"
-"apps/aa-member-audit-secure-groups/ko/>\n"
+"Language-Team: Korean <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-member-audit-secure-groups/ko/>\n"
 "Language: ko_KR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -94,9 +93,7 @@ msgstr "캐릭터 나이 [{age_threshold}]"
 
 #: memberaudit_securegroups/models.py:304
 msgid "User must possess <strong>one</strong> of the selected assets."
-msgstr ""
-"사용자는 선택된 아이템 중 최소 <strong>한 개</strong> 이상의 아이템을 소유하"
-"고 있어야 합니다."
+msgstr "사용자는 선택된 아이템 중 최소 <strong>한 개</strong> 이상의 아이템을 소유하고 있어야 합니다."
 
 #: memberaudit_securegroups/models.py:312
 msgid "Smart Filter: Asset"
@@ -206,12 +203,8 @@ msgstr ""
 
 #: memberaudit_securegroups/models.py:839
 #, fuzzy
-msgid ""
-"Users must have a character who possess all of the skills in <strong>one</"
-"strong> of the selected skill sets."
-msgstr ""
-"사용자는 선택된 스킬 셋 중 <strong>한 개</strong> 이상의 스킬 셋을 완료해야 "
-"합니다."
+msgid "Users must have a character who possess all of the skills in <strong>one</strong> of the selected skill sets."
+msgstr "사용자는 선택된 스킬 셋 중 <strong>한 개</strong> 이상의 스킬 셋을 완료해야 합니다."
 
 #: memberaudit_securegroups/models.py:848
 msgid "Specify the type of character that needs to have the skill set."
@@ -226,12 +219,20 @@ msgstr "스킬 셋 별 멤버 관리"
 msgid "Member Audit Skill Set"
 msgstr "스킬 셋 별 멤버 관리"
 
-#: memberaudit_securegroups/models.py:984
+#: memberaudit_securegroups/models.py:974
+msgid "Minimum number of days a main character needs to be member of his/her current corporation."
+msgstr ""
+
+#: memberaudit_securegroups/models.py:982
+msgid "If set, all members with LESS than the minimum days will pass this check."
+msgstr ""
+
+#: memberaudit_securegroups/models.py:991
 #, fuzzy
 msgid "Smart Filter: Time in Corporation"
 msgstr "스킬 셋 별 멤버 관리"
 
-#: memberaudit_securegroups/models.py:996
+#: memberaudit_securegroups/models.py:1003
 #, fuzzy
 msgid "Member Audit Time in Corporation Filter"
 msgstr "스킬 셋 별 멤버 관리"
