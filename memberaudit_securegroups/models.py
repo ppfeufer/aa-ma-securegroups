@@ -976,6 +976,13 @@ class TimeInCorporationFilter(BaseFilter):
         ),
     )
 
+    reversed_logic = models.BooleanField(
+        default=False,
+        help_text=_(
+            "If set, all members with LESS than the minimum days will pass this check."
+        ),
+    )
+
     class Meta:
         """
         Model meta definitions
@@ -1019,7 +1026,11 @@ class TimeInCorporationFilter(BaseFilter):
         if not history:
             return False
 
-        passes = (now() - history.start_date).days >= self.minimum_days
+        passes = (
+            (now() - history.start_date).days < self.minimum_days
+            if self.reversed_logic
+            else (now() - history.start_date).days >= self.minimum_days
+        )
 
         return passes
 
@@ -1052,7 +1063,11 @@ class TimeInCorporationFilter(BaseFilter):
                 msg = "No audit info"
             else:
                 days_in_corporation = (now() - user.start_date).days
-                check = days_in_corporation >= self.minimum_days
+                check = (
+                    days_in_corporation < self.minimum_days
+                    if self.reversed_logic
+                    else days_in_corporation >= self.minimum_days
+                )
                 msg = f"{days_in_corporation} days"
 
             output[user.id] = {"message": msg, "check": check}

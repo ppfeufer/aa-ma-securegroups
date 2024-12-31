@@ -35,6 +35,12 @@ Section Order:
 ### Security
 -->
 
+### Added
+
+- Checkbox to reverse logic for `TimeInCorporationFilter`, which comes in handy
+  when you want to put characters that are not in the corporation for a
+  certain amount of time in a group, like for a probation period.
+
 ## [1.3.1] - 2024-12-14
 
 ### Added
