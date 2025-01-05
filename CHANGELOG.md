@@ -35,6 +35,14 @@ Section Order:
 ### Security
 -->
 
+### Added
+
+- End date to the `TimeInCorporationFilter` for reverse logic
+
+### Changed
+
+- Filter messages made translatable
+
 ## [1.4.0] - 2024-12-31
 
 ### Added
