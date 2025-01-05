@@ -177,10 +177,11 @@ class TestAssetFilter(TestCase):
             {"message": "Bruce Wayne (Merlin), Clark Kent (Merlin)", "check": True},
         )
         self.assertDictEqual(
-            result[user_1002.id], {"message": "No matching assets", "check": False}
+            result[user_1002.id],
+            {"message": "No matching assets found", "check": False},
         )
         self.assertDictEqual(
-            result[user_2.id], {"message": "No audit info", "check": False}
+            result[user_2.id], {"message": "No audit information found", "check": False}
         )
         self.assertEqual(len(result), 3)
 
@@ -202,7 +203,8 @@ class TestAssetFilter(TestCase):
         # then
         self.assertEqual(len(result), 1)
         self.assertDictEqual(
-            result[self.user_1.id], {"message": "No matching assets", "check": False}
+            result[self.user_1.id],
+            {"message": "No matching assets found", "check": False},
         )
 
 
@@ -764,7 +766,8 @@ class TestCorporationRoleFilter(TestCase):
             result[user_2.id], {"message": "Lex Luther", "check": True}
         )
         self.assertDictEqual(
-            result[user_3.id], {"message": "No matching character", "check": False}
+            result[user_3.id],
+            {"message": "No matching character found", "check": False},
         )
 
 

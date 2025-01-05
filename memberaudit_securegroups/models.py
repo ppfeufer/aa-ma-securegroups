@@ -14,6 +14,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.db.models import F, OuterRef, Q, Subquery
+from django.utils.formats import localize
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
@@ -382,7 +383,7 @@ class AssetFilter(BaseFilter):
                 message = ", ".join(sorted(matches))
                 check = True
             else:
-                message = "No matching assets"
+                message = _("No matching assets found")
                 check = False
 
             output[user_id] = {"message": message, "check": check}
@@ -390,7 +391,10 @@ class AssetFilter(BaseFilter):
         user_ids = set(users.values_list("id", flat=True))
         missing_user_ids = user_ids - set(output.keys())
         for user_id in missing_user_ids:
-            output[user_id] = {"message": "No audit info", "check": False}
+            output[user_id] = {
+                "message": _("No audit information found"),
+                "check": False,
+            }
 
         return output
 
@@ -594,7 +598,7 @@ class CorporationRoleFilter(BaseFilter):
             user_with_characters[user_id["user_id"]].append(f"{character_name}")
 
         output = {
-            user_id: {"message": "No matching character", "check": False}
+            user_id: {"message": _("No matching character found"), "check": False}
             for user_id in users.values_list("id", flat=True)
         }
 
@@ -711,7 +715,7 @@ class CorporationTitleFilter(BaseFilter):
             user_with_characters[user_id["user_id"]].append(f"{character_name}")
 
         output = {
-            user_id: {"message": "No matching character", "check": False}
+            user_id: {"message": _("No matching character found"), "check": False}
             for user_id in users.values_list("id", flat=True)
         }
 
@@ -950,7 +954,7 @@ class SkillSetFilter(BaseFilter):
             user_with_characters[user_id["user_id"]].append(f"{character_name}")
 
         output = {
-            user_id: {"message": "No matching character", "check": False}
+            user_id: {"message": _("No matching character found"), "check": False}
             for user_id in users.values_list("id", flat=True)
         }
 
@@ -1060,7 +1064,7 @@ class TimeInCorporationFilter(BaseFilter):
         for user in users_days_in_corporation:
             if not user.start_date:
                 check = False
-                msg = "No audit info"
+                msg = _("No audit information found")
             else:
                 days_in_corporation = (now() - user.start_date).days
                 check = (
@@ -1068,7 +1072,24 @@ class TimeInCorporationFilter(BaseFilter):
                     if self.reversed_logic
                     else days_in_corporation >= self.minimum_days
                 )
-                msg = f"{days_in_corporation} days"
+                end_date = localize(
+                    (
+                        user.start_date + datetime.timedelta(days=self.minimum_days)
+                    ).date()
+                )
+                msg = (
+                    ngettext(
+                        singular=f"{days_in_corporation:d} day",
+                        plural=f"{days_in_corporation:d} days",
+                        number=days_in_corporation,
+                    )
+                    if not self.reversed_logic
+                    else ngettext(
+                        singular=f"{days_in_corporation:d} day (End date: {end_date})",
+                        plural=f"{days_in_corporation:d} days (End date: {end_date})",
+                        number=days_in_corporation,
+                    )
+                )
 
             output[user.id] = {"message": msg, "check": check}
 
