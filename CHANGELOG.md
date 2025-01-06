@@ -35,6 +35,8 @@ Section Order:
 ### Security
 -->
 
+## [1.5.0] - 2025-01-06
+
 ### Added
 
 - End date to the `TimeInCorporationFilter` for reverse logic
