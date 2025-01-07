@@ -19,21 +19,20 @@ This is an integration between [Member Audit](https://gitlab.com/ErikKalkoken/aa
 
 ______________________________________________________________________
 
-<!-- mdformat-toc start --slug=gitlab --maxlevel=6 --minlevel=1 -->
+<!-- mdformat-toc start --slug=gitlab --maxlevel=6 --minlevel=2 -->
 
-- [Member Audit Secure Groups Integration for Alliance Auth](#member-audit-secure-groups-integration-for-alliance-auth)
-  - [What's the difference to Member Audit Securegroups](#whats-the-difference-to-member-audit-securegroups)
-  - [Features](#features)
-  - [Installation](#installation)
-    - [Requirements](#requirements)
-    - [Step 0.5: Migrating from Member Audit Securegroups](#step-05-migrating-from-member-audit-securegroups)
-    - [Step 1: Install the Package](#step-1-install-the-package)
-    - [Step 2: Config](#step-2-config)
-    - [Step 3: Finalize App Installation](#step-3-finalize-app-installation)
-  - [Filters](#filters)
-  - [Changelog](#changelog)
-  - [Translation Status](#translation-status)
-  - [Contributing](#contributing)
+- [What's the difference to Member Audit Securegroups](#whats-the-difference-to-member-audit-securegroups)
+- [Features](#features)
+- [Installation](#installation)
+  - [Requirements](#requirements)
+  - [Step 0.5: Migrating from Member Audit Securegroups](#step-05-migrating-from-member-audit-securegroups)
+  - [Step 1: Install the Package](#step-1-install-the-package)
+  - [Step 2: Config](#step-2-config)
+  - [Step 3: Finalize App Installation](#step-3-finalize-app-installation)
+- [Filters](#filters)
+- [Changelog](#changelog)
+- [Translation Status](#translation-status)
+- [Contributing](#contributing)
 
 <!-- mdformat-toc end -->
 
@@ -125,15 +124,17 @@ Restart your supervisor services for Auth
 
 ## Filters<a name="filters"></a>
 
-| Filter Name             | Matches if...                                                                  |
-| ----------------------- | ------------------------------------------------------------------------------ |
-| Activity Filter         | User has *at least one* character active within the last X days                |
-| Age Filter              | User has *at least one* character over X days old                              |
-| Asset Filter            | User has *at least one* character with *any of* the assets defined             |
-| Compliance Filter       | User has *all* characters registered on Member Audit                           |
-| Corporation Role Filter | User has a character (main or alt) in a certain corpration with a certain role |
-| Skill Point Filter      | User has *at least one* character with at least X skill points                 |
-| Skill Set Filter        | User has *at least one* character with *any of* the selected skill sets        |
+| Filter Name                | Matches if...                                                                   | Reversed Logic Possible                                                               |
+| -------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Activity Filter            | User has *at least one* character active within the last X days                 | No                                                                                    |
+| Asset Filter               | User has *at least one* character with *any of* the assets defined              | No                                                                                    |
+| Character Age Filter       | User has *at least one* character over X days old                               | No                                                                                    |
+| Compliance Filter          | User has *all* characters registered on Member Audit                            | Yes , if reversed, user has *at least one* character *not* registered on Member Audit |
+| Corporation Role Filter    | User has a character (main or alt) in a certain corpration with a certain role  | No                                                                                    |
+| Corporation Title Filter   | User has a character (main or alt) in a certain corpration with a certain title | No                                                                                    |
+| Skill Point Filter         | User has *at least one* character with at least X skill points                  | No                                                                                    |
+| Skill Set Filter           | User has *at least one* character with *any of* the selected skill sets         | No                                                                                    |
+| Time in Corporation Filter | User's main character is *at least* more than X days in their corpration        | Yes, if reversed, user's main character is *at most* X days in their corpration       |
 
 ## Changelog<a name="changelog"></a>
 
