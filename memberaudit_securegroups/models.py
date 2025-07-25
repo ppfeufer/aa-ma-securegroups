@@ -28,10 +28,12 @@ from memberaudit.models import (
     Character,
     CharacterAsset,
     CharacterCorporationHistory,
+    CharacterLocation,
     CharacterRole,
     CharacterSkillSetCheck,
     CharacterTitle,
     General,
+    Location,
     SkillSet,
 )
 
@@ -139,7 +141,7 @@ class ActivityFilter(BaseFilter):
             number=self.inactivity_threshold,
         )
 
-        return _(f"Activity [Last {inactivity_threshold}]")
+        return str(_(f"Activity [Last {inactivity_threshold}]"))
 
     def process_filter(self, user: User) -> bool:
         """
@@ -240,7 +242,7 @@ class AgeFilter(BaseFilter):
             self.age_threshold,
         )
 
-        return _(f"Character age [{age_threshold}]")
+        return str(_(f"Character age [{age_threshold}]"))
 
     def process_filter(self, user: User) -> bool:
         """
@@ -322,7 +324,7 @@ class AssetFilter(BaseFilter):
         :rtype: str
         """
 
-        return _("Member Audit Asset")
+        return str(_("Member Audit Asset"))
 
     def process_filter(self, user: User) -> bool:
         """
@@ -426,7 +428,7 @@ class ComplianceFilter(BaseFilter):
         :rtype: str
         """
 
-        return _("Compliance")
+        return str(_("Compliance"))
 
     def process_filter(self, user: User) -> bool:
         """
@@ -543,7 +545,7 @@ class CorporationRoleFilter(BaseFilter):
         :rtype: str
         """
 
-        return _("Member Audit Corporation Role")
+        return str(_("Member Audit Corporation Role"))
 
     def process_filter(self, user: User) -> bool:
         """
@@ -662,7 +664,7 @@ class CorporationTitleFilter(BaseFilter):
         :rtype: str
         """
 
-        return _("Member Audit Corporation Title")
+        return str(_("Member Audit Corporation Title"))
 
     def process_filter(self, user: User) -> bool:
         """
@@ -772,7 +774,7 @@ class SkillPointFilter(BaseFilter):
             number=self.skill_point_threshold,
         )
 
-        return _(f"Member Audit Skill Points [{skill_point_threshold}]")
+        return str(_(f"Member Audit Skill Points [{skill_point_threshold}]"))
 
     def process_filter(self, user: User) -> bool:
         """
@@ -897,7 +899,7 @@ class SkillSetFilter(BaseFilter):
         :rtype: str
         """
 
-        return _("Member Audit Skill Set")
+        return str(_("Member Audit Skill Set"))
 
     def process_filter(self, user: User) -> bool:
         """
@@ -1004,7 +1006,7 @@ class TimeInCorporationFilter(BaseFilter):
         :rtype: str
         """
 
-        return _("Member Audit Time in Corporation Filter")
+        return str(_("Member Audit Time in Corporation Filter"))
 
     def process_filter(self, user: User) -> bool:
         """
@@ -1092,5 +1094,104 @@ class TimeInCorporationFilter(BaseFilter):
                 )
 
             output[user.id] = {"message": msg, "check": check}
+
+        return output
+
+
+class HomeStationFilter(BaseFilter):
+    """
+    Filter for home station.
+    """
+
+    home_station = models.ForeignKey(
+        to=Location,
+        related_name="home_station_filter",
+        on_delete=models.CASCADE,
+        help_text=_("User must have a character with this home station."),
+    )
+    include_alts = models.BooleanField(
+        default=False,
+        help_text=_(
+            "When True, the filter will also include the users alt-characters."
+        ),
+    )
+
+    class Meta:
+        """
+        Model meta definitions
+        """
+
+        verbose_name = _("Smart Filter: Home Station (Death Clone)")
+        verbose_name_plural = verbose_name
+
+    @property
+    def name(self) -> str:
+        """
+        Return name of this filter.
+
+        :return: The filter name
+        :rtype: str
+        """
+
+        return str(_("Member Audit Home Station"))
+
+    def process_filter(self, user: User) -> bool:
+        """
+        Process the filter
+
+        :param user: The user
+        :type user: User
+        :return: Return True when filter applies to the user, else False.
+        :rtype: bool
+        """
+
+        qs = CharacterLocation.objects.filter(
+            character__eve_character__character_ownership__user=user,
+            location=self.home_station,
+        )
+
+        if not self.include_alts:
+            qs = qs.filter(character__eve_character__userprofile__isnull=False)
+
+        return qs.exists()
+
+    def audit_filter(self, users) -> dict:
+        """
+        Audit Filter
+
+        :param users: The users
+        :type users: models.QuerySet[User]
+        :return: The audit information
+        :rtype: dict
+        """
+
+        qs = CharacterLocation.objects.filter(
+            character__eve_character__character_ownership__user__in=list(users),
+            location=self.home_station,
+        )
+
+        if not self.include_alts:
+            qs = qs.filter(character__eve_character__userprofile__isnull=False)
+
+        matching_characters = qs.values(
+            user_id=F("character__eve_character__character_ownership__user_id"),
+            character_name=F("character__eve_character__character_name"),
+        )
+
+        user_with_characters = defaultdict(list)
+        for character in matching_characters:
+            character_name = character["character_name"]
+            user_with_characters[character["user_id"]].append(f"{character_name}")
+
+        output = {
+            user_id: {"message": _("No matching character found"), "check": False}
+            for user_id in users.values_list("id", flat=True)
+        }
+
+        for user_id, character_names in user_with_characters.items():
+            output[user_id] = {
+                "message": ", ".join(sorted(character_names)),
+                "check": True,
+            }
 
         return output

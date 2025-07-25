@@ -16,7 +16,7 @@ from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
 
 # Member Audit
-from memberaudit.models import CharacterRole
+from memberaudit.models import CharacterRole, Location
 
 # Memberaudit Securegroups
 from memberaudit_securegroups.models import (
@@ -26,6 +26,7 @@ from memberaudit_securegroups.models import (
     ComplianceFilter,
     CorporationRoleFilter,
     CorporationTitleFilter,
+    HomeStationFilter,
     SkillPointFilter,
     SkillSetFilter,
     TimeInCorporationFilter,
@@ -325,3 +326,33 @@ class TimeInCorporationFilterAdmin(admin.ModelAdmin):
     """
 
     list_display = ("description", "minimum_days")
+
+
+@admin.register(HomeStationFilter)
+class HomeStationFilterAdmin(admin.ModelAdmin):
+    """
+    HomeStationFilterAdmin
+    """
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        """
+        Override the form field for foreign key
+
+        :param db_field: The database field
+        :type db_field: ForeignKey
+        :param request: The request
+        :type request: HttpRequest
+        :param kwargs: Additional keyword arguments
+        :return: The form field
+        :rtype: ForeignKey
+        """
+
+        # Remove anything that is not a station from the queryset
+        if db_field.name == "home_station":
+            kwargs["queryset"] = Location.objects.filter(
+                eve_solar_system_id__isnull=False, eve_type_id__gt=5
+            ).order_by("name")
+
+        return super().formfield_for_foreignkey(
+            db_field=db_field, request=request, **kwargs
+        )

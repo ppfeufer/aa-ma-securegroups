@@ -51,6 +51,21 @@ from .factories import (
 )
 
 
+def make_user_queryset(*users):
+    """
+    Create a queryset of users from a list of users.
+
+    :param users:
+    :type users:
+    :return:
+    :rtype:
+    """
+
+    params = {"pk__in": [obj.pk for obj in users]}
+
+    return User.objects.filter(**params)
+
+
 class TestAssetFilter(TestCase):
     """
     Tests for the `AssetFilter` model
@@ -1693,18 +1708,3 @@ class TestTimeInCorporationFilter(TestCase):
             user_1101.id: {"message": "29 days", "check": False},
         }
         self.assertDictEqual(dict(result), expected)
-
-
-def make_user_queryset(*users):
-    """
-    Create a queryset of users from a list of users.
-
-    :param users:
-    :type users:
-    :return:
-    :rtype:
-    """
-
-    params = {"pk__in": [obj.pk for obj in users]}
-
-    return User.objects.filter(**params)
