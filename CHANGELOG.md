@@ -35,6 +35,10 @@ Section Order:
 ### Security
 -->
 
+### Added
+
+- Home Station (Death Clone) smart filter
+
 ## [1.5.2] - 2025-06-03
 
 ### Changed
