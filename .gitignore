@@ -14,3 +14,5 @@ __pycache__
 /coverage.xml
 
 /memberaudit_securegroups/locale/en/
+.esi-compatibility-date
+.make/myauth-path
