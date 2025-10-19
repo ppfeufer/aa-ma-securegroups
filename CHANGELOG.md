@@ -2,8 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/)
-and this project adheres to [Semantic Versioning](http://semver.org/).
+The format is based on [Keep a Changelog] and this project adheres to [Semantic Versioning].
 
 <!--
 GitHub MD Syntax:
@@ -15,11 +14,17 @@ https://docs.github.com/assets/cb-41128/mw-1440/images/help/writing/alerts-rende
 > [!NOTE]
 > Highlights information that users should take into account, even when skimming.
 
+> [!TIP]
+> Optional information to help a user be more successful.
+
 > [!IMPORTANT]
 > Crucial information necessary for users to succeed.
 
 > [!WARNING]
-> Critical content demanding immediate user attention due to potential risks.
+> Urgent info that needs immediate user attention to avoid problems.
+
+> [!CAUTION]
+> Advised about risks or negative outcomes of certain actions.
 -->
 
 ## [In Development] - Unreleased
@@ -34,6 +39,8 @@ Section Order:
 ### Removed
 ### Security
 -->
+
+<!-- Your changes go here -->
 
 ## [1.6.0] - 2025-08-05
 
@@ -270,3 +277,30 @@ maintained. To switch to this maintained version, see [Migrating from Member Aud
 ### Added
 
 - Initial Release
+
+<!-- Links to be updated upon release -->
+
+[0.1.0]: https://gitlab.com/eclipse-expeditions/aa-memberaudit-securegroups/-/compare/v0.1.0a3...v0.1.0 "v0.1.0"
+[0.1.0a1]: https://gitlab.com/eclipse-expeditions/aa-memberaudit-securegroups/-/commits/v0.1.0a1 "v0.1.0a1"
+[0.1.0a2]: https://gitlab.com/eclipse-expeditions/aa-memberaudit-securegroups/-/compare/v0.1.0a1...v0.1.0a2 "v0.1.0a2"
+[0.1.0a3]: https://gitlab.com/eclipse-expeditions/aa-memberaudit-securegroups/-/compare/v0.1.0a2...v0.1.0a3 "v0.1.0a3"
+[0.2.0]: https://gitlab.com/eclipse-expeditions/aa-memberaudit-securegroups/-/compare/v0.1.0...v0.2.0 "v0.2.0"
+[0.3.0]: https://gitlab.com/eclipse-expeditions/aa-memberaudit-securegroups/-/compare/v0.2.0...v0.3.0 "v0.3.0"
+[0.4.0]: https://gitlab.com/eclipse-expeditions/aa-memberaudit-securegroups/-/compare/v0.3.0...v0.4.0 "v0.4.0"
+[0.5.0]: https://gitlab.com/eclipse-expeditions/aa-memberaudit-securegroups/-/compare/v0.4.0...v0.5.0 "v0.5.0"
+[0.6.0]: https://gitlab.com/eclipse-expeditions/aa-memberaudit-securegroups/-/compare/v0.5.0...v0.6.0 "v0.6.0"
+[0.6.1]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v0.6.0...v0.6.1 "v0.6.1"
+[1.0.0]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v0.6.1...v1.0.0 "v1.0.0"
+[1.0.1]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v1.0.0...v1.0.1 "v1.0.1"
+[1.1.0]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v1.0.1...v1.1.0 "v1.1.0"
+[1.2.0]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v1.1.0...v1.2.0 "v1.2.0"
+[1.3.0]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v1.2.0...v1.3.0 "v1.3.0"
+[1.3.1]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v1.3.0...v1.3.1 "v1.3.1"
+[1.4.0]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v1.3.1...v1.4.0 "v1.4.0"
+[1.5.0]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v1.4.0...v1.5.0 "v1.5.0"
+[1.5.1]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v1.5.0...v1.5.1 "v1.5.1"
+[1.5.2]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v1.5.1...v1.5.2 "v1.5.2"
+[1.6.0]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v1.5.2...v1.6.0 "v1.6.0"
+[in development]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v1.6.0...HEAD "In Development"
+[keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
+[semantic versioning]: http://semver.org/ "Semantic Versioning"
