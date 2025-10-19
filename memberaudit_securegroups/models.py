@@ -136,12 +136,16 @@ class ActivityFilter(BaseFilter):
         """
 
         inactivity_threshold = ngettext(
-            singular=f"{self.inactivity_threshold:d} day",
-            plural=f"{self.inactivity_threshold:d} days",
+            singular="{inactivity_threshold:d} day",
+            plural="{inactivity_threshold:d} days",
             number=self.inactivity_threshold,
-        )
+        ).format(inactivity_threshold=self.inactivity_threshold)
 
-        return str(_(f"Activity [Last {inactivity_threshold}]"))
+        return str(
+            _("Activity [Last {inactivity_threshold}]").format(
+                inactivity_threshold=inactivity_threshold
+            )
+        )
 
     def process_filter(self, user: User) -> bool:
         """
@@ -237,12 +241,14 @@ class AgeFilter(BaseFilter):
         """
 
         age_threshold = ngettext(
-            f"{self.age_threshold:d} day",
-            f"{self.age_threshold:d} days",
+            "{age_threshold:d} day",
+            "{age_threshold:d} days",
             self.age_threshold,
-        )
+        ).format(age_threshold=self.age_threshold)
 
-        return str(_(f"Character age [{age_threshold}]"))
+        return str(
+            _("Character age [{age_threshold}]").format(age_threshold=age_threshold)
+        )
 
     def process_filter(self, user: User) -> bool:
         """
@@ -478,8 +484,8 @@ class ComplianceFilter(BaseFilter):
 
         output = {}
         all_characters_message = _(
-            f"All characters have been added to {MEMBERAUDIT_APP_NAME}"
-        )
+            "All characters have been added to {MEMBERAUDIT_APP_NAME}"
+        ).format(MEMBERAUDIT_APP_NAME=MEMBERAUDIT_APP_NAME)
 
         for user_id in all_memberaudit_users_ids:
             unregistered_chars = user_with_unregistered_characters.get(user_id)
@@ -769,12 +775,16 @@ class SkillPointFilter(BaseFilter):
         sp_threshold = humanize.intword(self.skill_point_threshold)
 
         skill_point_threshold = ngettext(
-            singular=f"{sp_threshold} skill point",
-            plural=f"{sp_threshold} skill points",
+            singular="{sp_threshold} skill point",
+            plural="{sp_threshold} skill points",
             number=self.skill_point_threshold,
-        )
+        ).format(sp_threshold=sp_threshold)
 
-        return str(_(f"Member Audit Skill Points [{skill_point_threshold}]"))
+        return str(
+            _("Member Audit Skill Points [{skill_point_threshold}]").format(
+                skill_point_threshold=skill_point_threshold
+            )
+        )
 
     def process_filter(self, user: User) -> bool:
         """
@@ -1081,16 +1091,16 @@ class TimeInCorporationFilter(BaseFilter):
                 )
                 msg = (
                     ngettext(
-                        singular=f"{days_in_corporation:d} day",
-                        plural=f"{days_in_corporation:d} days",
+                        singular="{days_in_corporation:d} day",
+                        plural="{days_in_corporation:d} days",
                         number=days_in_corporation,
-                    )
+                    ).format(days_in_corporation=days_in_corporation)
                     if not self.reversed_logic
                     else ngettext(
-                        singular=f"{days_in_corporation:d} day (End date: {end_date})",
-                        plural=f"{days_in_corporation:d} days (End date: {end_date})",
+                        singular="{days_in_corporation:d} day (End date: {end_date})",
+                        plural="{days_in_corporation:d} days (End date: {end_date})",
                         number=days_in_corporation,
-                    )
+                    ).format(days_in_corporation=days_in_corporation, end_date=end_date)
                 )
 
             output[user.id] = {"message": msg, "check": check}

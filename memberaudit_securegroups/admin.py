@@ -41,6 +41,7 @@ class ActivityFilterAdmin(admin.ModelAdmin):
 
     list_display = ("description", "_inactivity_threshold")
 
+    @admin.display(description=_("Inactivity threshold"))
     def _inactivity_threshold(self, obj) -> str:
         """
         Get the inactivity threshold
@@ -54,10 +55,10 @@ class ActivityFilterAdmin(admin.ModelAdmin):
         inactivity_threshold = obj.inactivity_threshold
 
         return_value = ngettext(
-            singular=f"{inactivity_threshold:d} day",
-            plural=f"{inactivity_threshold:d} days",
+            singular="{inactivity_threshold:d} day",
+            plural="{inactivity_threshold:d} days",
             number=inactivity_threshold,
-        )
+        ).format(inactivity_threshold=inactivity_threshold)
 
         return return_value
 
