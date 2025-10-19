@@ -23,7 +23,7 @@ from memberaudit.tests.testdata.factories import (
     create_character_skill_set_check,
     create_character_title,
     create_skill_set,
-    create_skill_set_skill,
+    create_skill_set_skill
 )
 from memberaudit.tests.testdata.load_entities import load_entities
 from memberaudit.tests.testdata.load_eveuniverse import load_eveuniverse
@@ -31,7 +31,7 @@ from memberaudit.tests.utils import (
     add_auth_character_to_user,
     add_memberaudit_character_to_user,
     create_memberaudit_character,
-    create_user_from_evecharacter_with_access,
+    create_user_from_evecharacter_with_access
 )
 
 # Alliance Auth (External Libs)
@@ -42,6 +42,7 @@ from memberaudit_securegroups.models import (
     AssetFilter,
     ComplianceFilter,
     SkillSetFilter,
+    VisibilityFilter
 )
 
 from .factories import (
@@ -1708,3 +1709,118 @@ class TestTimeInCorporationFilter(TestCase):
             user_1101.id: {"message": "29 days", "check": False},
         }
         self.assertDictEqual(dict(result), expected)
+
+class TestVisibilityFilter(TestCase):
+    """
+    Tests for the `VisibilityFilter` model
+    """
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        """
+        Setup for the test case
+
+        :return:
+        :rtype:
+        """
+
+        super().setUpClass()
+
+        load_entities()
+
+        cls.shared_character = create_memberaudit_character(1001)
+        cls.shared_character.is_shared = True
+        cls.shared_character.save()
+        cls.all_shared_user = cls.shared_character.character_ownership.user
+
+        cls.unshared_character = create_memberaudit_character(1002)
+        cls.unshared_character.is_shared = False
+        cls.unshared_character.save()
+        cls.no_shared_user, _ = create_user_from_evecharacter_with_access(1002)
+
+        cls.some_shared_character_1 = create_memberaudit_character(1101)
+        cls.some_shared_character_1.is_shared = True
+        cls.some_shared_character_1.save()
+        cls.some_shared_character_2 = create_memberaudit_character(1102)
+        cls.some_shared_character_2.is_shared = False
+        cls.some_shared_character_2.save()
+        cls.some_shared_user, _ = create_user_from_evecharacter_with_access(1101)
+        add_auth_character_to_user(cls.some_shared_user, 1102)
+
+        cls.visibility_filter = VisibilityFilter.objects.create()
+        cls.visibility_filter_reversed = VisibilityFilter.objects.create(
+            reversed_logic=True
+        )
+
+    def test_should_return_name(self):
+        """
+        Test that the name is returned
+
+        :return:
+        :rtype:
+        """
+
+        self.assertTrue(self.visibility_filter.name)
+
+    def test_should_return_false_when_all_of_users_characters_are_shared(self):
+        """
+        Test that the filter returns False when all of the users characters are shared
+
+        :return:
+        :rtype:
+        """
+
+        self.assertFalse(self.visibility_filter.process_filter(self.all_shared_user))
+
+    def test_should_return_true_when_user_has_no_shared_characters(self):
+        """
+        Test that the filter returns True when the user has characters that are not shared
+
+        :return:
+        :rtype:
+        """
+
+        self.assertTrue(self.visibility_filter.process_filter(self.no_shared_user))
+
+    def test_should_return_false_when_user_has_some_characters_not_shared(self):
+        """
+        Test that the filter returns True when the user has only some characters shared
+
+        :return:
+        :rtype:
+        """
+
+        self.assertTrue(self.visibility_filter.process_filter(self.some_shared_user))
+
+    def test_should_return_audit_data_with_one_passing(self):
+        """
+        Test that the filter returns the correct audit data for a shared character.
+
+        :return:
+        :rtype:
+        """
+
+        # when
+        result = self.visibility_filter.audit_filter([self.all_shared_user])
+
+        # then
+        expected = { "message": "All characters have been shared in Member Audit", "check": True }
+
+        self.assertDictEqual(result[self.all_shared_user.id], expected)
+
+    def test_should_return_audit_data_with_one_not_passing(self):
+        """
+        Test that the filter returns the correct audit data for an unshared character.
+
+        :return:
+        :rtype:
+        """
+
+        # when
+        result = self.visibility_filter.audit_filter([self.no_shared_user])
+
+        # then
+        expected_message = "Unshared character: " + self.unshared_character.name
+        expected = { "message": expected_message, "check": False }
+
+        self.assertDictEqual(result[self.no_shared_user.id], expected)
