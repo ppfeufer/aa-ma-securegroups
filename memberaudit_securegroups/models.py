@@ -414,7 +414,7 @@ class ComplianceFilter(BaseFilter):
 
     reversed_logic = models.BooleanField(
         default=False,
-        help_text=_("If set all members WITHOUT compliance will pass this check."),
+        help_text=_("If set, all members WITHOUT compliance will pass this check."),
     )
 
     class Meta:
