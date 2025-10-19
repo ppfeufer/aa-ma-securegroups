@@ -1710,6 +1710,7 @@ class TestTimeInCorporationFilter(TestCase):
         }
         self.assertDictEqual(dict(result), expected)
 
+
 class TestVisibilityFilter(TestCase):
     """
     Tests for the `VisibilityFilter` model
@@ -1804,7 +1805,7 @@ class TestVisibilityFilter(TestCase):
         result = self.visibility_filter.audit_filter([self.all_shared_user])
 
         # then
-        expected = { "message": "All characters have been shared in Member Audit", "check": True }
+        expected = {"message": "All characters have been shared in Member Audit", "check": True}
 
         self.assertDictEqual(result[self.all_shared_user.id], expected)
 
@@ -1821,6 +1822,6 @@ class TestVisibilityFilter(TestCase):
 
         # then
         expected_message = "Unshared character: " + self.unshared_character.name
-        expected = { "message": expected_message, "check": False }
+        expected = {"message": expected_message, "check": False}
 
         self.assertDictEqual(result[self.no_shared_user.id], expected)

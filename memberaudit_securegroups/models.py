@@ -1196,6 +1196,7 @@ class HomeStationFilter(BaseFilter):
 
         return output
 
+
 class VisibilityFilter(BaseFilter):
     """
     VisibilityFilter
