@@ -52,10 +52,13 @@ optional-dependencies.tests-allianceauth-latest = [
     "django-webtest",
 ]
 urls.Changelog = "https://github.com/ppfeufer/aa-ma-securegroups/blob/master/CHANGELOG.md"
+urls.Codecov = "https://codecov.io/gh/ppfeufer/aa-ma-securegroups"
+urls.Discord = "https://discord.gg/fjnHAmk"
 urls.Documentation = "https://github.com/ppfeufer/aa-ma-securegroups/blob/master/README.md"
-urls.Homepage = "https://github.com/ppfeufer/aa-ma-securegroups"
-urls.Source = "https://github.com/ppfeufer/aa-ma-securegroups.git"
+urls.Donation = "https://ko-fi.com/ppfeufer"
+urls.GitHub = "https://github.com/ppfeufer/aa-ma-securegroups"
 urls.Tracker = "https://github.com/ppfeufer/aa-ma-securegroups/issues"
+urls.Translation = "https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-member-audit-secure-groups/"
 
 [tool.hatch.build]
 include = [
