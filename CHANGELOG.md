@@ -42,9 +42,15 @@ Section Order:
 
 <!-- Your changes go here -->
 
+## [1.6.1] - 2025-11-04
+
 ### Fixed
 
 - Django `makemessages` seems to be ignoring f-strings now
+
+### Changed
+
+- Translations updated
 
 ## [1.6.0] - 2025-08-05
 
@@ -305,6 +311,7 @@ maintained. To switch to this maintained version, see [Migrating from Member Aud
 [1.5.1]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v1.5.0...v1.5.1 "v1.5.1"
 [1.5.2]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v1.5.1...v1.5.2 "v1.5.2"
 [1.6.0]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v1.5.2...v1.6.0 "v1.6.0"
-[in development]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v1.6.0...HEAD "In Development"
+[1.6.1]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v1.6.0...v1.6.1 "v1.6.1"
+[in development]: https://github.com/ppfeufer/aa-ma-securegroups/compare/v1.6.1...HEAD "In Development"
 [keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
 [semantic versioning]: http://semver.org/ "Semantic Versioning"
