@@ -10,7 +10,6 @@
 [![Discord](https://img.shields.io/discord/399006117012832262?label=discord)](https://discord.gg/fjnHAmk)
 [![Checks](https://github.com/ppfeufer/aa-ma-securegroups/actions/workflows/automated-checks.yml/badge.svg)](https://github.com/ppfeufer/aa-ma-securegroups/actions/workflows/automated-checks.yml)
 [![codecov](https://codecov.io/gh/ppfeufer/aa-ma-securegroups/branch/master/graph/badge.svg)](https://codecov.io/gh/ppfeufer/aa-ma-securegroups)
-[![Translation status](https://weblate.ppfeufer.de/widget/alliance-auth-apps/aa-member-audit-secure-groups/svg-badge.svg)](https://weblate.ppfeufer.de/engage/alliance-auth-apps/)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://github.com/ppfeufer/aa-ma-securegroups/blob/master/CODE_OF_CONDUCT.md)
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/N4N8CL1BY)
@@ -31,7 +30,6 @@ ______________________________________________________________________
   - [Step 3: Finalize App Installation](#step-3-finalize-app-installation)
 - [Filters](#filters)
 - [Changelog](#changelog)
-- [Translation Status](#translation-status)
 - [Contributing](#contributing)
 
 <!-- mdformat-toc end -->
@@ -124,28 +122,21 @@ Restart your supervisor services for Auth
 
 ## Filters<a name="filters"></a>
 
-| Filter Name                | Matches if...                                                                   | Reversed Logic Possible                                                               |
-| -------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| Activity Filter            | User has *at least one* character active within the last X days                 | No                                                                                    |
-| Asset Filter               | User has *at least one* character with *any of* the assets defined              | No                                                                                    |
-| Character Age Filter       | User has *at least one* character over X days old                               | No                                                                                    |
-| Compliance Filter          | User has *all* characters registered on Member Audit                            | Yes , if reversed, user has *at least one* character *not* registered on Member Audit |
-| Corporation Role Filter    | User has a character (main or alt) in a certain corpration with a certain role  | No                                                                                    |
-| Corporation Title Filter   | User has a character (main or alt) in a certain corpration with a certain title | No                                                                                    |
-| Skill Point Filter         | User has *at least one* character with at least X skill points                  | No                                                                                    |
-| Skill Set Filter           | User has *at least one* character with *any of* the selected skill sets         | No                                                                                    |
-| Time in Corporation Filter | User's main character is *at least* more than X days in their corpration        | Yes, if reversed, user's main character is *at most* X days in their corpration       |
+| Filter Name                | Matches if...                                                                    | Reversed Logic Possible                                                               |
+| -------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Activity Filter            | User has *at least one* character active within the last X days                  | No                                                                                    |
+| Asset Filter               | User has *at least one* character with *any of* the assets defined               | No                                                                                    |
+| Character Age Filter       | User has *at least one* character over X days old                                | No                                                                                    |
+| Compliance Filter          | User has *all* characters registered on Member Audit                             | Yes , if reversed, user has *at least one* character *not* registered on Member Audit |
+| Corporation Role Filter    | User has a character (main or alt) in a certain corporation with a certain role  | No                                                                                    |
+| Corporation Title Filter   | User has a character (main or alt) in a certain corporation with a certain title | No                                                                                    |
+| Skill Point Filter         | User has *at least one* character with at least X skill points                   | No                                                                                    |
+| Skill Set Filter           | User has *at least one* character with *any of* the selected skill sets          | No                                                                                    |
+| Time in Corporation Filter | User's main character is *at least* more than X days in their corpration         | Yes, if reversed, user's main character is *at most* X days in their corpration       |
 
 ## Changelog<a name="changelog"></a>
 
 See [CHANGELOG.md]
-
-## Translation Status<a name="translation-status"></a>
-
-[![Translation status](https://weblate.ppfeufer.de/widget/alliance-auth-apps/aa-member-audit-secure-groups/multi-auto.svg)](https://weblate.ppfeufer.de/engage/alliance-auth-apps/)
-
-Do you want to help translate this app into your language or improve the existing
-translation? - [Join our team of translators][weblate engage]!
 
 ## Contributing<a name="contributing"></a>
 
@@ -158,4 +149,3 @@ Please make sure to read the [Contribution Guidelines].\
 
 [changelog.md]: https://github.com/ppfeufer/aa-ma-securegroups/blob/master/CHANGELOG.md
 [contribution guidelines]: https://github.com/ppfeufer/aa-ma-securegroups/blob/master/CONTRIBUTING.md "Contribution Guidelines"
-[weblate engage]: https://weblate.ppfeufer.de/engage/alliance-auth-apps/ "Weblate Translations"
