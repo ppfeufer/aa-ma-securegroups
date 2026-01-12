@@ -1205,3 +1205,105 @@ class HomeStationFilter(BaseFilter):
             }
 
         return output
+
+
+class VisibilityFilter(BaseFilter):
+    """
+    VisibilityFilter
+    """
+
+    reversed_logic = models.BooleanField(
+        default=False,
+        help_text=_("If set all members WITHOUT visibility will pass this check."),
+    )
+
+    class Meta:
+        """
+        Model meta definitions
+        """
+
+        verbose_name = _("Smart Filter: Visibility")
+        verbose_name_plural = verbose_name
+
+    @property
+    def name(self) -> str:
+        """
+        Return name of this filter.
+
+        :return: The filter name
+        :rtype: str
+        """
+
+        return str(_("Visibility"))
+
+    def process_filter(self, user: User) -> bool:
+        """
+        Process the filter
+
+        :param user: The user
+        :type user: User
+        :return: Return True when filter applies to the user, else False.
+        :rtype: bool
+        """
+
+        characters = Character.objects.owned_by_user(user=user)
+        character_count = characters.count()
+        shared_character_count = characters.filter(is_shared=True).count()
+
+        if self.reversed_logic:
+            return character_count == shared_character_count
+
+        return character_count != shared_character_count
+
+    def audit_filter(self, users) -> dict:
+        """
+        Audit Filter
+
+        :param users: The users
+        :type users: models.QuerySet[User]
+        :return: The audit information
+        :rtype: dict
+        """
+
+        unshared_characters = EveCharacter.objects.filter(
+            character_ownership__user__in=list(users),
+            memberaudit_character__is_shared=False,
+        ).values("character_name", user_id=F("character_ownership__user_id"))
+
+        user_with_unshared_characters = defaultdict(list)
+
+        for obj in unshared_characters:
+            character_name = obj["character_name"]
+            user_with_unshared_characters[obj["user_id"]].append(
+                f"{character_name}"
+            )
+
+        all_memberaudit_users_ids = General.users_with_basic_access().values_list(
+            "id", flat=True
+        )
+
+        output = {}
+        all_characters_message = _(
+            f"All characters have been shared in {MEMBERAUDIT_APP_NAME}"
+        )
+
+        for user_id in all_memberaudit_users_ids:
+            unshared_chars = user_with_unshared_characters.get(user_id)
+
+            if unshared_chars:
+                missing_characters_message = ngettext(
+                    singular="Unshared character: ",
+                    plural="Unshared characters: ",
+                    number=len(unshared_chars),
+                )
+                message = missing_characters_message + ", ".join(
+                    sorted(unshared_chars)
+                )
+                check = self.reversed_logic
+            else:
+                message = all_characters_message
+                check = not self.reversed_logic
+
+            output[user_id] = {"message": message, "check": check}
+
+        return output
