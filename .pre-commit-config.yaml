@@ -147,14 +147,14 @@ repos:
         description: Enforce that python3.6+ type annotations are used instead of type comments.
 
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
-    rev: 11ea70506fd878d26129b2b87746fd1a1f6b561b  # frozen: 3.6.0
+    rev: bebfac867564fbd992e5b45379b4b0568d5cb85b  # frozen: 3.6.1
     hooks:
       - id: editorconfig-checker
         name: EditorConfig Checker
         description: Check for compliance with the definitions in the EditorConfig file.
 
   - repo: https://github.com/adamchainz/django-upgrade
-    rev: 553731fe59437e0bd2cf18b10144116422bed259  # frozen: 1.29.1
+    rev: 4864562a5d05a7ff3bce99bc31f892eeb396fc00  # frozen: 1.30.0
     hooks:
       - id: django-upgrade
         name: Django upgrade
@@ -186,7 +186,7 @@ repos:
         description: Check for extraneous `# noqa` comments.
 
   - repo: https://github.com/PyCQA/isort
-    rev: 0a09c783808cfe77bb3269250f663ff733d23302  # frozen: 7.0.0
+    rev: dac090ce4d9ee313d086e2e89ab1acb8c2664fa1  # frozen: 9.0.0a3
     hooks:
       - id: isort
         name: Isort
@@ -200,7 +200,7 @@ repos:
         description: Check for black disable comments.
 
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 831207fd435b47aeffdf6af853097e64322b4d44  # frozen: 25.12.0
+    rev: 4160603246a6b365d4a2af661c6d71b0a0f50478  # frozen: 26.5.1
     hooks:
       - id: black
         name: Black
@@ -239,7 +239,7 @@ repos:
         description: Format the tox.ini file.
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: d252a2a7678b47d1f2eea2f6b846ddfdcd012759  # frozen: v2.11.1
+    rev: 3a8ef795727fa946dfcb21c5d07b1442c2362c09  # frozen: v2.23.0
     hooks:
       - id: pyproject-fmt
         name: pyproject.toml formatter
@@ -250,14 +250,14 @@ repos:
           - tox==4.32.0  # https://github.com/tox-dev/tox/releases/latest
 
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: 78f5e0f104cfa803d0597eaa924b4de3becd3e3e  # frozen: v0.24.1
+    rev: 4b2e70d08cb2ccd26d1fba73588de41c7a5d50b7  # frozen: v0.25
     hooks:
       - id: validate-pyproject
         name: Validate pyproject.toml
         description: Validate the pyproject.toml file.
 
   - repo: https://github.com/pylint-dev/pylint
-    rev: e16f942166511d6fb4427e503a734152fae0c4fe  # frozen: v4.0.4
+    rev: 88e1ab7545a4af4aea15c305a154c164a95ab842  # frozen: v4.0.5
     hooks:
       - id: pylint
         name: Pylint
@@ -266,7 +266,7 @@ repos:
           - --py-version=3.10  # Minimum required Python version for AA. Update as needed.
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: b035497fb64e3f9faa91e833331688cc185891e6  # frozen: 0.36.0
+    rev: 943377262562a12b57292fc98fabd7dbf81451fe  # frozen: 0.37.2
     hooks:
       - id: check-github-actions
         name: Check GitHub Actions
